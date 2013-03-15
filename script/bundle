@@ -1,0 +1,8 @@
+
+curl -L cpanmin.us | sudo perl - App::cpanminus
+cpanm Mojolicious::Plugin::Config
+cpanm Try::Tiny
+cpanm DBIx::Simple
+#cpanm MojoX::Renderer::TT
+cpanm Mojolicious::Plugin::TtRenderer::Engine
+cpanm Mojolicious::Plugin::I18N

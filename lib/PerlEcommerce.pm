@@ -1,6 +1,7 @@
 package PerlEcommerce;
-use Mojo::Base 'Mojolicious'
-use MojoX::Renderer::TT;
+use Mojo::Base 'Mojolicious';
+#use MojoX::Renderer::TT;
+use Mojolicious::Plugin::TtRenderer::Engine;
 use Mojolicious::Plugin::Config;
 use PerlEcommerce::Controller;
 use PerlEcommerce::Model;
@@ -15,7 +16,7 @@ sub startup {
   $self->setup_hooks;
 }
 
-sub setup_plugins {
+sub setup_plugins {
   my $self = shift;
   my $config = $self->plugin(Config => { file => 'perl-ecommerce.conf' });
   
@@ -33,7 +34,7 @@ sub setup_plugins {
   $self->plugin('I18N' => { default => 'en'});    
 }
 
-sub setup_routings {
+sub setup_routing {
   my $self = shift;
   my $r = $self->routes;
   
