@@ -25,7 +25,7 @@ sub new {
         $self->_setup_dbms_specifics($DB, $config{dsn});
 
         my $modules = [
-            grep { $_ ne 'Ashafix::Schema::Base' } @{Mojo::Loader->search('Ashafix::Schema')}
+            grep { $_ ne 'PerlEcommerce::Schema::Base' } @{Mojo::Loader->search('PerlEcommerce::Schema')}
         ];
         foreach my $pm (@$modules) {
             my $e = Mojo::Loader->load($pm);
