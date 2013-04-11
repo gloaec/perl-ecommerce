@@ -8,9 +8,12 @@
     <a href="#" class="brand">Perl-ECommerce</a>
     <div class="nav-collapse collapse">
       <ul class="nav">
-        <li class="active"><a href="#"><i class="icon-home"></i> [% h.l('home') %]</a></li>
-        <li><a href="[% urlfor('root') %]">[% h.l('products') %]</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li class="[% IF controller=="main" %] active [% END %]">
+          <a href="[% url_for('/') %]"><i class="icon-home"></i> [% t('home') %]</a>
+        </li>
+        <li class="[% IF controller=="products" %] active [% END %]">
+          <a href="[% url_for('products') %]">[% t('products') %]</a>
+        </li>
         <li class="dropdown">
           <a data-toggle="dropdown" class="dropdown-toggle" href="#">Dropdown <b class="caret"></b></a>
           <ul class="dropdown-menu">
@@ -26,18 +29,20 @@
       </ul>
       <ul class="nav pull-right">
         <li class="dropdown">
-          <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-shopping-cart"></i> [% h.l('cart') %] ([% 0 %])<b class="caret"></b></a>
+          <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+            <i class="icon-shopping-cart"></i> [% t('cart') %] ([% 0 %])<b class="caret"></b>
+          </a>
           <ul class="dropdown-menu">
             <li class="nav-header">[% h.l('products') %]</li>
             [% if(1) # cart is empty %]
-              <li><a href="#" class="disabled">[% h.l('cart_is_empty') %]</a></li>
+              <li><a href="#" class="disabled">[% t('cart_is_empty') %]</a></li>
             [% else %]
 
             [% end %]
             <li>
             <li class="divider"></li>
-            <li><a href="#"><i class="icon-checkout"></i> [% h.l('checkout') %]</a></li>            
-            <li><a href="#"><i class="icon-trash"></i> [% h.l('empty_cart') %]</a></li>
+            <li><a href="#"><i class="icon-checkout"></i> [% t('checkout') %]</a></li>            
+            <li><a href="#"><i class="icon-trash"></i> [% t('empty_cart') %]</a></li>
           </ul>
         </li>
       </ul>

@@ -23,6 +23,9 @@ sub setup_plugins {
   $self->plugin(
     tt_renderer => {
       template_options => {
+        PRE_PROCESS => 'header.html.tt',
+        POST_PROCESS => 'footer.html.tt',
+        EVAL_PERL => 1,
         CONSTANTS => {
           version => $VERSION
         }
@@ -41,6 +44,7 @@ sub setup_routing {
   $r->namespace('PerlEcommerce::Controller');
 
   $r->route('/')->to('main#index')->name('index');
+  $r->route('/products')->to('products#index')->name('products');
 
   $self->resources({
   #  product => {
