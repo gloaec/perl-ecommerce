@@ -7,6 +7,7 @@ if which curl &> /dev/null;
     then echo -e "\033[38;5;148m=> 'Curl' installed successfully\033[39m";
     else echo -e "\033[38;5;1m=> 'Curl' not installed\033[39m" && exit 1
   fi
+fi
 
 if which morbo &> /dev/null;
   then echo -e "\033[38;5;111m=> Installing Mojolicious\033[39m"
