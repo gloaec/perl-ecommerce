@@ -19,4 +19,8 @@ EOF
 $ENV{MOJO_APP} ||= 'PerlEcommerce';
 
 # Start commands
-Mojolicious::Commands->start;
+#Mojolicious::Commands->start;
+
+my $commands = Mojolicious::Commands->new;
+push @{$commands->namespaces}, 'PerlECommerce::Command';
+Mojolicious::Commands->start_app($ENV{MOJO_APP}, 'daemon', '-l', 'http://*:8080');

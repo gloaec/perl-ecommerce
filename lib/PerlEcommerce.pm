@@ -41,20 +41,18 @@ sub setup_routing {
   my $self = shift;
   my $r = $self->routes;
   
-  $r->namespace('PerlEcommerce::Controller');
+  #$r->namespace('PerlEcommerce::Controller');
 
   $r->route('/')->to('main#index')->name('index');
-  $r->route('/products')->to('products#index')->name('products');
+  #$r->route('/products')->to('products#index')->name('products');
 
-  $self->resources({
-  #  product => {
-  #    index  => 'GET#products',
-  #    create => 'POST#products',
-  #    edit   => 'GET#products',
-  #    show   => 'GET#products/:id',
-  #    update => 'PUT#products/:id',
-  #    delete => 'DELETE#products/:id'
-  #  }
+  $self->resources('products');
+  $self->resources(foo => {
+    'bar' => '*',
+    'bor' => {
+      except => ['show']
+    },
+    only => ['new','create']
   });
 }
 
@@ -67,10 +65,30 @@ sub setup_hooks {
 }
 
 sub resources {
-  my ($self, $desc) = @_;
-  my $r = $self->routes;
-
+  my ($self, $controller) = @_;
+  my $r = $self->routes;  
+  
+  if(ref(\$controller) eq 'SCALAR'){
+    my $resource = 
+           $r->route('/'.$controller)->via('GET')   ->to(controller => $controller)->name($controller.'#index');
+    $resource->route('')             ->via('GET')   ->to(action => 'index')        ->name($controller.'#index'); 
+    $resource->route('/new')         ->via('GET')   ->to(action => 'new')          ->name($controller.'#new');
+    $resource->route('')             ->via('POST')  ->to(action => 'create')       ->name($controller.'#create'); 
+    $resource->route('/:id')         ->via('GET')   ->to(action => 'show')         ->name($controller.'#show'); 
+    $resource->route('/:id/edit')    ->via('GET')   ->to(action => 'edit')         ->name($controller.'#edit'); 
+    $resource->route('/:id')         ->via('PUT')   ->to(action => 'update')       ->name($controller.'#update'); 
+    $resource->route('/:id')         ->via('DELETE')->to(action => 'delete')       ->name($controller.'#delete'); 
+  } 
+  elsif(ref(\$controller) eq 'HASH') {
+    while(my (%controller, $child_controller) = each %$controller) {
+      use Data::Dumper;
+      local $Data::Dumber::Terse = 1;
+      $controller = Dumper(%controller);
+      #$controller = keys($controller);
+    }
+  }
   #TODO: define methods to automatically route the models with their respective controller
 }
+
 
 1;
