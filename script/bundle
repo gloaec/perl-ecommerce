@@ -1,7 +1,9 @@
 #!/bin/bash 
 
+printf "\033[38;5;111m=> Checking for Curl : \033[39m"
 if which curl &> /dev/null;
-  then echo -e "\033[38;5;111m=> Installing Curl\033[39m"
+  then echo -e "\033[38;5;148mOK\033[39m";
+  else echo -e "\033[38;5;213mInstalling Curl\033[39m"
   sudo apt-get install curl
   if which curl &> /dev/null;
     then echo -e "\033[38;5;148m=> 'Curl' installed successfully\033[39m";
@@ -9,8 +11,10 @@ if which curl &> /dev/null;
   fi
 fi
 
+printf "\033[38;5;111m=> Checking for Mojolicious : \033[39m"
 if which morbo &> /dev/null;
-  then echo -e "\033[38;5;111m=> Installing Mojolicious\033[39m"
+  then echo -e "\033[38;5;148mOK\033[39m";
+  else echo -e "\033[38;5;213mInstalling Mojolicious\033[39m"
   curl get.mojolicio.us | sh
   if which morbo &> /dev/null;
     then echo -e "\033[38;5;148m=> 'Mojolicious' installed successfully\033[39m";
@@ -18,8 +22,10 @@ if which morbo &> /dev/null;
   fi
 fi
 
+printf "\033[38;5;111m=> Checking for CPanMinus : \033[39m"
 if which cpanm &> /dev/null;
-  then echo -e "\033[38;5;111m=> Installing CPanMinus\033[39m (Perl Modules)"
+  then echo -e "\033[38;5;148mOK\033[39m";
+  else echo -e "\033[38;5;213mInstalling CPanMinus\033[39m (Perl Modules)"
   curl -L cpanmin.us | sudo perl - App::cpanminus
   if which cpanm &> /dev/null;
     then echo -e "\033[38;5;148m=> 'CPanMinus' installed successfully\033[39m";
@@ -28,7 +34,7 @@ if which cpanm &> /dev/null;
 fi
 
 if which cpanm &> /dev/null;
-  then echo -e "\033[38;5;111m=> Installing Perl Dependencies\033[39m"
+  then echo -e "\033[38;5;213m=> Installing Perl Dependencies\033[39m"
   cpanm Mojolicious::Plugin::Config
   cpanm Try::Tiny
   cpanm DBIx::Simple
