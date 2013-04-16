@@ -15,7 +15,7 @@
       <tbody>
         [% FOREACH product IN products %]
           <tr>
-            <td>[% product.name %]</td>
+            <td><a href="[% url_for("/products/$product.id") %]">[% product.name %]</a></td>
             <td>[% product.price %]</td>
           </tr>
         [% END %]

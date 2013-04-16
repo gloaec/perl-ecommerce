@@ -4,7 +4,8 @@ use warnings;
 use parent 'PerlEcommerce::Schema::Base';
 
 our %queries = (
-    get_all             => "SELECT * FROM %table_products",
+    all                 => "SELECT * FROM %table_products",
+    find                => "SELECT * FROM %table_products WHERE id=?",
     get_password        => "SELECT password FROM %table_admin WHERE username=? AND active='1'",
     get_all_admin_names => "SELECT username FROM %table_admin ORDER by username",
     insert_admin        => "INSERT INTO %table_admin (username,password,created,modified) VALUES (?,?,NOW(),NOW())",
