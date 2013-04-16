@@ -1,16 +1,17 @@
 SET character_set_client = utf8;
 
-/* DROP TABLES */
-
+-- Drop Tables 
 DROP TABLE IF EXISTS products;
 
-/* CREATE TABLES */
-
+-- Create Tables
 CREATE TABLE products (
   id       integer(11)  NOT NULL,
   name     varchar(255) NOT NULL,
+  price    decimal(5)   NOT NULL,
   created  datetime     NOT NULL DEFAULT '0000-00-00 00:00:00',
   modified datetime     NOT NULL DEFAULT '0000-00-00 00:00:00',
   
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce products';
+
+

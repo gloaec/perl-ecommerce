@@ -4,6 +4,7 @@ use PerlEcommerce::I18N;
 
 sub index {
   # just render
+
 }
 
 1;

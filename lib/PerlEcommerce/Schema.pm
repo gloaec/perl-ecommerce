@@ -1,4 +1,4 @@
-package Ashafix::Schema;
+package PerlEcommerce::Schema;
 use strict;
 use warnings;
 use DBIx::Simple;

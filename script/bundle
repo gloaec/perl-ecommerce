@@ -35,11 +35,12 @@ fi
 
 if which cpanm &> /dev/null;
   then echo -e "\033[38;5;213m=> Installing Perl Dependencies\033[39m"
-  cpanm Mojolicious::Plugin::Config
-  cpanm Try::Tiny
-  cpanm DBIx::Simple
-  cpanm Mojolicious::Plugin::TtRenderer::Engine
-  cpanm Mojolicious::Plugin::I18N
+  sudo cpanm Mojolicious::Plugin::Config
+  sudo cpanm Try::Tiny
+  sudo cpanm DBIx::Simple
+  sudo cpanm Mojolicious::Plugin::TtRenderer::Engine
+  sudo cpanm Mojolicious::Plugin::I18N
+  sudo cpanm Text::Template
   echo -e "\033[38;5;148m=> 'Perl Dependencies' installed successfully\033[39m";
 fi
 

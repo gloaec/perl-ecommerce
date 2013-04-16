@@ -4,14 +4,21 @@ use PerlEcommerce::I18N;
 
 sub index {
   my $self = shift;
+  my @products = $self->model('product')->list;
   my %params = (
-    products => [
-      { name => 'Product 1', price => 30 },
-      { name => 'Product 2', price => 50 },
-    ]
+    products => \@products
   );
-
   $self->render(%params, @_);
+}
+
+sub show {
+  my $self = shift;
+  
+  #$self->render({ product => { id => "1" }});
+}
+
+sub _get_products {
+  return shift
 }
 
 1;

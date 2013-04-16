@@ -1,10 +1,10 @@
 package PerlEcommerce;
 use Mojo::Base 'Mojolicious';
-#use MojoX::Renderer::TT;
 use Mojolicious::Plugin::TtRenderer::Engine;
 use Mojolicious::Plugin::Config;
-use PerlEcommerce::Controller;
 use PerlEcommerce::Model;
+use PerlEcommerce::Controller;
+use Data::Dumper;
 
 my $VERSION = '0.0.1';
 
@@ -12,6 +12,7 @@ sub startup {
   my $self = shift;
   
   $self->setup_plugins;
+  $self->setup_model;
   $self->setup_routing;
   $self->setup_hooks;
 }
@@ -34,18 +35,24 @@ sub setup_plugins {
   );
   $self->renderer->default_handler('tt');
   $self->controller_class('PerlEcommerce::Controller');
+  $self->app->secret($config->{secret});
+  $self->sessions->cookie_name('perlecommerce');
   $self->plugin('I18N' => { default => 'en'});    
+  $self->helper(sprintf => sub {
+    shift; 
+    my $fmt = shift;
+    return sprintf($fmt, @_)
+  });
 }
 
 sub setup_routing {
   my $self = shift;
   my $r = $self->routes;
   
-  #$r->namespace('PerlEcommerce::Controller');
+  push @{$r->namespaces}, 'PerlEcommerce::Controller';
 
   $r->route('/')->to('main#index')->name('index');
-  #$r->route('/products')->to('products#index')->name('products');
-
+  
   $self->resources('products');
   $self->resources(foo => {
     'bar' => '*',
@@ -62,6 +69,23 @@ sub setup_hooks {
   $self->hook(before_dispatch => sub {
     #TODO: Allow hook methods
   });
+}
+
+sub setup_model {
+    my $self = shift;
+    my $config = $self->config('database');
+    my $model = PerlEcommerce::Model->new(
+        app         => $self,
+        root_schema => PerlEcommerce::Schema->new(
+            dsn         => "DBI:$config->{type}:database=$config->{name};host=$config->{host}",
+            user        => $config->{user},
+            password    => $config->{password},
+            tabledefs   => $self->config('database_tables'),
+            newquota    => $self->config('new_quota_table'),
+        )
+    );
+    $self->helper(model => sub { $model->model($_[1]) });
+    $self->helper(schema => sub { $model->schema($_[1]) });
 }
 
 sub resources {
@@ -89,6 +113,5 @@ sub resources {
   }
   #TODO: define methods to automatically route the models with their respective controller
 }
-
 
 1;
