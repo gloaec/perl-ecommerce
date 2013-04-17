@@ -2,16 +2,38 @@ SET character_set_client = utf8;
 
 -- Drop Tables 
 DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS taxons;
 
 -- Create Tables
 CREATE TABLE products (
-  id       integer(11)  NOT NULL,
-  name     varchar(255) NOT NULL,
-  price    decimal(5)   NOT NULL,
-  created  datetime     NOT NULL DEFAULT '0000-00-00 00:00:00',
-  modified datetime     NOT NULL DEFAULT '0000-00-00 00:00:00',
+  id               integer(11)   NOT NULL AUTO_INCREMENT,
+  name             varchar(127)  NOT NULL,
+  description      text          NOT NULL,
+  price            decimal(11,2) NOT NULL,
+  permalink        varchar(255)  NOT NULL,
+  meta_description text          NOT NULL,
+  meta_keywords    text          NOT NULL,
+  count_on_hand    integer(11)   NOT NULL,
+  available_on     datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
+  deleted_at       datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
+  created_at       datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
+  modified_at      datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
+  taxon_id         integer(11)   NOT NULL,
   
   PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce products';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce Products';
 
+CREATE TABLE taxons (
+  id               integer(11)   NOT NULL AUTO_INCREMENT,
+  name             varchar(127)  NOT NULL,
+  position         integer(3)    NOT NULL,
+  permalink        varchar(255)  NOT NULL,
+  lft              integer(3)    NOT NULL,
+  rgt              integer(3)    NOT NULL,
+  description      text          NOT NULL,
+  hidden           boolean       NOT NULL DEFAULT 0,
+  home_page        boolean       NOT NULL DEFAULT 0,
+  short_name       varchar(63)   NOT NULL,
 
+  PRIMARY KEY (id)  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce Taxons';

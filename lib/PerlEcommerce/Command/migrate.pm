@@ -10,6 +10,7 @@ use File::Basename 'dirname';
 use Data::Dumper;
 use PerlEcommerce::Schema;
 use DBI;
+use Term::ANSIColor;
 
 sub run {
   my $self = shift;
@@ -18,11 +19,11 @@ sub run {
   my $drh = DBI->install_driver("mysql");
   my $dbdir = join '/', File::Spec->splitdir(dirname(__FILE__)), '../../..', 'db';
 
-  print "\n===> Creating Database : $dbconfig->{name}\n";
+  print color('reset'), "\n===> Creating Database : $dbconfig->{name}\n";
   my $template = Text::Template->new(TYPE => 'FILE', SOURCE => join '/', $dbdir, 'create.sql.tmpl');
   my $text = $template->fill_in(HASH => $dbconfig);
-  foreach my $val (split('\n',$text)) {
-    print "SQL> ${val}\n";
+  foreach my $statement (split('\n',$text)) {
+    print color('bold bright_cyan'), "SQL> ", color('reset cyan'), $statement, color('reset'), "\n";
   }
   my $rc = $drh->func('createdb', $dbconfig->{name}, $dbconfig->{host}, $dbconfig->{user}, $dbconfig->{password}, 'admin');
 
@@ -30,7 +31,7 @@ sub run {
   my $dbh = DBI->connect($dsn, $dbconfig->{user}, $dbconfig->{password});
   my $sth;
 
-  print "\n===> Migrating Tables\n";
+  print color('reset'), "\n===> Migrating Tables\n";
   $template = Text::Template->new(TYPE => 'FILE', SOURCE => join '/', $dbdir, 'migrate.sql.tmpl');
   $text = $template->fill_in(HASH => $dbconfig);
 
@@ -43,12 +44,13 @@ sub run {
   foreach my $statement (split(';',$text)) {
     $statement =~ s/^\s+//;
     $statement =~ s/\s+$//;
-    print "SQL> ${statement}\n";
+    print color('reset bold bright_cyan'), "SQL> ", color('reset cyan'), $statement, color('reset red'), "\n";
     $sth = $dbh->prepare($statement);
     $sth->execute;
+   
   }
 
-  print "\n===> Seeding Data\n";
+  print color('reset'), "\n===> Seeding Data\n";
   $template = Text::Template->new(TYPE => 'FILE', SOURCE => join '/', $dbdir, 'seeds.sql.tmpl');
   $text = $template->fill_in(HASH => $dbconfig);
 
@@ -61,12 +63,12 @@ sub run {
   foreach my $statement (split(';',$text)) {
     $statement =~ s/^\s+//;
     $statement =~ s/\s+$//;
-    print "SQL> ${statement}\n";
+    print color('reset bold bright_cyan'), "SQL> ", color('reset cyan'), $statement, color('reset red'), "\n";
     $sth = $dbh->prepare($statement);
     $sth->execute;
   }
   $sth->finish;
-  print "\n===> Done.\n";
+  print color('reset'), "\n===> Done.\n";
 }
 
 1;
