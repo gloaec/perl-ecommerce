@@ -1,4 +1,4 @@
-package Ashafix::Result::Domain;
+package PerlEcommerce::Result::Product;
 use Mojo::Base -base;
 
 has [ qw/

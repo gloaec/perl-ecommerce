@@ -7,13 +7,9 @@ our %queries = (
     all                 => "SELECT * FROM %table_products",
     find                => "SELECT * FROM %table_products WHERE id=?",
     get_password        => "SELECT password FROM %table_admin WHERE username=? AND active='1'",
-    get_all_admin_names => "SELECT username FROM %table_admin ORDER by username",
-    insert_admin        => "INSERT INTO %table_admin (username,password,created,modified) VALUES (?,?,NOW(),NOW())",
-    # TODO select_admin_pgsql => "SELECT *, EXTRACT(epoch FROM created) AS uts_created, EXTRACT (epoch FROM modified) AS uts_modified FROM %table_admin WHERE username=?"
-    select_admin        => "SELECT * FROM %table_admin WHERE username=?",
-    delete              => "DELETE FROM %table_admin WHERE username=?",
-    update_password     => "UPDATE %table_admin SET password=?,modified=NOW() WHERE username=?",
-    delete_everything   => "DELETE FROM %table_admin",
+    insert              => "INSERT INTO %table_products
+        (name,description,price,created_at,updated_at)
+        VALUES (?,?,?,NOW(),NOW())"
 );
 
 1;

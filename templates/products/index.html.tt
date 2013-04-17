@@ -1,4 +1,7 @@
 <div id="sidebar" class="span3">
+  <div class="well">
+    <a href="[% url_for('/products/new') %]" class="btn"><i class="icon-plus-sign"></i> Add Product</a>
+  </div>
   [% INCLUDE shared/_sidebar.html.tt %]
 </div>
 

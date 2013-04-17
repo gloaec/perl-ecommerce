@@ -95,6 +95,7 @@ sub resources {
   if(ref(\$controller) eq 'SCALAR'){
     my $resource = 
            $r->route('/'.$controller)->via('GET')   ->to(controller => $controller)->name($controller.'#index');
+           $r->route('/'.$controller)->via('POST')  ->to(controller => $controller, action => 'create')->name($controller.'#create'); 
     $resource->route('')             ->via('GET')   ->to(action => 'index')        ->name($controller.'#index'); 
     $resource->route('/new')         ->via('GET')   ->to(action => 'new')          ->name($controller.'#new');
     $resource->route('')             ->via('POST')  ->to(action => 'create')       ->name($controller.'#create'); 

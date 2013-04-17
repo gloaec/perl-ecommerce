@@ -6,4 +6,22 @@ sub all { return shift->schema('product')->all->hashes }
 
 sub find { return shift->schema('product')->find(shift)->hash }
 
+sub create {
+    my $self = shift;
+    my %params = @_;
+    my $r = PerlEcommerce::Result::Product->new(@_);
+
+    1 == $self->schema('product')->insert(
+        @params{qw/name description price/}
+    )->rows
+        or $self->throw('Product_result_error',
+            # TODO is this error the same for PostgreSQL?
+            # TODO localize
+            (/Duplicate entry '[^']*' for key 'PRIMARY'/ ? ' Already exists' : '') .
+            " (" . $r->domain . ")"
+        );
+
+    return $r;
+}
+
 1;
