@@ -1,0 +1,11 @@
+[% INCLUDE admin/header.html.tt %]
+
+<div class="hero-unit">
+  <h1>Welcome to Perl-ECommerce Backoffice</h1>
+   <p>
+    Version : [% CONSTANTS %] [% h.l('hello_world') %]
+  </p>
+</div>
+
+[% INCLUDE admin/footer.html.tt %]
+
