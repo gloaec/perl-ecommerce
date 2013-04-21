@@ -1,6 +1,6 @@
 [% USE url %]
 
-[%- MACRO url_for(base, args) GET url(c.url_for(base), args) -%]
+[%- MACRO url_for(base, args) GET args ? c.url_for(base, args) : c.url_for(base) -%]
 
 [%- MACRO t(key) BLOCK %]
   [% IF h.l(key) == key %]

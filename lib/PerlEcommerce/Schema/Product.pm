@@ -8,8 +8,8 @@ our %queries = (
     find                => "SELECT * FROM %table_products WHERE id=?",
     get_password        => "SELECT password FROM %table_admin WHERE username=? AND active='1'",
     insert              => "INSERT INTO %table_products
-        (name,description,price,created_at,updated_at)
-        VALUES (?,?,?,NOW(),NOW())"
+        (name,description,price,permalink,meta_description,meta_keywords,count_on_hand,available_on,deleted_at,created_at,updated_at)
+        VALUES (?,?,?,?,?,?,?,?,NULL,NOW(),NOW())"
 );
 
 1;

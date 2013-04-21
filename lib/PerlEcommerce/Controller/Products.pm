@@ -22,7 +22,6 @@ sub create {
     my $self = shift;
     my $conf = $self->stash('config'); # $conf->{database}
     my %params;
-    print "\n\nCREATING PRODUCT\n\n";
     my %defaults = (
         'name'           => undef,
         'description'    => '', 
@@ -47,7 +46,7 @@ sub create {
     }
 
     # TODO RESTful
-    $self->req->method =~ /^(?:GET|HEAD)/ and return $self->render(%params);
+    # $self->req->method =~ /^(?:GET|HEAD)/ and return $self->render(%params);
 
     #try {
         $self->model('product')->create(%params);
@@ -56,7 +55,8 @@ sub create {
     #    print "ERROR$_";
         #$self->show_error($self->handle_exception($_));
     #11};
-    return $self->render(%params, template => 'products/show');
+     print Dumper($self);
+     return $self->render(%params, template => 'admin/products/show');
 }
 
 sub _get_products {
