@@ -57,7 +57,7 @@ sub setup_routing {
   $rr->route('/')         ->via('GET')   ->to('#index')          ->name('admin_root');
   
   $rrr = $rr->route('/products')         ->to('admin-products#');
-  $rrr->route('/')        ->via('G:T')   ->to('#index')          ->name('admin_products'); 
+  $rrr->route('/')        ->via('GET')   ->to('#index')          ->name('admin_products'); 
   $rrr->route('/')        ->via('POST')  ->to('#create')         ->name('create_admin_product');
   $rrr->route('/new')     ->via('GET')   ->to('#new')            ->name('new_admin_product');
   $rrr->route('/:id')     ->via('GET')   ->to('#show')           ->name('admin_product');
