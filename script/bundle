@@ -41,6 +41,7 @@ if which cpanm &> /dev/null;
   sudo cpanm Mojolicious::Plugin::TtRenderer::Engine
   sudo cpanm Mojolicious::Plugin::I18N
   sudo cpanm Text::Template
+  sudo cpanm Term::ANSIColor
   echo -e "\033[38;5;148m=> 'Perl Dependencies' installed successfully\033[39m";
 fi
 

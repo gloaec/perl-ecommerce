@@ -8,7 +8,6 @@ sub index {
   my %params = (
     products => \@products
   );
-   print "\n\n\nsdfsdfsdfsdf\n\n\n";
   $self->render(%params, @_);
 }
 
