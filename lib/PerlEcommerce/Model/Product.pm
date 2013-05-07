@@ -12,7 +12,7 @@ sub create {
     my $r = PerlEcommerce::Result::Product->new(@_);
 
     1 == $self->schema('product')->insert(
-        @params{qw/name description price/}
+        @params{qw/name description price permalink meta_description meta_keywords count_on_hand available_on deleted_at created_at updated_at/}
     )->rows
         or $self->throw('Product_result_error',
             # TODO is this error the same for PostgreSQL?
@@ -20,7 +20,6 @@ sub create {
             (/Duplicate entry '[^']*' for key 'PRIMARY'/ ? ' Already exists' : '') .
             " (" . $r->domain . ")"
         );
-
     return $r;
 }
 
