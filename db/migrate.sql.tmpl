@@ -66,48 +66,49 @@ CREATE TABLE users (
   
 
   PRIMARY KEY (id)  
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce USERS';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce Users';
 
 
 CREATE TABLE orders (
   id                    integer(11)   NOT NULL AUTO_INCREMENT,
-  item_total            decimal(5) NOT NULL,
-  total                 decimal(5) NOT NULL,
-  created_at            datetime     NOT NULL DEFAULT '0000-00-00 00:00:00',
+  item_total            decimal(5)    NOT NULL,
+  total                 decimal(5)    NOT NULL,
+  created_at            datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
   updated_at            datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
-  state                 varchar(100)  NOT NULL
-  adjustement_total     decimal(5) NOT NULL,
-  credit_total          decimal(5) NOT NULL,
-  completed_at          datetime     NOT NULL DEFAULT '0000-00-00 00:00:00',
-  payment_total         decimal(5) NOT NULL,
+  state                 varchar(100)  NOT NULL,
+  adjustement_total     decimal(5)    NOT NULL,
+  credit_total          decimal(5)    NOT NULL,
+  completed_at          datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
+  payment_total         decimal(5)    NOT NULL,
 
   PRIMARY KEY (id)  
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce ORDERS';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce Orders';
 
-CREATE TABLE variants(
+CREATE TABLE variants (
   id                    integer(11)   NOT NULL AUTO_INCREMENT,
-  sku
-  price                 decimal(5) NOT NULL,
-  weight                decimal(5) NOT NULL,  
-  height                decimal(5) NOT NULL,
-  width                 decimal(5) NOT NULL,
-  depth                 decimal(5) NOT NULL,
+  sku                   varchar(20)   NOT NULL,
+  price                 decimal(5)    NOT NULL,
+  weight                decimal(5)    NOT NULL,  
+  height                decimal(5)    NOT NULL,
+  width                 decimal(5)    NOT NULL,
+  depth                 decimal(5)    NOT NULL,
   deleted_at            datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
   is_master             boolean,
-  count_on_hand         integer(5) NOT NULL,
-  cost_price            decimal(5) NOT NULL,
-  position              integer(5) NOT NULL,
+  count_on_hand         integer(5)    NOT NULL,
+  cost_price            decimal(5)    NOT NULL,
+  position              integer(5)    NOT NULL,
 
  PRIMARY KEY (id)  
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce VARIANTS';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce Variants';
 
-CREATE TABLE payments(
+CREATE TABLE payments (
   id                    integer(11)   NOT NULL AUTO_INCREMENT,
-  created_at            datetime     NOT NULL DEFAULT '0000-00-00 00:00:00',
+  created_at            datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
   updated_at            datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',  
-  amount                 decimal(5) NOT NULL,
-  state                 varchar(50) NOT NULL,
-  response_code         varchar(50) NOT NULL,
-  avs_response          varchar(50) NOT NULL,
+  amount                decimal(5)    NOT NULL,
+  state                 varchar(50)   NOT NULL,
+  response_code         varchar(50)   NOT NULL,
+  avs_response          varchar(50)   NOT NULL,
+
  PRIMARY KEY (id)  
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce payments';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce Payments';
