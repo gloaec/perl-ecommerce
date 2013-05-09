@@ -14,15 +14,15 @@ CREATE TABLE products (
   name             varchar(127)  NOT NULL,
   description      text          NOT NULL,
   price            decimal(11,2) NOT NULL,
-  permalink        varchar(255)  NOT NULL,
-  meta_description text          NOT NULL,
-  meta_keywords    text          NOT NULL,
-  count_on_hand    integer(11)   NOT NULL,
-  available_on     datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
-  deleted_at       datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
+  permalink        varchar(255),
+  meta_description text,
+  meta_keywords    text,
+  count_on_hand    integer(11)            DEFAULT 0,
+  available_on     datetime               DEFAULT '0000-00-00 00:00:00',
+  deleted_at       datetime               DEFAULT '0000-00-00 00:00:00',
   created_at       datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
-  updated_at       datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
-  taxon_id         integer(11)   NOT NULL,
+  updated_at       timestamp     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  taxon_id         integer(11)   REFERENCES taxon,
   
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce Products';
@@ -97,6 +97,7 @@ CREATE TABLE variants (
   count_on_hand         integer(5)    NOT NULL,
   cost_price            decimal(5)    NOT NULL,
   position              integer(5)    NOT NULL,
+  product_id            integer(11)   NOT NULL REFERENCES product,
 
  PRIMARY KEY (id)  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce Variants';
