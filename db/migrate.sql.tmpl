@@ -3,6 +3,10 @@ SET character_set_client = utf8;
 -- Drop Tables 
 DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS taxons;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS variants;
+DROP TABLE IF EXISTS payments;
 
 -- Create Tables
 CREATE TABLE products (
@@ -37,3 +41,73 @@ CREATE TABLE taxons (
 
   PRIMARY KEY (id)  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce Taxons';
+
+
+CREATE TABLE users (
+  id                    integer(11)   NOT NULL AUTO_INCREMENT,
+  email                 varchar(127)  NOT NULL,
+  encrypted_password    varchar(127)  NOT NULL,
+  password_salt         varchar(127)  NOT NULL,
+  remember_token        varchar(127)  NOT NULL,
+  created_at            datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
+  updated_at            datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
+  persistence_token     varchar(172)  NOT NULL,
+  reset_password_token  VARCHAR(100)  NOT NULL,
+  perishable_token      varchar(100)  NOT NULL,
+  sign_in_count         integer(11)   NOT NULL,
+  failed_attempts       integer(11)   NOT NULL,
+  last_request_at       datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
+  last_sign_in_at       datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
+  lasts_sign_in_ip      varchar(100)  NOT NULL,
+  login                 varchar(100)  NOT NULL,
+  authentification_token varchar(100) NOT NULL,
+  unlock_token          varchar(90)   NOT NULL,
+  locked_at             datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
+  
+
+  PRIMARY KEY (id)  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce USERS';
+
+
+CREATE TABLE orders (
+  id                    integer(11)   NOT NULL AUTO_INCREMENT,
+  item_total            decimal(5) NOT NULL,
+  total                 decimal(5) NOT NULL,
+  created_at            datetime     NOT NULL DEFAULT '0000-00-00 00:00:00',
+  updated_at            datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
+  state                 varchar(100)  NOT NULL
+  adjustement_total     decimal(5) NOT NULL,
+  credit_total          decimal(5) NOT NULL,
+  completed_at          datetime     NOT NULL DEFAULT '0000-00-00 00:00:00',
+  payment_total         decimal(5) NOT NULL,
+
+  PRIMARY KEY (id)  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce ORDERS';
+
+CREATE TABLE variants(
+  id                    integer(11)   NOT NULL AUTO_INCREMENT,
+  sku
+  price                 decimal(5) NOT NULL,
+  weight                decimal(5) NOT NULL,  
+  height                decimal(5) NOT NULL,
+  width                 decimal(5) NOT NULL,
+  depth                 decimal(5) NOT NULL,
+  deleted_at            datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
+  is_master             boolean,
+  count_on_hand         integer(5) NOT NULL,
+  cost_price            decimal(5) NOT NULL,
+  position              integer(5) NOT NULL,
+
+ PRIMARY KEY (id)  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce VARIANTS';
+
+CREATE TABLE payments(
+  id                    integer(11)   NOT NULL AUTO_INCREMENT,
+  created_at            datetime     NOT NULL DEFAULT '0000-00-00 00:00:00',
+  updated_at            datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',  
+  amount                 decimal(5) NOT NULL,
+  state                 varchar(50) NOT NULL,
+  response_code         varchar(50) NOT NULL,
+  avs_response          varchar(50) NOT NULL,
+ PRIMARY KEY (id)  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce payments';
