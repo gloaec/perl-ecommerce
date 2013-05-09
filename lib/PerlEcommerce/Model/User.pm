@@ -1,6 +1,6 @@
-package PerlEcommerce::Model::Taxon;
+package PerlEcommerce::Model::User;
 use Mojo::Base 'PerlEcommerce::Model::Base';
-use PerlEcommerce::Result::Taxon;
+use PerlEcommerce::Result::User;
 
 sub all { return shift->schema('user')->all->hashes }
 
