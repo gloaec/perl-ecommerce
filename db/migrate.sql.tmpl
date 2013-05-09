@@ -50,7 +50,7 @@ CREATE TABLE users (
   password_salt         varchar(127)  NOT NULL,
   remember_token        varchar(127)  NOT NULL,
   created_at            datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
-  updated_at            datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
+  updated_at            timestamp     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   persistence_token     varchar(172)  NOT NULL,
   reset_password_token  VARCHAR(100)  NOT NULL,
   perishable_token      varchar(100)  NOT NULL,
@@ -74,12 +74,14 @@ CREATE TABLE orders (
   item_total            decimal(5)    NOT NULL,
   total                 decimal(5)    NOT NULL,
   created_at            datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
-  updated_at            datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
+  updated_at            timestamp     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   state                 varchar(100)  NOT NULL,
   adjustement_total     decimal(5)    NOT NULL,
   credit_total          decimal(5)    NOT NULL,
   completed_at          datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
   payment_total         decimal(5)    NOT NULL,
+  user_id               integer(11)   REFERENCES users,
+  adress_id             integer(11)   REFERENCES adress,
 
   PRIMARY KEY (id)  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce Orders';
@@ -105,7 +107,7 @@ CREATE TABLE variants (
 CREATE TABLE payments (
   id                    integer(11)   NOT NULL AUTO_INCREMENT,
   created_at            datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
-  updated_at            datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',  
+  updated_at            timestamp     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   amount                decimal(5)    NOT NULL,
   state                 varchar(50)   NOT NULL,
   response_code         varchar(50)   NOT NULL,
@@ -113,3 +115,73 @@ CREATE TABLE payments (
 
  PRIMARY KEY (id)  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce Payments';
+
+CREATE TABLE payments_methods(
+  id                    integer(11)   NOT NULL AUTO_INCREMENT,
+  type                  varchar(50)   NOT NULL,
+  name                  varchar(50)   NOT NULL,
+  description           varchar(260)   NOT NULL,
+  active                boolean       NOT NULL,
+  created_at            datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
+  updated_at            timestamp     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  deleted_at            datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
+ display_on             varchar(50)   NOT NULL, 
+  payments_id           integer(11)   REFERENCES payments,
+PRIMARY KEY (id)  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce Payments_methods';
+
+CREATE TABLE adress(
+  id                    integer(11)   NOT NULL AUTO_INCREMENT,
+  firstname             varchar(50)   NOT NULL,
+  lastname              varchar(50)   NOT NULL,  
+  adress1               varchar(50)   NOT NULL,  
+  adress2               varchar(50)   NOT NULL,  
+  city                  varchar(30)   NOT NULL,  
+  state                 varchar(30)   NOT NULL,  
+  zipcode               varchar(20)   NOT NULL,  
+  country               varchar(25)   NOT NULL,  
+  phone                 varchar(20)   NOT NULL,  
+  created_at            datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
+  updated_at            timestamp     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+PRIMARY KEY (id)  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce adress';
+
+CREATE TABLE shipments (
+    id                    integer(11)   NOT NULL AUTO_INCREMENT,
+    tracking              varchar(50)   NOT NULL,
+    created_at            datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
+    updated_at            timestamp     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    number                varchar(60)   NOT NULL,
+    cost                  decimal(5)    NOT NULL,
+    shipped_at            datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
+    state                 varchar(40)   NOT NULL,
+    address_id            integer(11)   REFERENCES adresses,
+    order_id              integer(11)   REFERENCES orders
+
+PRIMARY KEY (id)  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce Shipment';
+
+CREATE TABLE inventorys_unit(
+    id                    integer(11)   NOT NULL AUTO_INCREMENT,
+    state                 VARCHAR(40)   NOT NULL,
+    lock_version          integer(11)   NOT NULL DEFAULT 0,
+    created_at            datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
+    updated_at            timestamp     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    variant_id            integer(10)   REFERENCES variants,
+    order_id              integer(10)   REFERENCES orders,
+    shipment_id           integer(10)   REFERENCES shipments,
+PRIMARY KEY (id)  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce inventorys unit';
+
+create_table line_items(
+    id                    integer(11)   NOT NULL AUTO_INCREMENT,
+    quantity              integer(50),
+    price                 decimal(5),
+    created_at            datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
+    updated_at            timestamp     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    order_id              integer(10)   REFERENCES orders,
+    variant_id            integer(10)   REFERENCES variants,
+
+PRIMARY KEY (id)  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce LINE_ITEMS';

@@ -49,38 +49,37 @@ __PACKAGE__->table("products");
 =head2 permalink
 
   data_type: 'varchar'
-  is_nullable: 1
+  is_nullable: 0
   size: 255
 
 =head2 meta_description
 
   data_type: 'text'
-  is_nullable: 1
+  is_nullable: 0
 
 =head2 meta_keywords
 
   data_type: 'text'
-  is_nullable: 1
+  is_nullable: 0
 
 =head2 count_on_hand
 
   data_type: 'integer'
-  default_value: 0
-  is_nullable: 1
+  is_nullable: 0
 
 =head2 available_on
 
   data_type: 'datetime'
   datetime_undef_if_invalid: 1
   default_value: '0000-00-00 00:00:00'
-  is_nullable: 1
+  is_nullable: 0
 
 =head2 deleted_at
 
   data_type: 'datetime'
   datetime_undef_if_invalid: 1
   default_value: '0000-00-00 00:00:00'
-  is_nullable: 1
+  is_nullable: 0
 
 =head2 created_at
 
@@ -91,15 +90,15 @@ __PACKAGE__->table("products");
 
 =head2 updated_at
 
-  data_type: 'timestamp'
+  data_type: 'datetime'
   datetime_undef_if_invalid: 1
-  default_value: current_timestamp
+  default_value: '0000-00-00 00:00:00'
   is_nullable: 0
 
 =head2 taxon_id
 
   data_type: 'integer'
-  is_nullable: 1
+  is_nullable: 0
 
 =cut
 
@@ -113,26 +112,26 @@ __PACKAGE__->add_columns(
   "price",
   { data_type => "decimal", is_nullable => 0, size => [11, 2] },
   "permalink",
-  { data_type => "varchar", is_nullable => 1, size => 255 },
+  { data_type => "varchar", is_nullable => 0, size => 255 },
   "meta_description",
-  { data_type => "text", is_nullable => 1 },
+  { data_type => "text", is_nullable => 0 },
   "meta_keywords",
-  { data_type => "text", is_nullable => 1 },
+  { data_type => "text", is_nullable => 0 },
   "count_on_hand",
-  { data_type => "integer", default_value => 0, is_nullable => 1 },
+  { data_type => "integer", is_nullable => 0 },
   "available_on",
   {
     data_type => "datetime",
     datetime_undef_if_invalid => 1,
     default_value => "0000-00-00 00:00:00",
-    is_nullable => 1,
+    is_nullable => 0,
   },
   "deleted_at",
   {
     data_type => "datetime",
     datetime_undef_if_invalid => 1,
     default_value => "0000-00-00 00:00:00",
-    is_nullable => 1,
+    is_nullable => 0,
   },
   "created_at",
   {
@@ -143,13 +142,13 @@ __PACKAGE__->add_columns(
   },
   "updated_at",
   {
-    data_type => "timestamp",
+    data_type => "datetime",
     datetime_undef_if_invalid => 1,
-    default_value => \"current_timestamp",
+    default_value => "0000-00-00 00:00:00",
     is_nullable => 0,
   },
   "taxon_id",
-  { data_type => "integer", is_nullable => 1 },
+  { data_type => "integer", is_nullable => 0 },
 );
 
 =head1 PRIMARY KEY
@@ -165,8 +164,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-09 15:44:14
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:WZgxPUJz1vnsgZh9GvYX5w
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-09 20:07:28
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:25Wa4BH6zvYHtshryqD/JA
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
