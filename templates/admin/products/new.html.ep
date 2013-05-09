@@ -1,21 +1,21 @@
-[% PROCESS admin/header.html.tt %]
+% layout 'admin', title => l 'new_product';
 
-<div id="sidebar" class="span3">
+% content_for sidebar => begin
   <ul class="nav nav-list">
     <li class="nav-header">Edit product</li>
     <li class="active"><a href="#">Product Details</a></li>   
-    <li><a href="#">Images</a></li>   
+    <li><a href="#">Images</a></li>  
     <li><a href="#">Variants</a></li>   
     <li><a href="#">Product Proprieties</a></li>   
     <li><a href="#">Taxons</a></li>   
   </ul>
-</div>
+% end
 
 <div id="main" class="span9">
 
-    <h1>[% t('new_product') %]</h1>
+    <h1><%= l 'new_product' %></h1>
     
-    <form action="[% url_for('create_admin_product') %]" method="POST">
+    <form action="<%= url_for('create_admin_product') %>" method="POST">
       <div class="row">
         <div class="span6">
           <div class="control-group">
@@ -122,11 +122,10 @@
         </div>
       </fieldset>
           <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Save changes</button>
-            <button type="button" class="btn">Cancel</button>
+            <button type="submit" class="btn btn-primary"><%= l 'save_changes' %></button>
+            <button type="button" class="btn"><%= l 'cancel' %></button>
           </div>
     </form>
 
 </div>
 
-[% PROCESS admin/footer.html.tt %]

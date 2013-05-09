@@ -12,7 +12,7 @@
   <!-- Developpment only -->
   <meta http-equiv="Cache-Control" content="no-cache,no-store">
   
-  <title>Perl E-Commerce | <%= $title %></title>
+  <title>Perl E-Commerce | <%= title %></title>
   
   <meta name="description" content="">
   <meta name="author" content="">
@@ -36,11 +36,12 @@
 </head>
 <body data-offset="80" data-target=".subnav" data-spy="scroll" style="margin-top: 0px;">
   <header id="header" class="navbar navbar-fixed-top">
-    <%= include 'admin/shared/_header' %>
+    <%= include 'shared/_header' %>
   </header>
   <section id="body" class="container-fluid">
+
     <div id="sidebar" class="span3">
-      <%= include 'admin/shared/_sidebar' %>
+      <%= include 'shared/_sidebar' %>
     </div>
 
     <div id="main" class="span9">

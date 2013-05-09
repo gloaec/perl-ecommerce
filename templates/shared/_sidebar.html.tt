@@ -1,7 +1,0 @@
-<div class="well">
-  <ul class="nav nav-list">
-    <li class="nav-header">Taxons</li>
-    <li><a href="#">Taxon 1</a></li>
-    <li><a href="#">Taxon 2</a></li>
-  </ul>
-</div>

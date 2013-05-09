@@ -8,8 +8,8 @@
     <a href="#" class="brand">Perl-ECommerce <small>Administration</small></a>
     <div class="nav-collapse collapse">
       <ul class="nav">
-        <li class="<% if(current_route =~ /main/){ %> active <% } %>">
-          <a href="<%= url_for('main') %>"><i class="icon-home"></i> <%= l 'store' %></a>
+        <li class="<% if(current_route =~ /admin_root/){ %> active <% } %>">
+          <a href="<%= url_for('admin_root') %>"><i class="icon-wrench"></i> <%= l 'dashboard' %></a>
         </li>
         <li class="<% if(current_route =~ /orders/){ %> active <% } %>">
           <a href="<%= url_for('admin_orders') %>"><i class="icon-tag"></i> <%= l 'orders' %></a>
@@ -31,22 +31,8 @@
         </li>
       </ul>
       <ul class="nav pull-right">
-        <li class="dropdown">
-          <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-            <i class="icon-shopping-cart"></i> <%= t 'cart' %> (<%= 0 %>)<b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li class="nav-header"><%= l 'products' %></li>
-            <% if(1){ # cart is empty %>
-              <li><a href="#" class="disabled"><%= l 'cart_is_empty' %></a></li>
-            <% } else { %>
-
-            <% } %>
-            <li>
-            <li class="divider"></li>
-            <li><a href="#"><i class="icon-checkout"></i> <%= l 'checkout' %></a></li>            
-            <li><a href="#"><i class="icon-trash"></i> <%= l 'empty_cart' %></a></li>
-          </ul>
+        <li class="">
+          <a href="<%= url_for('root') %>"><i class="icon-home"></i> <%= l 'back_to_store' %></a>
         </li>
       </ul>
     </div><!--/.nav-collapse -->

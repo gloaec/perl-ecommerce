@@ -20,21 +20,6 @@ sub startup {
 sub setup_plugins {
   my $self = shift;
   my $config = $self->plugin(Config => { file => 'perl-ecommerce.conf' });
-  
-=pod
-  $self->plugin(
-    tt_renderer => {
-      template_options => {
-        #PRE_PROCESS => 'header.html.tt',
-        #POST_PROCESS => 'footer.html.tt',
-        EVAL_PERL => 1,
-        CONSTANTS => {
-          version => $VERSION
-        }
-      }
-    }
-  );
-=cut
   $self->renderer->default_handler('tt');
   $self->controller_class('PerlEcommerce::Controller');
   $self->app->secret($config->{secret});

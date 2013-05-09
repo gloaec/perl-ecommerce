@@ -1,6 +1,0 @@
-<div class="hero-unit">
-  <h1>Welcome to Perl-ECommerce</h1>
-   <p>
-    Version : [% CONSTANTS %] [% h.l('hello_world') %]
-  </p>
-</div>

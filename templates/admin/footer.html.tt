@@ -1,7 +1,0 @@
-  </section>  
-  <footer id="footer" class="navbar navbar-fixed-bottom navbar-inverse"></footer>
-  <div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true"></div>
-</body>
-</html>
-
-[%# vim: set expandtab softtabstop=4 tabstop=4 shiftwidth=4: %]
