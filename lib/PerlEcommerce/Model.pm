@@ -31,7 +31,7 @@ sub model {
 
 sub schema {
     my ($self, $schema) = @_;
-    return $self->root_schema->schema($schema) || croak "Unknown schema `$schema'";
+    return $self->root_schema->resultset(ucfirst($schema)) || croak "Unknown schema `$schema'";
 }
 
 sub schema_err { shift->root_schema->error }

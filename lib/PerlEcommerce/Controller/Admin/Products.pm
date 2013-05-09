@@ -4,7 +4,7 @@ use PerlEcommerce::I18N;
 
 sub index {
   my $self = shift;
-  my @products = $self->model('product')->all;
+  my @products = $self->schema('product')->all;
   my %params = (
     products => \@products
   );
@@ -14,7 +14,7 @@ sub index {
 sub show {
   my $self = shift;
   my $id = $self->param('id');
-  my $product = $self->model('product')->find($id);
+  my $product = $self->schema('product')->find($id);
   $self->render({ product => $product });
 }
 
@@ -50,7 +50,7 @@ sub create {
     $self->req->method =~ /^(?:GET|HEAD)/ and return $self->render(%params);
 
     #try {
-        $self->model('product')->create(%params);
+        $self->schema('product')->create(\%params);
         #$self->show_info_l('Create Success');
     #} catch {
     #    print "ERROR$_";

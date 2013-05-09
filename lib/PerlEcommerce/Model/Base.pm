@@ -8,7 +8,7 @@ has [qw/ app root_schema /];
 
 sub schema {
     my ($self, $schema) = @_;
-    return $self->root_schema->schema($schema) || croak "Unknown schema `$schema'";
+    return $self->root_schema->resultset(ucfirst($schema)) || croak "Unknown schema `$schema'";
 }
 
 sub dblog { shift->app->db_log(@_) }

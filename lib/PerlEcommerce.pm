@@ -92,12 +92,13 @@ sub setup_model {
     my $config = $self->config('database');
     my $model = PerlEcommerce::Model->new(
         app         => $self,
-        root_schema => PerlEcommerce::Schema->new(
-            dsn         => "DBI:$config->{type}:database=$config->{name};host=$config->{host}",
-            user        => $config->{user},
-            password    => $config->{password},
-            tabledefs   => $self->config('database_tables'),
-            newquota    => $self->config('new_quota_table'),
+        root_schema => PerlEcommerce::Schema->connection(
+	    #dsn         => 
+	    "dbi:$config->{type}:database=$config->{name};host=$config->{host};user=$config->{user};password=$config->{password}"
+	    #user        => $config->{user},
+	    #password    => $config->{password},
+	    #tabledefs   => $self->config('database_tables'),
+	    #newquota    => $self->config('new_quota_table'),
         )
     );
     $self->helper(model => sub { $model->model($_[1]) });

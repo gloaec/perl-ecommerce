@@ -37,7 +37,9 @@ if which cpanm &> /dev/null;
   then echo -e "\033[38;5;213m=> Installing Perl Dependencies\033[39m"
   sudo cpanm Mojolicious::Plugin::Config
   sudo cpanm Try::Tiny
-  sudo cpanm DBIx::Simple
+#  sudo cpanm DBIx::Simple
+  sudo cpanm DBIx::Class
+  sudo cpanm DBIx::Class::Schema::Loader
   sudo cpanm Mojolicious::Plugin::TtRenderer::Engine
   sudo cpanm Mojolicious::Plugin::I18N
   sudo cpanm Text::Template
