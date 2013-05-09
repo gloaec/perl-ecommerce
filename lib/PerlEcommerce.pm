@@ -21,6 +21,7 @@ sub setup_plugins {
   my $self = shift;
   my $config = $self->plugin(Config => { file => 'perl-ecommerce.conf' });
   
+=pod
   $self->plugin(
     tt_renderer => {
       template_options => {
@@ -33,11 +34,14 @@ sub setup_plugins {
       }
     }
   );
+=cut
   $self->renderer->default_handler('tt');
   $self->controller_class('PerlEcommerce::Controller');
   $self->app->secret($config->{secret});
   $self->sessions->cookie_name('perlecommerce');
   $self->plugin('I18N' => { default => 'en'});    
+  $self->plugin('DefaultHelpers');
+  $self->defaults(layout => 'store');
   $self->helper(sprintf => sub {
     shift; 
     my $fmt = shift;

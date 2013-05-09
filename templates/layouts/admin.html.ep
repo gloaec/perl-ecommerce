@@ -1,4 +1,3 @@
-[% PROCESS macros.html.tt %]
 <!DOCTYPE html>
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
@@ -13,7 +12,7 @@
   <!-- Developpment only -->
   <meta http-equiv="Cache-Control" content="no-cache,no-store">
   
-  <title>Perl E-Commerce Backoffice</title>
+  <title>Perl E-Commerce | <%= title %></title>
   
   <meta name="description" content="">
   <meta name="author" content="">
@@ -36,24 +35,23 @@
   </script>
 </head>
 <body data-offset="80" data-target=".subnav" data-spy="scroll" style="margin-top: 0px;">
-  <header id="header" class="navbar navbar-fixed-top">[% INCLUDE admin/shared/_header.html.tt %]</header>
+  <header id="header" class="navbar navbar-fixed-top">
+    <%= include 'admin/shared/_header' %>
+  </header>
   <section id="body" class="container-fluid">
+    <div id="sidebar" class="span3">
+      <%= include 'admin/shared/_sidebar' %>
+    </div>
 
-    [% flash('message') %]
+    <div id="main" class="span9">
+      <div class="container-fluid">
+        <%= flash 'message' %>
+        <%= content %>
+      </div>
+    </div>
+  </section>  
+  <footer id="footer" class="navbar navbar-fixed-bottom navbar-inverse"></footer>
+  <div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true"></div>
+</body>
+</html>
 
-    [% IF h.session.defined('flash') %]
-        [% IF h.session.flash.defined('info') %]
-            <ul class="flash-info">
-                [% FOREACH msg IN h.session.flash.info %]
-                    <li>[% msg %]</li>
-                [% END %]
-            </ul>
-        [% END %]
-        [% IF h.session.flash.defined('error') %]
-            <ul class="flash-error">
-                [% FOREACH msg IN h.session.flash.error %]
-                    <li>[% msg %]</li>
-                [% END %]
-            </ul>
-        [% END %]
-    [% END %]

@@ -1,0 +1,25 @@
+% layout 'admin', title => l 'product_index';
+
+% content_for 'sidebar' => begin
+  <div class="well">
+      <a href="<%= url_for('new_admin_product') %>" class="btn"><i class="icon-plus-sign"></i><%= l 'add_product' %></a>
+  </div>
+% end
+
+<h1><%= l 'listing_products' %></h1>
+<table class="table table-striped table-condensed">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% for my $product (@$products){ %>
+      <tr>
+          <td><a href="<%= url_for('admin_product', $product->id) %>"><%= $product->name %></a></td>
+          <td><%= $product->price %></td>
+      </tr>
+      <% } %>
+  </tbody>
+</table>

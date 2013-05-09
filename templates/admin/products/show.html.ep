@@ -1,0 +1,11 @@
+% layout 'admin', title => $product->name;
+
+% content_for sidebar => begin 
+  <li><a href="#"><%= t('edit_product') %></a></li>
+% end
+
+<h1>Show Product <%= $product->id %></h1>
+
+<strong>ID</strong> : <%= $product->id %><br />
+<strong>Name</strong> : <%= $product->name %><br />
+<strong>Price</strong> : <%= $product->price %><br />

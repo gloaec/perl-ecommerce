@@ -1,9 +1,0 @@
-[% PROCESS admin/header.html.tt %]
-
-<h1>Show Product [% product.id %]</h1>
-
-<strong>ID</strong> : [% product.id %]<br />
-<strong>Name</strong> : [% product.name %]<br />
-<strong>Price</strong> : [% product.price %]<br />
-
-[% PROCESS admin/footer.html.tt %]

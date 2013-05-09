@@ -8,14 +8,14 @@
     <a href="#" class="brand">Perl-ECommerce <small>Administration</small></a>
     <div class="nav-collapse collapse">
       <ul class="nav">
-        <li class="[% IF controller=="main" %] active [% END %]">
-          <a href="[% url_for('/') %]"><i class="icon-home"></i> [% t('store') %]</a>
+        <li class="<% if(current_route =~ /main/){ %> active <% } %>">
+          <a href="<%= url_for('main') %>"><i class="icon-home"></i> <%= l 'store' %></a>
         </li>
-        <li class="[% IF controller=="orders" %] active [% END %]">
-          <a href="[% url_for('/admin/orders') %]"><i class="icon-tag"></i> [% t('orders') %]</a>
+        <li class="<% if(current_route =~ /orders/){ %> active <% } %>">
+          <a href="<%= url_for('admin_orders') %>"><i class="icon-tag"></i> <%= l 'orders' %></a>
         </li>
-        <li class="[% IF controller=="products" %] active [% END %]">
-          <a href="[% url_for('/admin/products') %]">[% t('products') %]</a>
+        <li class="<% if(current_route =~ /product/){ %> active <% } %>">
+          <a href="<%= url_for('admin_products') %>"><%= l 'products' %></a>
         </li>
         <li class="dropdown">
           <a data-toggle="dropdown" class="dropdown-toggle" href="#">Dropdown <b class="caret"></b></a>
@@ -33,19 +33,19 @@
       <ul class="nav pull-right">
         <li class="dropdown">
           <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-            <i class="icon-shopping-cart"></i> [% t('cart') %] ([% 0 %])<b class="caret"></b>
+            <i class="icon-shopping-cart"></i> <%= t 'cart' %> (<%= 0 %>)<b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
-            <li class="nav-header">[% h.l('products') %]</li>
-            [% if(1) # cart is empty %]
-              <li><a href="#" class="disabled">[% t('cart_is_empty') %]</a></li>
-            [% else %]
+            <li class="nav-header"><%= l 'products' %></li>
+            <% if(1){ # cart is empty %>
+              <li><a href="#" class="disabled"><%= l 'cart_is_empty' %></a></li>
+            <% } else { %>
 
-            [% end %]
+            <% } %>
             <li>
             <li class="divider"></li>
-            <li><a href="#"><i class="icon-checkout"></i> [% t('checkout') %]</a></li>            
-            <li><a href="#"><i class="icon-trash"></i> [% t('empty_cart') %]</a></li>
+            <li><a href="#"><i class="icon-checkout"></i> <%= l 'checkout' %></a></li>            
+            <li><a href="#"><i class="icon-trash"></i> <%= l 'empty_cart' %></a></li>
           </ul>
         </li>
       </ul>
@@ -53,4 +53,4 @@
   </div>
 </div>
 
-[%# vim: set syntax=html: %]
+<%# vim: set syntax=html: %>

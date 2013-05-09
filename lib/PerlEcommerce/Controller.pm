@@ -4,11 +4,6 @@ use Carp;
 
 sub index {
 
-  printf ("\n\n\nheelllllloooooo\n\n\n");
-}
-
-sub get_products {
-  return shift->model('product')->list();
 }
 
 sub show_error  { shift->_add_show( error => join('', @_)) }
