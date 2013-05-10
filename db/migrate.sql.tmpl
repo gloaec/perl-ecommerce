@@ -7,6 +7,12 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS variants;
 DROP TABLE IF EXISTS payments;
+DROP TABLE IF EXISTS payments_methods;
+DROP TABLE IF EXISTS adress;
+DROP TABLE IF EXISTS shipments;
+DROP TABLE IF EXISTS inventorys_unit;
+DROP TABLE IF EXISTS line_items;
+
 
 -- Create Tables
 CREATE TABLE products (
@@ -157,7 +163,7 @@ CREATE TABLE shipments (
     shipped_at            datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
     state                 varchar(40)   NOT NULL,
     address_id            integer(11)   REFERENCES adresses,
-    order_id              integer(11)   REFERENCES orders
+    order_id              integer(11)   REFERENCES orders,
 
 PRIMARY KEY (id)  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce Shipment';
