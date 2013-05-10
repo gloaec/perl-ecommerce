@@ -24,6 +24,7 @@ sub setup_plugins {
   $self->controller_class('PerlEcommerce::Controller');
   $self->app->secret($config->{secret});
   $self->sessions->cookie_name('perlecommerce');
+  $self->plugin('FormFields');
   $self->plugin('I18N' => { default => 'en'});    
   $self->defaults(layout => 'store');
   $self->helper(sprintf => sub {

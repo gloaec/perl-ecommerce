@@ -1,12 +1,12 @@
 use utf8;
-package PerlEcommerce::Schema::Result::Payment;
+package PerlEcommerce::Schema::Result::LineItem;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
 
 =head1 NAME
 
-PerlEcommerce::Schema::Result::Payment - PerlEcommerce Payments
+PerlEcommerce::Schema::Result::LineItem - PerlEcommerce LINE_ITEMS
 
 =cut
 
@@ -15,11 +15,11 @@ use warnings;
 
 use base 'DBIx::Class::Core';
 
-=head1 TABLE: C<payments>
+=head1 TABLE: C<line_items>
 
 =cut
 
-__PACKAGE__->table("payments");
+__PACKAGE__->table("line_items");
 
 =head1 ACCESSORS
 
@@ -28,6 +28,17 @@ __PACKAGE__->table("payments");
   data_type: 'integer'
   is_auto_increment: 1
   is_nullable: 0
+
+=head2 quantity
+
+  data_type: 'integer'
+  is_nullable: 1
+
+=head2 price
+
+  data_type: 'decimal'
+  is_nullable: 1
+  size: [5,0]
 
 =head2 created_at
 
@@ -43,35 +54,25 @@ __PACKAGE__->table("payments");
   default_value: current_timestamp
   is_nullable: 0
 
-=head2 amount
+=head2 order_id
 
-  data_type: 'decimal'
-  is_nullable: 0
-  size: [5,0]
+  data_type: 'integer'
+  is_nullable: 1
 
-=head2 state
+=head2 variant_id
 
-  data_type: 'varchar'
-  is_nullable: 0
-  size: 50
-
-=head2 response_code
-
-  data_type: 'varchar'
-  is_nullable: 0
-  size: 50
-
-=head2 avs_response
-
-  data_type: 'varchar'
-  is_nullable: 0
-  size: 50
+  data_type: 'integer'
+  is_nullable: 1
 
 =cut
 
 __PACKAGE__->add_columns(
   "id",
   { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
+  "quantity",
+  { data_type => "integer", is_nullable => 1 },
+  "price",
+  { data_type => "decimal", is_nullable => 1, size => [5, 0] },
   "created_at",
   {
     data_type => "datetime",
@@ -86,14 +87,10 @@ __PACKAGE__->add_columns(
     default_value => \"current_timestamp",
     is_nullable => 0,
   },
-  "amount",
-  { data_type => "decimal", is_nullable => 0, size => [5, 0] },
-  "state",
-  { data_type => "varchar", is_nullable => 0, size => 50 },
-  "response_code",
-  { data_type => "varchar", is_nullable => 0, size => 50 },
-  "avs_response",
-  { data_type => "varchar", is_nullable => 0, size => 50 },
+  "order_id",
+  { data_type => "integer", is_nullable => 1 },
+  "variant_id",
+  { data_type => "integer", is_nullable => 1 },
 );
 
 =head1 PRIMARY KEY
@@ -110,7 +107,7 @@ __PACKAGE__->set_primary_key("id");
 
 
 # Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-10 16:14:40
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:vM8hzjHSQhSIwBPUu04arQ
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:yFEpUiz/Mn4dYixUhBhnfQ
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

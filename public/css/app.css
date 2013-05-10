@@ -27,6 +27,8 @@ label.control-label {
     margin-bottom: 0;
 }
 
+.margin0 { margin: 0; }
+
 select, 
 textarea, 
 input[type="text"], 

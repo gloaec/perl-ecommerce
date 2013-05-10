@@ -11,9 +11,9 @@
   </ul>
 % end
 
-<h1><%= l 'new_product' %></h1>
+<h1><%= l 'edit_product' %></h1>
 
-<form action="<%= url_for('create_admin_product') %>" method="POST">
+<form action="<%= url_for('update_admin_product') %>" method="PUT">
 
   %= include 'admin/products/_form';
 
@@ -22,4 +22,3 @@
     <button type="button" class="btn"><%= l 'cancel' %></button>
   </div>
 </form>
-

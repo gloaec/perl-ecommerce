@@ -18,6 +18,13 @@ sub show {
   $self->render({ product => $product });
 }
 
+sub edit {
+  my $self = shift;
+  my $id = $self->param('id');
+  my $product = $self->model('product')->find($id);
+  $self->render({ product => $product });
+}
+
 sub create {
     my $self = shift;
     my $conf = $self->stash('config'); # $conf->{database}

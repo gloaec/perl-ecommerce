@@ -1,7 +1,7 @@
 
 -- Products
 DELETE FROM products;
-INSERT INTO products(id, name, price) VALUES(1, 'Product #1', 34.99 );
+INSERT INTO products(id, name) VALUES(1, 'Product #1');
 INSERT INTO products(id, name, price) VALUES(2, 'Product #2', 32.99 );
 INSERT INTO products(id, name, price) VALUES(3, 'Product #3', 12.00 );
 INSERT INTO products(id, name, price) VALUES(4, 'Product #4', 89.99 );
@@ -12,7 +12,13 @@ INSERT INTO products(id, name, price) VALUES(8, 'Product #8', 14.00 );
 INSERT INTO products(id, name, price) VALUES(9, 'Product #9', 81.79 );
 INSERT INTO products(id, name, price) VALUES(10, 'Product #10', 23.00 );
 
+-- Variants
+DELETE FROM variants;
+INSERT INTO variants(id, product_id, is_master, price, cost_price) VALUES(1, 1, true, 23.00, 14.00);
+
 -- Taxons
 DELETE FROM taxons;
 INSERT INTO taxons(id, name, position, permalink, lft, rgt, description, hidden, home_page)
 VALUES (1, 'Category #1', 1, 'cat_1', 0, 0, 'Description of Cat 1', false, true);
+INSERT INTO taxons(id, name, position, permalink, lft, rgt, description, hidden, home_page)
+VALUES (2, 'Category #2', 1, 'cat_1', 0, 0, 'Description of Cat 2', false, true);

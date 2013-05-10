@@ -62,9 +62,9 @@ __PACKAGE__->table("users");
 
 =head2 updated_at
 
-  data_type: 'datetime'
+  data_type: 'timestamp'
   datetime_undef_if_invalid: 1
-  default_value: '0000-00-00 00:00:00'
+  default_value: current_timestamp
   is_nullable: 0
 
 =head2 persistence_token
@@ -162,9 +162,9 @@ __PACKAGE__->add_columns(
   },
   "updated_at",
   {
-    data_type => "datetime",
+    data_type => "timestamp",
     datetime_undef_if_invalid => 1,
-    default_value => "0000-00-00 00:00:00",
+    default_value => \"current_timestamp",
     is_nullable => 0,
   },
   "persistence_token",
@@ -221,8 +221,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-09 15:44:14
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Cb98mqFQpqusbo2wB1cJSg
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-10 16:14:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:nnppEe4yUuuPXAkJUZ+5MQ
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

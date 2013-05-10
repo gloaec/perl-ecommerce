@@ -96,9 +96,10 @@ __PACKAGE__->table("products");
   default_value: current_timestamp
   is_nullable: 0
 
-=head2 taxon_id
+=head2 safety_stock
 
   data_type: 'integer'
+  default_value: 10
   is_nullable: 1
 
 =cut
@@ -148,8 +149,8 @@ __PACKAGE__->add_columns(
     default_value => \"current_timestamp",
     is_nullable => 0,
   },
-  "taxon_id",
-  { data_type => "integer", is_nullable => 1 },
+  "safety_stock",
+  { data_type => "integer", default_value => 10, is_nullable => 1 },
 );
 
 =head1 PRIMARY KEY
@@ -165,8 +166,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-10 10:44:10
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:pzwY3GNNERg8HTXT+UHhlg
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-10 16:14:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:FtzByod9eBERsIQK9FmVFw
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

@@ -1,12 +1,12 @@
 use utf8;
-package PerlEcommerce::Schema::Result::Order;
+package PerlEcommerce::Schema::Result::Shipment;
 
 # Created by DBIx::Class::Schema::Loader
 # DO NOT MODIFY THE FIRST PART OF THIS FILE
 
 =head1 NAME
 
-PerlEcommerce::Schema::Result::Order - PerlEcommerce Orders
+PerlEcommerce::Schema::Result::Shipment - PerlEcommerce Shipment
 
 =cut
 
@@ -15,11 +15,11 @@ use warnings;
 
 use base 'DBIx::Class::Core';
 
-=head1 TABLE: C<orders>
+=head1 TABLE: C<shipments>
 
 =cut
 
-__PACKAGE__->table("orders");
+__PACKAGE__->table("shipments");
 
 =head1 ACCESSORS
 
@@ -29,17 +29,11 @@ __PACKAGE__->table("orders");
   is_auto_increment: 1
   is_nullable: 0
 
-=head2 item_total
+=head2 tracking
 
-  data_type: 'decimal'
+  data_type: 'varchar'
   is_nullable: 0
-  size: [5,0]
-
-=head2 total
-
-  data_type: 'decimal'
-  is_nullable: 0
-  size: [5,0]
+  size: 50
 
 =head2 created_at
 
@@ -55,43 +49,37 @@ __PACKAGE__->table("orders");
   default_value: current_timestamp
   is_nullable: 0
 
-=head2 state
+=head2 number
 
   data_type: 'varchar'
   is_nullable: 0
-  size: 100
+  size: 60
 
-=head2 adjustement_total
-
-  data_type: 'decimal'
-  is_nullable: 0
-  size: [5,0]
-
-=head2 credit_total
+=head2 cost
 
   data_type: 'decimal'
   is_nullable: 0
   size: [5,0]
 
-=head2 completed_at
+=head2 shipped_at
 
   data_type: 'datetime'
   datetime_undef_if_invalid: 1
   default_value: '0000-00-00 00:00:00'
   is_nullable: 0
 
-=head2 payment_total
+=head2 state
 
-  data_type: 'decimal'
+  data_type: 'varchar'
   is_nullable: 0
-  size: [5,0]
+  size: 40
 
-=head2 user_id
+=head2 address_id
 
   data_type: 'integer'
   is_nullable: 1
 
-=head2 adress_id
+=head2 order_id
 
   data_type: 'integer'
   is_nullable: 1
@@ -101,10 +89,8 @@ __PACKAGE__->table("orders");
 __PACKAGE__->add_columns(
   "id",
   { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
-  "item_total",
-  { data_type => "decimal", is_nullable => 0, size => [5, 0] },
-  "total",
-  { data_type => "decimal", is_nullable => 0, size => [5, 0] },
+  "tracking",
+  { data_type => "varchar", is_nullable => 0, size => 50 },
   "created_at",
   {
     data_type => "datetime",
@@ -119,24 +105,22 @@ __PACKAGE__->add_columns(
     default_value => \"current_timestamp",
     is_nullable => 0,
   },
-  "state",
-  { data_type => "varchar", is_nullable => 0, size => 100 },
-  "adjustement_total",
+  "number",
+  { data_type => "varchar", is_nullable => 0, size => 60 },
+  "cost",
   { data_type => "decimal", is_nullable => 0, size => [5, 0] },
-  "credit_total",
-  { data_type => "decimal", is_nullable => 0, size => [5, 0] },
-  "completed_at",
+  "shipped_at",
   {
     data_type => "datetime",
     datetime_undef_if_invalid => 1,
     default_value => "0000-00-00 00:00:00",
     is_nullable => 0,
   },
-  "payment_total",
-  { data_type => "decimal", is_nullable => 0, size => [5, 0] },
-  "user_id",
+  "state",
+  { data_type => "varchar", is_nullable => 0, size => 40 },
+  "address_id",
   { data_type => "integer", is_nullable => 1 },
-  "adress_id",
+  "order_id",
   { data_type => "integer", is_nullable => 1 },
 );
 
@@ -154,7 +138,7 @@ __PACKAGE__->set_primary_key("id");
 
 
 # Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-10 16:14:40
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:r+7Oz5jPapkEz0vdCoRolA
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:N/CdGV0bVrSik5/Y4at9LA
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

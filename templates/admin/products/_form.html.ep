@@ -1,0 +1,107 @@
+<div class="row-fluid">
+  <div class="span8">
+    <div class="control-group">
+      <label class="control-label" for="inputName">Name</label>
+      <div class="controls">
+        <input name="product.name" id="inputName" type="text" placeholder="Name" class="span12" value="<%= $product->name %>" required />
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="inputPermalink">Permalink</label>
+      <div class="controls">
+        <input name="product.permalink" id="inputPermalink" type="text" placeholder="Permalink" class="span12" value="<%= $product->permalink %>" required />
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="inputDescription">Description</label>
+      <div class="controls">
+        <textarea name="product.description" id="inputDescription" type="text" placeholder="Description" rows="10" class="span12">
+          %= $product->description;
+        </textarea>
+      </div>
+    </div>
+  </div>
+  <div class="span4">
+    <div class="control-group">
+      <label class="control-label" for="inputPrice">Master Price</label>
+      <div class="controls">
+        <input name="variant.price" id="inputPrice" type="text" placeholder="Master Price" value="<%= $variant->price %>" required class="span12"/>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="inputCostPrice">Cost Price</label>
+      <div class="controls">
+        <input name="variant.cost_price" id="inputCostPrice" type="text" placeholder="Cost Price" value="<%= $variant->cost_price %>" class="span12"/>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="inputAvailableOn">Available on</label>
+      <div class="controls">
+        <input data-date="12/21/2012" name="product.available_on" id="inputAvailableOn" type="date" placeholder="Available On" size="16" value="<%= $product->available_on %>" class="span12">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="inputSKU">SKU</label>
+      <div class="controls">
+        <input name="product.sku" value="<%= $variant->sku %>" id="inputSKU" type="text" placeholder="SKU" class="span12"/>
+      </div>
+    </div>
+    <div class="control-group row-fluid">
+      <div class="span6">
+        <label class="control-label" for="inputCountOnHand">On Hand</label>
+        <div class="controls">
+          <input name="variant.count_on_hand" value="<%= $variant->count_on_hand %>" id="inputCountOnHand" type="text" placeholder="Count On Hand" class="span12"/>
+        </div>
+      </div>
+      <div class="span6">
+        <label class="control-label" for="inputSafetyStock">Safety Stock</label>
+        <div class="controls">
+          <input name="product.safety_stock" value="<%= $product->safety_stock %>" id="inputSafetyStock" type="text" placeholder="Safety Stock" class="span12"/>
+        </div>
+      </div>
+    </div>
+    <div class="control-group row-fluid">
+      <div class="span3">
+        <label class="control-label" for="inputWeight">Weight</label>
+        <div class="controls">
+          <input name="variant.weight" value="<%= $variant->weight %>" id="inputWeight" type="text" placeholder="Weight" class="span12"/>
+        </div>
+      </div>
+      <div class="span3">
+        <label class="control-label" for="inputWidth">Width</label>
+        <div class="controls">
+          <input name="variant.width" value="<%= $variant->width %>" id="inputWidth" type="text" placeholder="Width" class="span12"/>
+        </div>
+      </div>
+      <div class="span3">
+        <label class="control-label" for="inputHeight">Height</label>
+        <div class="controls">
+          <input name="variant.height" value="<%= $variant->height %>" id="inputHeight" type="text" placeholder="Height" class="span12"/>
+        </div>
+      </div>
+      <div class="span3">
+        <label class="control-label" for="inputDepth">Depth</label>
+        <div class="controls">
+          <input name="variant.depth" value="<%= $variant->depth %>" id="inputDepth" type="text" placeholder="Depth" class="span12"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<fieldset>
+  <legend>Metadata</legend>
+  <div class="row-fluid">
+    <div class="control-group">
+      <label class="control-label" for="inputMetaKeywords">Meta Keywords</label>
+      <div class="controls">
+        <input name="product.meta_keywords" value="<%= $product->meta_keywords %>" id="inputMetaKeywords" type="text" placeholder="Meta Keywords" class="span12"/>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="inputMetaDescription">Meta Description</label>
+      <div class="controls">
+        <input name="product.meta_description" value="<%= $product->meta_description %>" id="inputMetaDescription" type="text" placeholder="Meta Description" class="span12"/>
+      </div>
+    </div>
+  </div>
+</fieldset>

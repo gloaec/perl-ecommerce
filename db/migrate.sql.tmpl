@@ -13,7 +13,6 @@ DROP TABLE IF EXISTS shipments;
 DROP TABLE IF EXISTS inventorys_unit;
 DROP TABLE IF EXISTS line_items;
 
-
 -- Create Tables
 CREATE TABLE products (
   id               integer(11)   NOT NULL AUTO_INCREMENT,
@@ -28,8 +27,8 @@ CREATE TABLE products (
   deleted_at       datetime               DEFAULT '0000-00-00 00:00:00',
   created_at       datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
   updated_at       timestamp     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  taxon_id         integer(11)   REFERENCES taxon,
-  
+  safety_stock     integer(11)             DEFAULT 10,  
+
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce Products';
 
@@ -168,7 +167,7 @@ CREATE TABLE shipments (
 PRIMARY KEY (id)  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce Shipment';
 
-CREATE TABLE inventorys_unit(
+CREATE TABLE inventorys_unit (
     id                    integer(11)   NOT NULL AUTO_INCREMENT,
     state                 VARCHAR(40)   NOT NULL,
     lock_version          integer(11)   NOT NULL DEFAULT 0,
@@ -180,7 +179,7 @@ CREATE TABLE inventorys_unit(
 PRIMARY KEY (id)  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce inventorys unit';
 
-create_table line_items(
+CREATE TABLE line_items (
     id                    integer(11)   NOT NULL AUTO_INCREMENT,
     quantity              integer(50),
     price                 decimal(5),
