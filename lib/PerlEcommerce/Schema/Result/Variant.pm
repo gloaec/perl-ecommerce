@@ -150,6 +150,6 @@ __PACKAGE__->set_primary_key("id");
 # Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-10 16:07:00
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:69fQnn84mEUVpGUzP2sn3A
 
+__PACKAGE__->belongs_to(product => 'PerlEcommerce::Schema::Result::Product', 'product_id');
 
-# You can replace this text with custom code or comments, and it will be preserved on regeneration
 1;

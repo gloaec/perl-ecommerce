@@ -18,16 +18,15 @@ CREATE TABLE products (
   id               integer(11)   NOT NULL AUTO_INCREMENT,
   name             varchar(127)  NOT NULL,
   description      text          NOT NULL,
-  price            decimal(11,2) NOT NULL,
   permalink        varchar(255),
   meta_description text,
   meta_keywords    text,
   count_on_hand    integer(11)            DEFAULT 0,
+  safety_stock     integer(11)            DEFAULT 10,  
   available_on     datetime               DEFAULT '0000-00-00 00:00:00',
   deleted_at       datetime               DEFAULT '0000-00-00 00:00:00',
   created_at       datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
   updated_at       timestamp     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  safety_stock     integer(11)             DEFAULT 10,  
 
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce Products';

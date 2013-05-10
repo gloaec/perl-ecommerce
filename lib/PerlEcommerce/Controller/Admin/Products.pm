@@ -5,6 +5,9 @@ use PerlEcommerce::I18N;
 sub index {
   my $self = shift;
   my @products = $self->schema('product')->all;
+  while(my ($id, $product) = each @products) {
+    print $id.' '.$product->name."\n";
+  }
   my %params = (
     products => \@products
   );

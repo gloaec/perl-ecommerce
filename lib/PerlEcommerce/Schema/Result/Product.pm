@@ -40,12 +40,6 @@ __PACKAGE__->table("products");
   data_type: 'text'
   is_nullable: 0
 
-=head2 price
-
-  data_type: 'decimal'
-  is_nullable: 0
-  size: [11,2]
-
 =head2 permalink
 
   data_type: 'varchar'
@@ -66,6 +60,12 @@ __PACKAGE__->table("products");
 
   data_type: 'integer'
   default_value: 0
+  is_nullable: 1
+
+=head2 safety_stock
+
+  data_type: 'integer'
+  default_value: 10
   is_nullable: 1
 
 =head2 available_on
@@ -96,12 +96,6 @@ __PACKAGE__->table("products");
   default_value: current_timestamp
   is_nullable: 0
 
-=head2 safety_stock
-
-  data_type: 'integer'
-  default_value: 10
-  is_nullable: 1
-
 =cut
 
 __PACKAGE__->add_columns(
@@ -111,8 +105,6 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 0, size => 127 },
   "description",
   { data_type => "text", is_nullable => 0 },
-  "price",
-  { data_type => "decimal", is_nullable => 0, size => [11, 2] },
   "permalink",
   { data_type => "varchar", is_nullable => 1, size => 255 },
   "meta_description",
@@ -121,6 +113,8 @@ __PACKAGE__->add_columns(
   { data_type => "text", is_nullable => 1 },
   "count_on_hand",
   { data_type => "integer", default_value => 0, is_nullable => 1 },
+  "safety_stock",
+  { data_type => "integer", default_value => 10, is_nullable => 1 },
   "available_on",
   {
     data_type => "datetime",
@@ -149,8 +143,6 @@ __PACKAGE__->add_columns(
     default_value => \"current_timestamp",
     is_nullable => 0,
   },
-  "safety_stock",
-  { data_type => "integer", default_value => 10, is_nullable => 1 },
 );
 
 =head1 PRIMARY KEY
@@ -166,9 +158,15 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-10 16:14:40
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:FtzByod9eBERsIQK9FmVFw
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-10 16:50:50
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:HMCyYJdpVg/BCPN/ojZp3g
+
+__PACKAGE__->has_many(variants => 'PerlEcommerce::Schema::Result::Variant', 'product_id');
+
+sub master {
+  my $self = shift;
+  return $self->variants->find({ is_master => 1 });
+}
 
 
-# You can replace this text with custom code or comments, and it will be preserved on regeneration
 1;

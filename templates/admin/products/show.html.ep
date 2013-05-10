@@ -10,4 +10,4 @@
 
 <strong>ID</strong> : <%= $product->id %><br />
 <strong>Name</strong> : <%= $product->name %><br />
-<strong>Price</strong> : <%= $product->price %><br />
+<strong>Price</strong> : <%= $product->master->price %><br />
