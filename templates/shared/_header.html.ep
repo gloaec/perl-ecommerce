@@ -26,7 +26,7 @@
       <ul class="nav pull-right">
         <li class="dropdown">
           <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-            <i class="icon-shopping-cart"></i> <%= t 'cart' %> (<%= 0 %>)<b class="caret"></b>
+            <i class="icon-shopping-cart"></i> <%= l 'cart' %> (<%= 0 %>)<b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
             <li class="nav-header"><%= l 'products' %></li>

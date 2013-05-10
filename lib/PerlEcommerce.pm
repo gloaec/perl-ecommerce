@@ -25,7 +25,6 @@ sub setup_plugins {
   $self->app->secret($config->{secret});
   $self->sessions->cookie_name('perlecommerce');
   $self->plugin('I18N' => { default => 'en'});    
-  $self->plugin('DefaultHelpers');
   $self->defaults(layout => 'store');
   $self->helper(sprintf => sub {
     shift; 
