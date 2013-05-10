@@ -42,6 +42,12 @@ sub setup_routing {
 
   $r->route('/')          ->via('GET')   ->to('main#index')      ->name('root');
 
+  $rr = $r->route('/products')         ->to('products#');
+  $rr->route('/')        ->via('GET')   ->to('#index')          ->name('products'); 
+  $rr->route('/:id')     ->via('GET')   ->to('#show')           ->name('product');
+
+  # === BackOffice === #
+
   $rr = $r->route('/admin')              ->to('admin#');
   $rr->route('/')         ->via('GET')   ->to('#index')          ->name('admin_root');
   

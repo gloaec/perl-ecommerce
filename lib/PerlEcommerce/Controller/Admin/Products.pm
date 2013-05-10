@@ -35,7 +35,7 @@ sub create {
     try {
         my $product = $self->schema('product')->find_or_create(\%params);
 #$self->show_info_l('Create Success');
-	$self->flash(message => 'Product created successfully!');
+	$self->flash(success => 'Product created successfully!');
         return $self->redirect_to('admin_product', id => $product->id);
     } catch {
         print "ERROR$_";

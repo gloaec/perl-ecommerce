@@ -11,121 +11,118 @@
   </ul>
 % end
 
-<div id="main" class="span9">
+<h1><%= l 'new_product' %></h1>
 
-    <h1><%= l 'new_product' %></h1>
-    
-    <form action="<%= url_for('create_admin_product') %>" method="POST">
-      <div class="row">
+<form action="<%= url_for('create_admin_product') %>" method="POST">
+  <div class="row-fluid">
+    <div class="span8">
+      <div class="control-group">
+        <label class="control-label" for="inputName">Name</label>
+        <div class="controls">
+          <input name="name" id="inputName" type="text" placeholder="Name" class="span12" required />
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputPermalink">Permalink</label>
+        <div class="controls">
+          <input name="permalink" id="inputPermalink" type="text" placeholder="Permalink" class="span12" required />
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputDescription">Description</label>
+        <div class="controls">
+          <textarea name="description" id="inputDescription" type="text" placeholder="Description" rows="10" class="span12"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="span4">
+      <div class="control-group">
+        <label class="control-label" for="inputPrice">Master Price</label>
+        <div class="controls">
+          <input name="price" id="inputPrice" type="text" placeholder="Master Price" required class="span12"/>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputCostPrice">Cost Price</label>
+        <div class="controls">
+          <input name="cost_price" id="inputCostPrice" type="text" placeholder="Cost Price" class="span12"/>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputAvailableOn">Available on</label>
+        <div class="controls">
+          <input data-date="12/21/2012" name="available_on" id="inputAvailableOn" type="date" placeholder="Available On" size="16" value="12/21/2012" class="span12">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputSKU">SKU</label>
+        <div class="controls">
+          <input name="sku" id="inputSKU" type="text" placeholder="SKU" class="span12"/>
+        </div>
+      </div>
+      <div class="control-group row-fluid">
         <div class="span6">
-          <div class="control-group">
-            <label class="control-label" for="inputName">Name</label>
-            <div class="controls">
-              <input name="name" id="inputName" type="text" placeholder="Name" class="span6" required />
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="inputPermalink">Permalink</label>
-            <div class="controls">
-              <input name="permalink" id="inputPermalink" type="text" placeholder="Permalink" class="span6" required />
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="inputDescription">Description</label>
-            <div class="controls">
-              <textarea name="description" id="inputDescription" type="text" placeholder="Description" rows="12" class="span6"></textarea>
-            </div>
+          <label class="control-label" for="inputCountOnHand">On Hand</label>
+          <div class="controls">
+            <input name="count_on_hand" id="inputCountOnHand" type="text" placeholder="Count On Hand" class="span12"/>
           </div>
         </div>
-        <div class="span3">
-          <div class="control-group">
-            <label class="control-label" for="inputPrice">Master Price</label>
-            <div class="controls">
-              <input name="price" id="inputPrice" type="text" placeholder="Master Price" required class="span3"/>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="inputCostPrice">Cost Price</label>
-            <div class="controls">
-              <input name="cost_price" id="inputCostPrice" type="text" placeholder="Cost Price" class="span3"/>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="inputAvailableOn">Available on</label>
-            <div class="controls">
-              <input data-date="12/21/2012" name="available_on" id="inputAvailableOn" type="date" placeholder="Available On" size="16" value="12/21/2012" class="span3">
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="inputSKU">SKU</label>
-            <div class="controls">
-              <input name="sku" id="inputSKU" type="text" placeholder="SKU" class="span3"/>
-            </div>
-          </div>
-          <div class="control-group row-fluid">
-            <div class="span6">
-              <label class="control-label" for="inputCountOnHand">On Hand</label>
-              <div class="controls">
-                <input name="count_on_hand" id="inputCountOnHand" type="text" placeholder="Count On Hand" class="span12"/>
-              </div>
-            </div>
-            <div class="span6">
-              <label class="control-label" for="inputSafetyStock">Safety Stock</label>
-              <div class="controls">
-                <input name="safety_stock" id="inputSafetyStock" type="text" placeholder="Safety Stock" class="span12"/>
-              </div>
-            </div>
-          </div>
-          <div class="control-group row-fluid">
-            <div class="span3">
-              <label class="control-label" for="inputWeight">Weight</label>
-              <div class="controls">
-                <input name="weight" id="inputWeight" type="text" placeholder="Weight" class="span12"/>
-              </div>
-            </div>
-            <div class="span3">
-              <label class="control-label" for="inputWidth">Width</label>
-              <div class="controls">
-                <input name="width" id="inputWidth" type="text" placeholder="Width" class="span12"/>
-              </div>
-            </div>
-            <div class="span3">
-              <label class="control-label" for="inputHeight">Height</label>
-              <div class="controls">
-                <input name="height" id="inputHeight" type="text" placeholder="Height" class="span12"/>
-              </div>
-            </div>
-            <div class="span3">
-              <label class="control-label" for="inputDepth">Depth</label>
-              <div class="controls">
-                <input name="depth" id="inputDepth" type="text" placeholder="Depth" class="span12"/>
-              </div>
-            </div>
+        <div class="span6">
+          <label class="control-label" for="inputSafetyStock">Safety Stock</label>
+          <div class="controls">
+            <input name="safety_stock" id="inputSafetyStock" type="text" placeholder="Safety Stock" class="span12"/>
           </div>
         </div>
       </div>
-      <fieldset>
-        <legend>Metadata</legend>
-        <div class="row-fluid">
-          <div class="control-group">
-            <label class="control-label" for="inputMetaKeywords">Meta Keywords</label>
-            <div class="controls">
-              <input name="meta_keywords" id="inputMetaKeywords" type="text" placeholder="Meta Keywords" class="span12"/>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" for="inputMetaDescription">Meta Description</label>
-            <div class="controls">
-              <input name="meta_description" id="inputMetaDescription" type="text" placeholder="Meta Description" class="span12"/>
-            </div>
+      <div class="control-group row-fluid">
+        <div class="span3">
+          <label class="control-label" for="inputWeight">Weight</label>
+          <div class="controls">
+            <input name="weight" id="inputWeight" type="text" placeholder="Weight" class="span12"/>
           </div>
         </div>
-      </fieldset>
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary"><%= l 'save_changes' %></button>
-            <button type="button" class="btn"><%= l 'cancel' %></button>
+        <div class="span3">
+          <label class="control-label" for="inputWidth">Width</label>
+          <div class="controls">
+            <input name="width" id="inputWidth" type="text" placeholder="Width" class="span12"/>
           </div>
-    </form>
+        </div>
+        <div class="span3">
+          <label class="control-label" for="inputHeight">Height</label>
+          <div class="controls">
+            <input name="height" id="inputHeight" type="text" placeholder="Height" class="span12"/>
+          </div>
+        </div>
+        <div class="span3">
+          <label class="control-label" for="inputDepth">Depth</label>
+          <div class="controls">
+            <input name="depth" id="inputDepth" type="text" placeholder="Depth" class="span12"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <fieldset>
+    <legend>Metadata</legend>
+    <div class="row-fluid">
+      <div class="control-group">
+        <label class="control-label" for="inputMetaKeywords">Meta Keywords</label>
+        <div class="controls">
+          <input name="meta_keywords" id="inputMetaKeywords" type="text" placeholder="Meta Keywords" class="span12"/>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputMetaDescription">Meta Description</label>
+        <div class="controls">
+          <input name="meta_description" id="inputMetaDescription" type="text" placeholder="Meta Description" class="span12"/>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary"><%= l 'save_changes' %></button>
+        <button type="button" class="btn"><%= l 'cancel' %></button>
+      </div>
+</form>
 
-</div>
 

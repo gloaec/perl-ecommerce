@@ -1,7 +1,9 @@
 % layout 'admin', title => $product->name;
 
 % content_for sidebar => begin 
-  <li><a href="#"><%= t('edit_product') %></a></li>
+  <ul class="nav nav-list">
+    <li><a href="<%= url_for('edit_admin_product', id => $product->id) %>"><i class="icon-edit"></i><%= l 'edit_product' %></a></li>
+  </ul>
 % end
 
 <h1>Show Product <%= $product->id %></h1>

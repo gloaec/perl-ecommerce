@@ -3,7 +3,9 @@ use Mojo::Base 'Mojolicious::Controller';
 use Carp;
 
 sub index {
-
+  my ($self) = @_;
+  my $taxons = $self->schema('product')->all;
+  return $self->render(taxons => $taxons);
 }
 
 sub show_error  { shift->_add_show( error => join('', @_)) }

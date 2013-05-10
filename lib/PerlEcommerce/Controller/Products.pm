@@ -55,7 +55,6 @@ sub create {
     #    print "ERROR$_";
         #$self->show_error($self->handle_exception($_));
     #11};
-     print Dumper($self);
      return $self->render(%params, template => 'admin/products/show');
 }
 

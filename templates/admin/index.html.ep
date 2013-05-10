@@ -1,0 +1,7 @@
+% layout 'admin', title => l 'administration';
+
+<div class="hero-unit">
+  <h1>Welcome to Perl-ECommerce Backoffice</h1>
+</div>
+
+

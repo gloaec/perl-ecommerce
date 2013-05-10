@@ -35,23 +35,39 @@
   </script>
 </head>
 <body data-offset="80" data-target=".subnav" data-spy="scroll" style="margin-top: 0px;">
+      
   <header id="header" class="navbar navbar-fixed-top">
     <%= include 'admin/shared/_header' %>
   </header>
+
   <section id="body" class="container-fluid">
+
     <div id="sidebar" class="span3">
       <%= include 'admin/shared/_sidebar' %>
     </div>
 
     <div id="main" class="span9">
-      <div class="container-fluid">
-        <%= flash 'message' %>
+        <div class="row-fluid">
+
+        <% for my $type ('error','success','notice','info'){ %>
+	  <% if(flash $type){ %>
+	    <div class="alert alert-<%= $type %>">
+	      <button type="button" class="close" data-dismiss="alert">&times;</button>	    
+	      <%= flash $type %>
+            </div>
+          <% } %>  
+	<% } %>  
+
         <%= content %>
+
       </div>
     </div>
   </section>  
+
   <footer id="footer" class="navbar navbar-fixed-bottom navbar-inverse"></footer>
+  
   <div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true"></div>
+
 </body>
 </html>
 

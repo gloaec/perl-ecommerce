@@ -1,0 +1,21 @@
+#!/usr/bin/env perl
+use Mojo::Base -strict;
+use File::Basename 'dirname';
+use File::Spec;
+use lib join '/', File::Spec->splitdir(dirname(__FILE__)), 'lib';
+use lib join '/', File::Spec->splitdir(dirname(__FILE__)), '..', 'lib';
+
+eval 'use Mojolicious::Commands';
+die <<EOF if $@;
+It looks like you don't have the Mojolicious Framework installed.
+Please visit http://mojolicio.us for detailed installation instructions.
+
+EOF
+
+# Application
+$ENV{MOJO_APP} ||= 'PerlEcommerce';
+
+# Start commands
+my $commands = Mojolicious::Commands->new;
+push @{$commands->namespaces}, 'PerlEcommerce::Command';
+$commands->run('seed');

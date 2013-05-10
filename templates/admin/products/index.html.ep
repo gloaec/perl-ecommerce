@@ -17,7 +17,7 @@
   <tbody>
       <% for my $product (@$products){ %>
       <tr>
-          <td><a href="<%= url_for('admin_product', $product->id) %>"><%= $product->name %></a></td>
+          <td><a href="<%= url_for('admin_product', id => $product->id) %>"><%= $product->name %></a></td>
           <td><%= $product->price %></td>
       </tr>
       <% } %>

@@ -1,0 +1,50 @@
+<div class="navbar-inner">
+  <div class="container">
+    <button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a href="#" class="brand">Perl-ECommerce <small>Store</small></a>
+    <div class="nav-collapse collapse">
+      <ul class="nav">
+        <li class="<% if(current_route =~ /root/){ %> active <% } %>">
+          <a href="<%= url_for('root') %>"><i class="icon-home"></i> <%= l 'home' %></a>
+        </li>
+        <li class="<% if(current_route =~ /product/){ %> active <% } %>">
+          <a href="<%= url_for('products') %>"><i class="icon-list"></i> <%= l 'catalog' %></a>
+        </li>
+        <li class="dropdown <% if(current_route =~ /taxon/){ %> active <% } %>">
+          <a data-toggle="dropdown" class="dropdown-toggle" href="<%= url_for('taxons') %>"><i class="icon-tags"></i> <%= l 'categories' %> <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <% for my $taxon (@$taxons){ %>
+              <li><a href="<%= url_for 'taxon', id => $taxon->id %>"><%= $taxon->name %></a></li>
+            <% } %>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav pull-right">
+        <li class="dropdown">
+          <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+            <i class="icon-shopping-cart"></i> <%= t 'cart' %> (<%= 0 %>)<b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="nav-header"><%= l 'products' %></li>
+            <% if(1){ # cart is empty %>
+              <li><a href="#" class="disabled"><%= l 'cart_is_empty' %></a></li>
+            <% } else { %>
+
+            <% } %>
+            <li>
+            <li class="divider"></li>
+            <li><a href="#"><i class="icon-checkout"></i> <%= l 'checkout' %></a></li>            
+            <li><a href="#"><i class="icon-trash"></i> <%= l 'empty_cart' %></a></li>
+          </ul>
+        </li>
+        <li><a href="<%= url_for('admin_root') %>"><i class="icon-wrench"></i></a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+
+<%# vim: set syntax=html: %>
