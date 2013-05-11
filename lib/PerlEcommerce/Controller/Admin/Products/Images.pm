@@ -23,46 +23,46 @@ sub new {
   my $class = shift;
   my %args = @_;    
   my $self = $class->SUPER::new(@_);
-  my $product = $self->schema('product')->new({});
-  my $variant = $self->schema('variant')->new({});
-  $self->stash({ product => $product, variant => $variant }); 
+  my $image = $self->schema('image')->new({});
+  $self->stash({ image => $image }); 
   return $self;
 }
 
 sub show {
   my $self = shift;
-  my $id = $self->param('id');
-  my $product = $self->schema('product')->find($id);
-  return $self->render({ product => $product });
+  my $product = $self->product;
+  my $image = $self->image;
+  return $self->render({ product => $product, image => $image });
 }
 
 sub edit {
   my $self = shift;
   my $product = $self->product;
   my $image = $self->image;
-  my $t = new Image::Magick::Thumbnail::Fixed;
-  $t->thumbnail( input   => 'public/img/upload/products/1/original.jpg', #$image->path('original'),
-                 output  => $image->path('large'),
-                 width   => 500,
-                 height  => 500);
-
-  #@product{keys %master_variant} = values %master_variant;
   return $self->render({ product => $product, image => $image });
 }
 
 sub create {
-    my $self = shift;
-    try {
-        my $product = $self->schema('product')->find_or_create($self->param('product'));#\%params);
-        my $variant = $self->schema('variant')->find_or_create($self->param('variant'));
-	$variant->update({ product_id => $product->id, is_master => 1 });
-	$self->flash(success => ('product_successfully_created'));
-        return $self->redirect_to('admin_product', id => $product->id);
-    } catch {
-        print "ERROR$_";
-        $self->show_error($self->handle_exception($_));
-	return $self->redirect_to('admin_products');
-    };
+  my $self = shift;
+  try {
+    my $product = $self->product;
+    my $image = $product->images->find_or_create($self->param('image'));#\%params);
+    my $variant = $self->schema('variant')->find_or_create($self->param('variant'));
+    $variant->update({ product_id => $product->id, is_master => 1 });
+    return $self->render(text => 'File is too big.', status => 200) if $self->req->is_limit_exceeded;
+    return $self->redirect_to('admin_product_image_edit') unless my $attachment = $self->param('attachment');
+    my $t = new Image::Magick::Thumbnail::Fixed;
+    $t->thumbnail( input   => $attachment->filename, #$image->path('original'),
+                   output  => $image->path('large'),
+                   width   => 500,
+                   height  => 500);
+    $self->flash(success => ('product_successfully_created'));
+    return $self->redirect_to('admin_product', id => $product->id);
+  } catch {
+    print "ERROR$_";
+    $self->show_error($self->handle_exception($_));
+    return $self->redirect_to('admin_products');
+  };
 }
 
 sub update {

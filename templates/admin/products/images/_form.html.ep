@@ -1,0 +1,19 @@
+<div class="row-fluid">
+  <div class="span6">
+    <div class="control-group">
+      <label class="control-label" for="inputAltText"><%= l 'alternative_text' %></label>
+      <div class="controls">
+        <input name="image.alt_text" id="inputAltText" type="text" placeholder="<%= l 'alternative_text' %>" class="span12" value="<%= $image->alt_text %>" />
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="inputAttachment"><%= l 'attachment_file' %></label>
+      <div class="controls">
+        <input name="attachment" id="inputAttachment" type="file" placeholder="<%= l 'attachment_file' %>" class="span12"/>
+      </div>
+    </div>
+  </div>   
+  <div class="span6">
+    <img src="<%= $image->url('large') %>" alt="<%= $image->alt_text %>" class="img-polaroid" />
+  </div>
+</div>

@@ -5,7 +5,7 @@
 % end
 
 <h1 class="pull-left"><%= l 'edit_product_images' %></h1>
-<a class="btn pull-right" href="<%= url_for('new_admin_product') %>"><i class="icon-plus-sign"></i> <%= l 'new_product_image' %></a>
+<a class="btn pull-right" href="<%= url_for('new_admin_product_image') %>"><i class="icon-plus-sign"></i> <%= l 'new_product_image' %></a>
 <table class="table table-striped table-condensed">
   <thead>
     <tr>
