@@ -162,10 +162,11 @@ __PACKAGE__->set_primary_key("id");
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:HMCyYJdpVg/BCPN/ojZp3g
 
 __PACKAGE__->has_many(variants => 'PerlEcommerce::Schema::Result::Variant', 'product_id');
+__PACKAGE__->has_many(images => 'PerlEcommerce::Schema::Result::Image', 'product_id');
 
 sub master {
   my $self = shift;
-  return $self->variants->find({ is_master => 1 });
+  return $self->variants->find({ is_master => 1 }) // $self->variants->new({ product_id => $self->id });
 }
 
 

@@ -1,20 +1,14 @@
-package PerlEcommerce::Controller::Admin::Products;
-use Mojo::Base 'PerlEcommerce::Controller::Admin';
+package PerlEcommerce::Controller::Admin::Products::Images;
+use Mojo::Base 'PerlEcommerce::Controller::Admin::Products';
 use PerlEcommerce::I18N;
-
-sub product {
-  my $self = shift;
-  return $self->schema('product')->find($self->param('id_product'));
-}
 
 sub index {
   my $self = shift;
-  my @products = $self->schema('product')->all;
-  while(my ($id, $product) = each @products) {
-    print $id.' '.$product->name."\n";
-  }
+  my $product = $self->product;
+  my @images = $product->images;
   my %params = (
-    products => \@products
+    product => $product,
+    images  => \@images
   );
   return $self->render(%params, @_);
 }
@@ -31,14 +25,18 @@ sub new {
 
 sub show {
   my $self = shift;
-  my $product = $self->product;
+  my $id = $self->param('id');
+  my $product = $self->schema('product')->find($id);
   return $self->render({ product => $product });
 }
 
 sub edit {
   my $self = shift;
-  my $product = $self->product;
-  return $self->render({ product => $product });
+  my $id = $self->param('id');
+  my $product = $self->schema('product')->find($id);
+  my $variant = $self->schema('variant')->find({ product_id => $id, is_master => 1 });
+  #@product{keys %master_variant} = values %master_variant;
+  return $self->render({ product => $product, variant => $variant });
 }
 
 sub create {
@@ -59,13 +57,12 @@ sub create {
 sub update {
     my $self = shift;
     try {
-        my $product = $self->product;
-	$product->update($self->param('product'));#\%params);
-        my $variant = $product->master;
-	$variant->update($self->param('variant'));
+        my $product = $self->schema('product')->find($self->param('id'))->update($self->param('product'));#\%params);
+        my $variant = $product->master->update($self->param('variant'));
 	$variant->update({ product_id => $product->id, is_master => 1 });
 	$self->flash(success => ('product_successfully_modified'));
 	return $self->redirect_to('admin_product', id => $product->id);
+	#return $self->render({ json => {success => ('product_successfully_modified')}});
     } catch {
         print "ERROR$_";
         $self->show_error($self->handle_exception($_));
@@ -79,6 +76,7 @@ sub delete {
   my $product = $self->schema('product')->find($id)->delete;
   $self->flash(success => ('product_successfully_deleted'));
   return $self->redirect_to('admin_products');
+  #return $self->render({ json => {success => ('product_successfully_deleted')}});
 }
 
 sub _get_products {
@@ -86,3 +84,4 @@ sub _get_products {
 }
 
 1;
+

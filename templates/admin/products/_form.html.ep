@@ -25,13 +25,13 @@
     <div class="control-group">
       <label class="control-label" for="inputPrice">Master Price</label>
       <div class="controls">
-        <input name="variant.price" id="inputPrice" type="text" placeholder="Master Price" value="<%= $variant->price %>" required class="span12"/>
+        <input name="variant.price" id="inputPrice" type="text" placeholder="Master Price" value="<%= $product->master->price %>" required class="span12"/>
       </div>
     </div>
     <div class="control-group">
       <label class="control-label" for="inputCostPrice">Cost Price</label>
       <div class="controls">
-        <input name="variant.cost_price" id="inputCostPrice" type="text" placeholder="Cost Price" value="<%= $variant->cost_price %>" class="span12"/>
+        <input name="variant.cost_price" id="inputCostPrice" type="text" placeholder="Cost Price" value="<%= $product->master->cost_price %>" class="span12"/>
       </div>
     </div>
     <div class="control-group">
@@ -43,14 +43,14 @@
     <div class="control-group">
       <label class="control-label" for="inputSKU">SKU</label>
       <div class="controls">
-        <input name="product.sku" value="<%= $variant->sku %>" id="inputSKU" type="text" placeholder="SKU" class="span12"/>
+        <input name="variant.sku" value="<%= $product->master->sku %>" id="inputSKU" type="text" placeholder="SKU" class="span12"/>
       </div>
     </div>
     <div class="control-group row-fluid">
       <div class="span6">
         <label class="control-label" for="inputCountOnHand">On Hand</label>
         <div class="controls">
-          <input name="variant.count_on_hand" value="<%= $variant->count_on_hand %>" id="inputCountOnHand" type="text" placeholder="Count On Hand" class="span12"/>
+          <input name="variant.count_on_hand" value="<%= $product->master->count_on_hand %>" id="inputCountOnHand" type="text" placeholder="Count On Hand" class="span12"/>
         </div>
       </div>
       <div class="span6">
@@ -64,25 +64,25 @@
       <div class="span3">
         <label class="control-label" for="inputWeight">Weight</label>
         <div class="controls">
-          <input name="variant.weight" value="<%= $variant->weight %>" id="inputWeight" type="text" placeholder="Weight" class="span12"/>
+          <input name="variant.weight" value="<%= $product->master->weight %>" id="inputWeight" type="text" placeholder="Weight" class="span12"/>
         </div>
       </div>
       <div class="span3">
         <label class="control-label" for="inputWidth">Width</label>
         <div class="controls">
-          <input name="variant.width" value="<%= $variant->width %>" id="inputWidth" type="text" placeholder="Width" class="span12"/>
+          <input name="variant.width" value="<%= $product->master->width %>" id="inputWidth" type="text" placeholder="Width" class="span12"/>
         </div>
       </div>
       <div class="span3">
         <label class="control-label" for="inputHeight">Height</label>
         <div class="controls">
-          <input name="variant.height" value="<%= $variant->height %>" id="inputHeight" type="text" placeholder="Height" class="span12"/>
+          <input name="variant.height" value="<%= $product->master->height %>" id="inputHeight" type="text" placeholder="Height" class="span12"/>
         </div>
       </div>
       <div class="span3">
         <label class="control-label" for="inputDepth">Depth</label>
         <div class="controls">
-          <input name="variant.depth" value="<%= $variant->depth %>" id="inputDepth" type="text" placeholder="Depth" class="span12"/>
+          <input name="variant.depth" value="<%= $product->master->depth %>" id="inputDepth" type="text" placeholder="Depth" class="span12"/>
         </div>
       </div>
     </div>

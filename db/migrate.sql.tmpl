@@ -31,6 +31,16 @@ CREATE TABLE products (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce Products';
 
+CREATE TABLE images (
+  id               integer(11)   NOT NULL AUTO_INCREMENT,
+  alt_text         text          NOT NULL,
+  position         integer(3)    NOT NULL,
+  type             varchar(20)   NOT NULL,
+  product_id       integer(11)   NOT NULL REFERENCES product,
+
+  PRIMARY KEY (id)  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce Images';
+
 CREATE TABLE taxons (
   id               integer(11)   NOT NULL AUTO_INCREMENT,
   name             varchar(127)  NOT NULL,

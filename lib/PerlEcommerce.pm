@@ -37,28 +37,42 @@ sub setup_plugins {
 sub setup_routing {
   my $self = shift;
   my $r = $self->routes;
-  my $rr, my $rrr;
+  my ($rr, $rrr, $rrrr);
   push @{$r->namespaces}, 'PerlEcommerce::Controller';
 
-  $r->route('/')          ->via('GET')   ->to('main#index')      ->name('root');
+  # === Routes === # TODO : Support "resources" - PUT/DELETE Fake routing
 
-  $rr = $r->route('/products')         ->to('products#');
-  $rr->route('/')        ->via('GET')   ->to('#index')          ->name('products'); 
-  $rr->route('/:id')     ->via('GET')   ->to('#show')           ->name('product');
+  $r->route('/')                    ->via('GET')   ->to('main#index')      ->name('root');
+
+  $rr = $r->route('/products')                     ->to('products#');
+  $rr->route('/')                   ->via('GET')   ->to('#index')          ->name('products'); 
+  $rr->route('/:id')                ->via('GET')   ->to('#show')           ->name('product');
 
   # === BackOffice === #
 
-  $rr = $r->route('/admin')              ->to('admin#');
-  $rr->route('/')         ->via('GET')   ->to('#index')          ->name('admin_root');
+  $rr = $r->route('/admin')                        ->to('admin#');
+  $rr->route('/')                   ->via('GET')   ->to('#index')          ->name('admin_root');
   
-  $rrr = $rr->route('/products')         ->to('admin-products#');
-  $rrr->route('/')        ->via('GET')   ->to('#index')          ->name('admin_products'); 
-  $rrr->route('/')        ->via('POST')  ->to('#create')         ->name('create_admin_product');
-  $rrr->route('/new')     ->via('GET')   ->to('#new')            ->name('new_admin_product');
-  $rrr->route('/:id')     ->via('GET')   ->to('#show')           ->name('admin_product');
-  $rrr->route('/:id')     ->via('PUT')   ->to('#update')         ->name('update_admin_product');
-  $rrr->route('/:id')     ->via('DELETE')->to('#delete')         ->name('delete_admin_product');
-  $rrr->route('/:id/edit')->via('GET')   ->to('#edit')           ->name('edit_admin_product');
+  $rrr = $rr->route('/products')                   ->to('admin-products#');
+  $rrr->route('/')                  ->via('GET')   ->to('#index')          ->name('admin_products'); 
+  $rrr->route('/')                  ->via('POST')  ->to('#create')         ->name('create_admin_product');
+  $rrr->route('/new')               ->via('GET')   ->to('#new')            ->name('new_admin_product');
+  $rrr->route('/:id_product')       ->via('GET')   ->to('#show')           ->name('admin_product');
+  $rrr->route('/:id_product')       ->via('POST')  ->to('#update')         ->name('update_admin_product');
+  $rrr->route('/:id_product/delete')->via('GET')   ->to('#delete')         ->name('delete_admin_product');
+  $rrr->route('/:id_product/edit')  ->via('GET')   ->to('#edit')           ->name('edit_admin_product');
+# $rrr->route('/:id')               ->via('PUT')   ->to('#update')         ->name('update_admin_product');
+# $rrr->route('/:id')               ->via('DELETE')->to('#delete')         ->name('delete_admin_product');
+  
+  $rrrr = $rrr->route('/:id_product/images')        ->to('admin-products-images#');
+  $rrrr->route('/')                 ->via('GET')   ->to('#index')          ->name('admin_product_images'); 
+  $rrrr->route('/')                 ->via('POST')  ->to('#create')         ->name('create_admin_product_image');
+  $rrrr->route('/new')              ->via('GET')   ->to('#new')            ->name('new_admin_product_image');
+  $rrrr->route('/:id_image')        ->via('GET')   ->to('#show')           ->name('admin_product_image');
+  $rrrr->route('/:id_image/delete') ->via('GET')   ->to('#delete')         ->name('delete_admin_product_image');
+
+
+
   #$self->subresources($res, 'products');
   #$self->resources('products');
 #

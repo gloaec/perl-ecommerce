@@ -1,14 +1,12 @@
-% layout 'admin', title => l 'new_product';
+% layout 'admin', title => l 'edit_product_images';
 
 % content_for sidebar => begin
   %= include 'admin/products/_sidebar';
 % end
 
-<h1><%= l 'edit_product' %></h1>
+<h1><%= l 'edit_product_images' %></h1>
 
 <form action="<%= url_for('update_admin_product') %>" method="POST">
-
-  %= include 'admin/products/_form';
 
   <div class="form-actions">
     <button type="submit" class="btn btn-primary" data-loading-text="<%= l 'saving' %>..." data-complete-text="<%= l 'saved' %> !"><%= l 'save_changes' %></button>
