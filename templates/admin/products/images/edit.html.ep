@@ -1,0 +1,28 @@
+% layout 'admin', title => l 'edit_product_image';
+
+% content_for sidebar => begin
+  %= include 'admin/products/_sidebar';
+% end
+
+<h1><%= l 'edit_product_image' %></h1>
+
+<form action="<%= url_for('update_admin_product_image') %>" method="POST">
+
+<div class="row-fluid">
+  <div class="span6">
+    <div class="control-group">
+      <label class="control-label" for="inputAltText"><%= l 'alternative_text' %></label>
+      <div class="controls">
+        <input name="image.alt_text" id="inputAltText" type="text" placeholder="<%= l 'alternative_text' %>" class="span12" value="<%= $image->alt_text %>" />
+      </div>
+    </div>
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary" data-loading-text="<%= l 'saving' %>..." data-complete-text="<%= l 'saved' %> !"><%= l 'save_changes' %></button>
+    <button type="button" class="btn"><%= l 'cancel' %></button>
+  </div>
+  </div>   
+  <div class="span6">
+    <img src="<%= $image->url('large') %>" alt="<%= $image->alt_text %>" class="img-polaroid" />
+  </div>
+</div>
+</form>

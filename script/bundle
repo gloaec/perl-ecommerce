@@ -4,7 +4,7 @@ printf "\033[38;5;111m=> Checking for Curl : \033[39m"
 if which curl &> /dev/null;
   then echo -e "\033[38;5;148mOK\033[39m";
   else echo -e "\033[38;5;213mInstalling Curl\033[39m"
-  sudo apt-get install curl
+  sudo apt-get install curl perlmagick libperl-dev
   if which curl &> /dev/null;
     then echo -e "\033[38;5;148m=> 'Curl' installed successfully\033[39m";
     else echo -e "\033[38;5;1m=> 'Curl' not installed\033[39m" && exit 1
@@ -45,6 +45,8 @@ if which cpanm &> /dev/null;
   sudo cpanm Mojolicious::Plugin::I18N
   sudo cpanm Text::Template
   sudo cpanm Term::ANSIColor
+  sudo cpanm Image::Magick
+  sudo cpanm Image::Magick::Thumbnail::Fixed
   echo -e "\033[38;5;148m=> 'Perl Dependencies' installed successfully\033[39m";
 fi
 

@@ -69,7 +69,9 @@ sub setup_routing {
   $rrrr->route('/')                 ->via('POST')  ->to('#create')         ->name('create_admin_product_image');
   $rrrr->route('/new')              ->via('GET')   ->to('#new')            ->name('new_admin_product_image');
   $rrrr->route('/:id_image')        ->via('GET')   ->to('#show')           ->name('admin_product_image');
+  $rrrr->route('/:id_image')        ->via('POST')  ->to('#update')         ->name('update_admin_product_image');
   $rrrr->route('/:id_image/delete') ->via('GET')   ->to('#delete')         ->name('delete_admin_product_image');
+  $rrrr->route('/:id_image/edit')   ->via('GET')   ->to('#edit')           ->name('edit_admin_product_image');
 
 
 

@@ -83,4 +83,12 @@ __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->belongs_to(product => 'PerlEcommerce::Schema::Result::Product', 'product_id');
 
+sub path {
+  return "public/img/upload/products/".shift->id."/".shift.".png";
+}
+
+sub url {
+  return "/img/upload/products/".shift->id."/".shift.".png";
+}
+
 1;

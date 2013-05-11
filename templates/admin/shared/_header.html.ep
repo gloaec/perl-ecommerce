@@ -5,29 +5,34 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a href="#" class="brand">Perl-ECommerce <small>Administration</small></a>
+    <a href="#" class="brand"><i class="icon-cogs"></i> Perl-ECommerce <small>Administration</small></a>
     <div class="nav-collapse collapse">
       <ul class="nav">
         <li class="<% if(current_route =~ /admin_root/){ %> active <% } %>">
-          <a href="<%= url_for('admin_root') %>"><i class="icon-wrench"></i> <%= l 'dashboard' %></a>
+          <a href="<%= url_for('admin_root') %>"><i class="icon-dashboard"></i> <%= l 'overview' %></a>
         </li>
         <li class="<% if(current_route =~ /orders/){ %> active <% } %>">
-          <a href="<%= url_for('admin_orders') %>"><i class="icon-tag"></i> <%= l 'orders' %></a>
+          <a href="<%= url_for('admin_orders') %>"><i class="icon-inbox"></i> <%= l 'orders' %></a>
         </li>
         <li class="<% if(current_route =~ /product/){ %> active <% } %>">
-          <a href="<%= url_for('admin_products') %>"><%= l 'products' %></a>
+          <a href="<%= url_for('admin_products') %>"><i class="icon-gift"></i> <%= l 'products' %></a>
         </li>
         <li class="dropdown">
-          <a data-toggle="dropdown" class="dropdown-toggle" href="#">Dropdown <b class="caret"></b></a>
+          <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-wrench"></i> <%= l 'configuration' %> <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="#"><i class="icon-tags"></i> <%= l 'taxonomies' %></a></li>
+            <li><a href="#"><i class="icon-credit-card"></i> <%= l 'payment_methods' %></a></li>
+            <li><a href="#"><i class="icon-plane"></i> <%= l 'shipping_methods' %></a></li>
             <li class="divider"></li>
-            <li class="nav-header">Nav header</li>
-            <li><a href="#">Separated link</a></li>
-            <li><a href="#">One more separated link</a></li>
+            <li><a href="#"><i class="icon-cog"></i> <%= l 'general_settings' %></a></li>
+            <li><a href="#"><i class="icon-barcode"></i> <%= l 'inventory_settings' %></a></li>
           </ul>
+        </li>
+        <li class="<% if(current_route =~ /user/){ %> active <% } %>">
+          <a href="<%= url_for('admin_users') %>"><i class="icon-group"></i> <%= l 'users' %></a>
+        </li>
+        <li class="<% if(current_route =~ /page/){ %> active <% } %>">
+          <a href="<%= url_for('admin_pages') %>"><i class="icon-file"></i> <%= l 'pages' %></a>
         </li>
       </ul>
       <ul class="nav pull-right">

@@ -65,7 +65,7 @@ sub update {
 	$variant->update($self->param('variant'));
 	$variant->update({ product_id => $product->id, is_master => 1 });
 	$self->flash(success => ('product_successfully_modified'));
-	return $self->redirect_to('admin_product', id => $product->id);
+	return $self->redirect_to('edit_admin_product', id => $product->id);
     } catch {
         print "ERROR$_";
         $self->show_error($self->handle_exception($_));

@@ -3,6 +3,7 @@
 
 DELETE FROM products;
 DELETE FROM variants;
+DELETE FROM images;
 
 INSERT INTO products(
     id, name, 
@@ -20,6 +21,9 @@ INSERT INTO variants(id,       sku, price, cost_price, weight, height, width, de
              VALUES (2,   'PRL-M2', 13.99,       8.34,     700,    92,    60,    60,         0,             3,          1);
 INSERT INTO variants(id,       sku, price, cost_price, weight, height, width, depth, is_master, count_on_hand, product_id)  
              VALUES (3,   'PRL-M3', 13.99,       8.34,     700,    92,    60,    60,         0,             2,          1);
+INSERT INTO images  (id,       alt_text, position, product_id)
+             VALUES (1,  "Image Mug #1",        1,          1);
+
 
 INSERT INTO products(
     id, name, 

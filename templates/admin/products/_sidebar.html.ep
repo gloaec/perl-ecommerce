@@ -1,9 +1,9 @@
 <ul class="nav nav-list">
   <li class="nav-header"><i class="icon-edit"></i> <%= l 'edit_product' %></li>
-  <li class="<% if(current_route =~ /edit_admin_product/){ %> active <% } %>">
+  <li class="<% if(current_route =~ /^edit_admin_product$/){ %> active <% } %>">
     <a href="<%= url_for('edit_admin_product', id_product => $product->id) %>">Product Details</a>
   </li> 
-  <li class="<% if(current_route =~ /admin_product_images/){ %> active <% } %>">
+  <li class="<% if(current_route =~ /admin_product_image/){ %> active <% } %>">
     <a href="<%= url_for('admin_product_images', id_product => $product->id) %>">Images</a>
   </li>  
   <li class="<% if(current_route =~ /admin_product_variants/){ %> active <% } %>">
