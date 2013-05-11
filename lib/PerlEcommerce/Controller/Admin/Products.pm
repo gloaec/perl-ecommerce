@@ -75,8 +75,8 @@ sub update {
 
 sub delete {
   my $self = shift;
-  my $id = $self->param('id');
-  my $product = $self->schema('product')->find($id)->delete;
+  my $product = $self->product;
+  $product->delete;
   $self->flash(success => ('product_successfully_deleted'));
   return $self->redirect_to('admin_products');
 }
