@@ -1,15 +1,16 @@
-package PerlEcommerce::Controller::Admin::Products;
+package PerlEcommerce::Controller::Admin::Users;
 use Mojo::Base 'PerlEcommerce::Controller';
 use PerlEcommerce::I18N;
 
 sub index {
   my $self = shift;
-  my @users = $self->model('user')->all;
+  my @users = $self->schema('product')->all;
   my %params = (
     users => \@users
   );
   $self->render(%params, @_);
 }
+
 sub _get_products {
   return shift;
 }

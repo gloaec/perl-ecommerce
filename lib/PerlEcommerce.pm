@@ -25,10 +25,10 @@ sub setup_plugins {
   $self->app->secret($config->{secret});
   $self->sessions->cookie_name('perlecommerce');
   $self->plugin('FormFields');
-  $self->plugin('I18N' => { default => 'en'});    
+  $self->plugin('I18N' => { default => 'en'});
   $self->defaults(layout => 'store');
   $self->helper(sprintf => sub {
-    shift; 
+    shift;
     my $fmt = shift;
     return sprintf($fmt, @_)
   });
@@ -40,54 +40,54 @@ sub setup_routing {
   my ($rr, $rrr, $rrrr);
   push @{$r->namespaces}, 'PerlEcommerce::Controller';
 
-  # === Routes === # TODO : Support "resources" - PUT/DELETE Fake routing
+  # === Routes === # TODO : Support "resources" - PUT/DELETE Fake routing
 
-  $r->route('/')                    ->via('GET')   ->to('main#index')      ->name('root');
+  $r->route('/') ->via('GET') ->to('main#index') ->name('root');
 
-  $rr = $r->route('/products')                     ->to('products#');
-  $rr->route('/')                   ->via('GET')   ->to('#index')          ->name('products'); 
-  $rr->route('/:id')                ->via('GET')   ->to('#show')           ->name('product');
+  $rr = $r->route('/products') ->to('products#');
+  $rr->route('/') ->via('GET') ->to('#index') ->name('products');
+  $rr->route('/:id') ->via('GET') ->to('#show') ->name('product');
 
   # === BackOffice === #
 
-  $rr = $r->route('/admin')                        ->to('admin#');
-  $rr->route('/')                   ->via('GET')   ->to('#index')          ->name('admin_root');
+  $rr = $r->route('/admin') ->to('admin#');
+  $rr->route('/') ->via('GET') ->to('#index') ->name('admin_root');
   
-  $rrr = $rr->route('/products')                   ->to('admin-products#');
-  $rrr->route('/')                  ->via('GET')   ->to('#index')          ->name('admin_products'); 
-  $rrr->route('/')                  ->via('POST')  ->to('#create')         ->name('create_admin_product');
-  $rrr->route('/new')               ->via('GET')   ->to('#new')            ->name('new_admin_product');
-  $rrr->route('/:id_product')       ->via('GET')   ->to('#show')           ->name('admin_product');
-  $rrr->route('/:id_product')       ->via('POST')  ->to('#update')         ->name('update_admin_product');
-  $rrr->route('/:id_product/delete')->via('GET')   ->to('#delete')         ->name('delete_admin_product');
-  $rrr->route('/:id_product/edit')  ->via('GET')   ->to('#edit')           ->name('edit_admin_product');
-# $rrr->route('/:id')               ->via('PUT')   ->to('#update')         ->name('update_admin_product');
-# $rrr->route('/:id')               ->via('DELETE')->to('#delete')         ->name('delete_admin_product');
+  $rrr = $rr->route('/products') ->to('admin-products#');
+  $rrr->route('/') ->via('GET') ->to('#index') ->name('admin_products');
+  $rrr->route('/') ->via('POST') ->to('#create') ->name('create_admin_product');
+  $rrr->route('/new') ->via('GET') ->to('#new') ->name('new_admin_product');
+  $rrr->route('/:id_product') ->via('GET') ->to('#show') ->name('admin_product');
+  $rrr->route('/:id_product') ->via('POST') ->to('#update') ->name('update_admin_product');
+  $rrr->route('/:id_product/delete')->via('GET') ->to('#delete') ->name('delete_admin_product');
+  $rrr->route('/:id_product/edit') ->via('GET') ->to('#edit') ->name('edit_admin_product');
+# $rrr->route('/:id') ->via('PUT') ->to('#update') ->name('update_admin_product');
+# $rrr->route('/:id') ->via('DELETE')->to('#delete') ->name('delete_admin_product');
   
-  $rrrr = $rrr->route('/:id_product/images')        ->to('admin-products-images#');
-  $rrrr->route('/')                 ->via('GET')   ->to('#index')          ->name('admin_product_images'); 
-  $rrrr->route('/')                 ->via('POST')  ->to('#create')         ->name('create_admin_product_image');
-  $rrrr->route('/new')              ->via('GET')   ->to('#new')            ->name('new_admin_product_image');
-  $rrrr->route('/:id_image')        ->via('GET')   ->to('#show')           ->name('admin_product_image');
-  $rrrr->route('/:id_image')        ->via('POST')  ->to('#update')         ->name('update_admin_product_image');
-  $rrrr->route('/:id_image/delete') ->via('GET')   ->to('#delete')         ->name('delete_admin_product_image');
-  $rrrr->route('/:id_image/edit')   ->via('GET')   ->to('#edit')           ->name('edit_admin_product_image');
+  $rrrr = $rrr->route('/:id_product/images') ->to('admin-products-images#');
+  $rrrr->route('/') ->via('GET') ->to('#index') ->name('admin_product_images');
+  $rrrr->route('/') ->via('POST') ->to('#create') ->name('create_admin_product_image');
+  $rrrr->route('/new') ->via('GET') ->to('#new') ->name('new_admin_product_image');
+  $rrrr->route('/:id_image') ->via('GET') ->to('#show') ->name('admin_product_image');
+  $rrrr->route('/:id_image') ->via('POST') ->to('#update') ->name('update_admin_product_image');
+  $rrrr->route('/:id_image/delete') ->via('GET') ->to('#delete') ->name('delete_admin_product_image');
+  $rrrr->route('/:id_image/edit') ->via('GET') ->to('#edit') ->name('edit_admin_product_image');
 
 
 
   #$self->subresources($res, 'products');
   #$self->resources('products');
 #
-#  $r2 = $r->route('/admin')->to('admin#index')->name('admin#index'); 
-#  $self->subresources($r2, 'products'),
+# $r2 = $r->route('/admin')->to('admin#index')->name('admin#index');
+# $self->subresources($r2, 'products'),
 #
-#  $self->resources(foo => {
-#    'bar' => '*',
-#    'bor' => {
-#      except => ['show']
-#    },
-#    only => ['new','create']
-#  });
+# $self->resources(foo => {
+# 'bar' => '*',
+# 'bor' => {
+# except => ['show']
+# },
+# only => ['new','create']
+# });
 }
 
 sub setup_hooks {
@@ -102,14 +102,14 @@ sub setup_model {
     my $self = shift;
     my $config = $self->config('database');
     my $model = PerlEcommerce::Model->new(
-        app         => $self,
+        app => $self,
         root_schema => PerlEcommerce::Schema->connection(
-	    #dsn         => 
-	    "dbi:$config->{type}:database=$config->{name};host=$config->{host};user=$config->{user};password=$config->{password}"
-	    #user        => $config->{user},
-	    #password    => $config->{password},
-	    #tabledefs   => $self->config('database_tables'),
-	    #newquota    => $self->config('new_quota_table'),
+#dsn =>
+"dbi:$config->{type}:database=$config->{name};host=$config->{host};user=$config->{user};password=$config->{password}"
+#user => $config->{user},
+#password => $config->{password},
+#tabledefs => $self->config('database_tables'),
+#newquota => $self->config('new_quota_table'),
         )
     );
     $self->helper(model => sub { $model->model($_[1]) });
@@ -119,31 +119,31 @@ sub setup_model {
 sub resources {
   my ($self, $controller) = @_;
   my $r = $self->routes;
-  my $res = 
+  my $res =
     $r->route('/'.$controller)->to(controller => $controller);
-  $res->route('')             ->via('GET')   ->to(action => 'index')        ->name($controller.'#index'); 
-  $res->route('/new')         ->via('GET')   ->to(action => 'new')          ->name($controller.'#new');
-  $res->route('')             ->via('POST')  ->to(action => 'create')       ->name($controller.'#create'); 
-  $res->route('/:id')         ->via('GET')   ->to(action => 'show')         ->name($controller.'#show'); 
-  $res->route('/:id/edit')    ->via('GET')   ->to(action => 'edit')         ->name($controller.'#edit'); 
-  $res->route('/:id')         ->via('PUT')   ->to(action => 'update')       ->name($controller.'#update'); 
-  $res->route('/:id')         ->via('DELETE')->to(action => 'delete')       ->name($controller.'#delete'); 
+  $res->route('') ->via('GET') ->to(action => 'index') ->name($controller.'#index');
+  $res->route('/new') ->via('GET') ->to(action => 'new') ->name($controller.'#new');
+  $res->route('') ->via('POST') ->to(action => 'create') ->name($controller.'#create');
+  $res->route('/:id') ->via('GET') ->to(action => 'show') ->name($controller.'#show');
+  $res->route('/:id/edit') ->via('GET') ->to(action => 'edit') ->name($controller.'#edit');
+  $res->route('/:id') ->via('PUT') ->to(action => 'update') ->name($controller.'#update');
+  $res->route('/:id') ->via('DELETE')->to(action => 'delete') ->name($controller.'#delete');
 }
 
 sub subresources {
   my ($self, $r, $controller) = @_;
-  my $res = 
+  my $res =
     $r->route('/'.$controller)->to(controller => $controller);
   
   if(ref(\$controller) eq 'SCALAR'){
-    $res->route('')             ->via('GET')   ->to(action => 'index')        ->name($controller.'#index'); 
-    $res->route('/new')         ->via('GET')   ->to(action => 'new')          ->name($controller.'#new');
-    $res->route('')             ->via('POST')  ->to(action => 'create')       ->name($controller.'#create'); 
-    $res->route('/:id')         ->via('GET')   ->to(action => 'show')         ->name($controller.'#show'); 
-    $res->route('/:id/edit')    ->via('GET')   ->to(action => 'edit')         ->name($controller.'#edit'); 
-    $res->route('/:id')         ->via('PUT')   ->to(action => 'update')       ->name($controller.'#update'); 
-    $res->route('/:id')         ->via('DELETE')->to(action => 'delete')       ->name($controller.'#delete'); 
-  } 
+    $res->route('') ->via('GET') ->to(action => 'index') ->name($controller.'#index');
+    $res->route('/new') ->via('GET') ->to(action => 'new') ->name($controller.'#new');
+    $res->route('') ->via('POST') ->to(action => 'create') ->name($controller.'#create');
+    $res->route('/:id') ->via('GET') ->to(action => 'show') ->name($controller.'#show');
+    $res->route('/:id/edit') ->via('GET') ->to(action => 'edit') ->name($controller.'#edit');
+    $res->route('/:id') ->via('PUT') ->to(action => 'update') ->name($controller.'#update');
+    $res->route('/:id') ->via('DELETE')->to(action => 'delete') ->name($controller.'#delete');
+  }
   elsif(ref(\$controller) eq 'HASH') {
     while(my (%controller, $child_controller) = each %$controller) {
       use Data::Dumper;
