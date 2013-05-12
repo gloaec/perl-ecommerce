@@ -80,15 +80,37 @@ __PACKAGE__->set_primary_key("id");
 
 # Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-11 13:49:43
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:g4221Cv/mK9AuscMVSRIRg
+use Image::Magick;
+use Image::Magick::Thumbnail;
+use Image::Magick::Thumbnail::Fixed;
+use Image::Magick::Square;
+
 
 __PACKAGE__->belongs_to(product => 'PerlEcommerce::Schema::Result::Product', 'product_id');
 
 sub path {
-  return "public/img/upload/products/".shift->id."/".shift.".png";
+  return "public/img/upload/products/".shift->id."/".shift.".".(shift // "png");
 }
 
 sub url {
-  return "/img/upload/products/".shift->id."/".shift.".png";
+  return "/img/upload/products/".shift->id."/".shift.".".(shift // "png");
 }
 
+sub generate_images {
+  my ($self, $attachment) = @_;
+  my $filename = $attachment->filename;
+  my $ext = substr($filename, rindex($filename, '.') + 1);
+  my $directory = "public/img/upload/products/".$self->id;
+  mkdir $directory;
+  $attachment->move_to($self->path('original', $ext));
+  my $src = new Image::Magick;
+  $src->Read($self->path('original', $ext));
+  my ($square,$side) = Image::Magick::Square::create($src);
+  $square->Write($self->path('square'));
+  my ($thumb,$x,$y) = Image::Magick::Thumbnail::create($square,100);
+  $thumb->Write($self->path('thumb'));
+  my ($large,$x,$y) = Image::Magick::Thumbnail::create($src,'500x500');
+  $large->Write($self->path('large'));
+}
+	 
 1;

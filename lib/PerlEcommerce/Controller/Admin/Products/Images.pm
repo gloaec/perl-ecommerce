@@ -24,7 +24,8 @@ sub new {
   my %args = @_;    
   my $self = $class->SUPER::new(@_);
   my $image = $self->schema('image')->new({});
-  $self->stash({ image => $image }); 
+  my $product = $self->product;
+  $self->stash({ image => $image, product => $product }); 
   return $self;
 }
 
@@ -44,48 +45,43 @@ sub edit {
 
 sub create {
   my $self = shift;
+  my $product = $self->product;
   try {
-    my $product = $self->product;
     my $image = $product->images->find_or_create($self->param('image'));#\%params);
-    my $variant = $self->schema('variant')->find_or_create($self->param('variant'));
-    $variant->update({ product_id => $product->id, is_master => 1 });
     return $self->render(text => 'File is too big.', status => 200) if $self->req->is_limit_exceeded;
     return $self->redirect_to('admin_product_image_edit') unless my $attachment = $self->param('attachment');
-    my $t = new Image::Magick::Thumbnail::Fixed;
-    $t->thumbnail( input   => $attachment->filename, #$image->path('original'),
-                   output  => $image->path('large'),
-                   width   => 500,
-                   height  => 500);
-    $self->flash(success => ('product_successfully_created'));
-    return $self->redirect_to('admin_product', id => $product->id);
+    $image->generate_images($attachment);
+    $self->flash(success => ('product_image_successfully_created'));
+    return $self->redirect_to('admin_product_images', id_product => $product->id);
   } catch {
     print "ERROR$_";
     $self->show_error($self->handle_exception($_));
-    return $self->redirect_to('admin_products');
+    return $self->redirect_to('admin_products_images', id_product => $product->id);
   };
 }
 
 sub update {
     my $self = shift;
+    my $product = $self->product;
     try {
-	my $product = $self->product;
         my $image = $self->image;
 	$image->update($self->param('image'));#\%params);
 	$self->flash(success => ('product_image_successfully_modified'));
-	return $self->redirect_to('admin_product_images', id => $product->id);
+	return $self->redirect_to('admin_product_images', id_product => $product->id);
     } catch {
         print "ERROR$_";
         $self->show_error($self->handle_exception($_));
-	return $self->redirect_to('admin_product');
+	return $self->redirect_to('admin_product_images', id_product => $product->id);
     };
 }
 
 sub delete {
   my $self = shift;
-  my $id = $self->param('id');
-  my $product = $self->schema('product')->find($id)->delete;
-  $self->flash(success => ('product_successfully_deleted'));
-  return $self->redirect_to('admin_products');
+  my $product = $self->product;
+  my $image = $self->image;
+  $image->delete;
+  $self->flash(success => ('product_image_successfully_deleted'));
+  return $self->redirect_to('admin_product_images', id_product => $product->id);
   #return $self->render({ json => {success => ('product_successfully_deleted')}});
 }
 

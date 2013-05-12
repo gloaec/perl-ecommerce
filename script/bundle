@@ -46,7 +46,9 @@ if which cpanm &> /dev/null;
   sudo cpanm Text::Template
   sudo cpanm Term::ANSIColor
   sudo cpanm Image::Magick
+  sudo cpanm Image::Magick::Thumbnail
   sudo cpanm Image::Magick::Thumbnail::Fixed
+  sudo cpanm Image::Magick::Square
   echo -e "\033[38;5;148m=> 'Perl Dependencies' installed successfully\033[39m";
 fi
 
