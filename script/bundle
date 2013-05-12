@@ -1,10 +1,30 @@
 #!/bin/bash 
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 printf "\033[38;5;111m=> Checking for Curl : \033[39m"
 if which curl &> /dev/null;
   then echo -e "\033[38;5;148mOK\033[39m";
   else echo -e "\033[38;5;213mInstalling Curl\033[39m"
   sudo apt-get install curl perlmagick libperl-dev
+  if which curl &> /dev/null;
+    then echo -e "\033[38;5;148m=> 'Curl' installed successfully\033[39m";
+    else echo -e "\033[38;5;1m=> 'Curl' not installed\033[39m" && exit 1
+  fi
+fi
+
+printf "\033[38;5;111m=> Checking for ImageMagick : \033[39m"
+if which convert &> /dev/null;
+  then echo -e "\033[38;5;148mOK\033[39m";
+  else echo -e "\033[38;5;213mInstalling ImageMagick\033[39m"
+  curl -O http://www.imagemagick.org/download/ImageMagick.tar.gz
+  tar xvfz ImageMagick.tar.gz
+  cd ImageMagick-6.8.5-6/ # To Change eventually
+  ./configure
+  make
+  sudo make install
+  cd ..
+  rm -r ImageMagick-6.8.5-6/
   if which curl &> /dev/null;
     then echo -e "\033[38;5;148m=> 'Curl' installed successfully\033[39m";
     else echo -e "\033[38;5;1m=> 'Curl' not installed\033[39m" && exit 1
@@ -45,10 +65,32 @@ if which cpanm &> /dev/null;
   sudo cpanm Mojolicious::Plugin::I18N
   sudo cpanm Text::Template
   sudo cpanm Term::ANSIColor
+
   sudo cpanm Image::Magick
+  cd ~/.cpanm/latest-build/PerlMagick-6.85/
+  sudo perl Makefile.PL
+  sudo make
+  sudo make install
+
   sudo cpanm Image::Magick::Thumbnail
+  cd ~/.cpanm/latest-build/Image-Magick-Thumbnail-0.06/
+  sudo perl Makefile.PL
+  sudo make
+  sudo make install
+
   sudo cpanm Image::Magick::Thumbnail::Fixed
+  cd ~/.cpanm/latest-build/Image-Magick-Thumbnail-Fixed-0.04/
+  sudo perl Makefile.PL
+  sudo make
+  sudo make install
+
   sudo cpanm Image::Magick::Square
+  cd ~/.cpanm/latest-build/Image-Magick-Square-1.003/
+  sudo perl Makefile.PL
+  sudo make
+  sudo make install
+
+  cd $DIR/..
   echo -e "\033[38;5;148m=> 'Perl Dependencies' installed successfully\033[39m";
 fi
 

@@ -109,8 +109,13 @@ sub generate_images {
   $square->Write($self->path('square'));
   my ($thumb,$x,$y) = Image::Magick::Thumbnail::create($square,100);
   $thumb->Write($self->path('thumb'));
-  my ($large,$x,$y) = Image::Magick::Thumbnail::create($src,'500x500');
-  $large->Write($self->path('large'));
+  # my ($large,$x,$y) = Image::Magick::Thumbnail::create($src,'500x500');
+  #$large->Write($self->path('large'));
+  my $t = new Image::Magick::Thumbnail::Fixed;
+  $t->thumbnail( input   => $self->path('original' ,$ext),
+                 output  => $self->path('large'),
+                 width   => 500, height => 400);
+
 }
 	 
 1;
