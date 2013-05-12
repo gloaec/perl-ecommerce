@@ -6,7 +6,7 @@
 
 <h1><%= l 'edit_product_image' %></h1>
 
-<form action="<%= url_for('update_admin_product_image') %>" method="POST">
+%= form_for update_admin_product_image => (enctype => 'multipart/form-data') => begin
 
   %= include 'admin/products/images/_form';
 
@@ -14,4 +14,4 @@
     <button type="submit" class="btn btn-primary" data-loading-text="<%= l 'saving' %>..." data-complete-text="<%= l 'saved' %> !"><%= l 'save_changes' %></button>
     <button type="button" class="btn"><%= l 'cancel' %></button>
   </div>
-</form>
+% end

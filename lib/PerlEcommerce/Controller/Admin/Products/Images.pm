@@ -47,9 +47,11 @@ sub create {
   my $self = shift;
   my $product = $self->product;
   try {
-    my $image = $product->images->find_or_create($self->param('image'));#\%params);
+    my $image = $product->images->create($self->param('image'));
     return $self->render(text => 'File is too big.', status => 200) if $self->req->is_limit_exceeded;
     return $self->redirect_to('admin_product_image_edit') unless my $attachment = $self->param('attachment');
+    use Data::Dumper;
+    print "\n\n".Dumper($attachment)."\n\n";
     $image->generate_images($attachment);
     $self->flash(success => ('product_image_successfully_created'));
     return $self->redirect_to('admin_product_images', id_product => $product->id);
@@ -61,18 +63,23 @@ sub create {
 }
 
 sub update {
-    my $self = shift;
-    my $product = $self->product;
-    try {
-        my $image = $self->image;
-	$image->update($self->param('image'));#\%params);
-	$self->flash(success => ('product_image_successfully_modified'));
-	return $self->redirect_to('admin_product_images', id_product => $product->id);
-    } catch {
-        print "ERROR$_";
-        $self->show_error($self->handle_exception($_));
-	return $self->redirect_to('admin_product_images', id_product => $product->id);
-    };
+  my $self = shift;
+  my $product = $self->product;
+  try {
+    my $image = $self->image;
+    $image->update($self->param('image'));
+    return $self->render(text => 'File is too big.', status => 200) if $self->req->is_limit_exceeded;
+    return $self->redirect_to('admin_product_image_edit') unless my $attachment = $self->param('attachment');
+    use Data::Dumper;
+    print "\n\n".Dumper($attachment)."\n\n";
+    $image->generate_images($attachment);
+    $self->flash(success => ('product_image_successfully_modified'));
+    return $self->redirect_to('admin_product_images', id_product => $product->id);
+  } catch {
+    print "ERROR$_";
+    $self->show_error($self->handle_exception($_));
+    return $self->redirect_to('admin_products_images', id_product => $product->id);
+  };
 }
 
 sub delete {
@@ -82,7 +89,6 @@ sub delete {
   $image->delete;
   $self->flash(success => ('product_image_successfully_deleted'));
   return $self->redirect_to('admin_product_images', id_product => $product->id);
-  #return $self->render({ json => {success => ('product_successfully_deleted')}});
 }
 
 sub _get_products {
