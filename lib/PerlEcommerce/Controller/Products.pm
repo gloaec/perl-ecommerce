@@ -1,28 +1,53 @@
 package PerlEcommerce::Controller::Products;
 use Mojo::Base 'PerlEcommerce::Controller';
+use CGI::Session;
 use PerlEcommerce::I18N;
+
+
+my $session = new CGI::Session("driver:File", undef, {Directory=>'/tmp'});
+my @tabs;
 
 sub index {
   my $self = shift;
-  my @products = $self->model('product')->all;
+  my @products = $self->schema('product')->all;
+  my @taxons = $self->schema('taxon')->all;
+  my $f_name = $self->return_session;
   my %params = (
-    products => \@products
+    products => \@products,
+    taxons =>\@taxons,
+    sessio => $f_name
   );
+
   $self->render(%params, @_);
 }
+
 
 sub show {
   my $self = shift;
   my $id = $self->param('id');
-  my $product = $self->model('product')->find($id);
-  $self->render({ product => $product });
+  my $product = $self->schema('product')->find($id);
+  my @taxons = $self->schema('taxon')->all;
+  my $f_name = $self->return_session;
+  $self->render({ product => $product, taxons =>\@taxons, sessio => $f_name });
+  
+}
+sub return_session{
+  return $session->param('fruits');
 }
 
-sub edit {
+sub add {
   my $self = shift;
   my $id = $self->param('id');
-  my $product = $self->model('product')->find($id);
-  $self->render({ product => $product });
+  my $product = $self->schema('product')->find($id);
+  my @taxons = $self->schema('taxon')->all;
+  # storing data in the session
+
+   push(@tabs, $product->id,$product->name,$product->master->price);
+  #my @t = ($product->id,$product->name,$product->master->price);
+    $session->param("fruits", \@tabs);
+  $self->render(taxons => \@taxons, sessio => $session->param('fruits'));
+  $self->flash(message => 'Product added Success!');
+  $self->redirect_to('/products');
 }
 
 sub create {

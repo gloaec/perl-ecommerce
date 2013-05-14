@@ -30,10 +30,12 @@
           </a>
           <ul class="dropdown-menu">
             <li class="nav-header"><%= l 'products' %></li>
-            <% if(1){ # cart is empty %>
-              <li><a href="#" class="disabled"><%= l 'cart_is_empty' %></a></li>
+            <% if($sessio){ # cart is empty %>
+            <% for my $session (@$sessio){ %>
+              <%= $session %> 
+            <% } %>
             <% } else { %>
-
+              <li><a href="#" class="disabled"><%= l 'cart_is_empty' %></a></li>
             <% } %>
             <li>
             <li class="divider"></li>

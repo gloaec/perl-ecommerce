@@ -47,6 +47,9 @@ sub setup_routing {
   $rr = $r->route('/products') ->to('products#');
   $rr->route('/') ->via('GET') ->to('#index') ->name('products');
   $rr->route('/:id') ->via('GET') ->to('#show') ->name('product');
+  $rr->route('/add/:id') ->via('GET') ->to('#add') ->name('product');
+
+
 
   # === BackOffice === #
 
@@ -73,6 +76,11 @@ sub setup_routing {
   $rrrr->route('/:id_image/delete') ->via('GET') ->to('#delete') ->name('delete_admin_product_image');
   $rrrr->route('/:id_image/edit') ->via('GET') ->to('#edit') ->name('edit_admin_product_image');
 
+
+  # == frond-office == #
+
+  $rr = $r->route('/taxons') ->to('taxons#');
+  $rr->route('/:id') ->via('GET') ->to('#show_products') ->name('show_products');
 
 
   #$self->subresources($res, 'products');

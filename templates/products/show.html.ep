@@ -1,0 +1,20 @@
+% layout 'store', title => $product->name;
+
+% content_for sidebar => begin 
+
+% end
+
+<h1>Détails du produit N° : <%= $product->id %></h1>
+
+<div class="hero-unit">
+              <h1><strong>Name</strong> : <%= $product->name %>
+<img class="img-polaroid" data-src="holder.js/140x140" alt="140x140" style="width: 140px; height: 140px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIwAAACMCAYAAACuwEE+AAADsklEQVR4nO3YX08aaRiG8X7/j/IwLSywOgLbYt1qMW4FammTrQsUUCsz8xXuHkB1qzbpfaD86XXwSwwZ85r3ucZ5h2dFUQj4Vc9W/QdgsxAMLAQDC8HAQjCwEAwsBAMLwcBCMLAQDCwEAwvBwEIwsBAMLAQDC8HAQjCwEAwsBAMLwcBCMLAQDCwEAwvBwEIwsBAMLAQDC8HAQjCwEAwsBAMLwcBCMLAQDCwEAwvBwEIwsBAMLAQDC8HAQjCwEAwsBAMLwcBCMLAQDCwEAwvBwEIwsBAMLAQDC8HAQjCwEAwsBAMLwcBCMLAQDCwEAwvBwEIwsBAMLAQDywYFk+lLd1979bIiQhGhP45Gyu5dl+vqU1vl5TWVw+HNNfn1SP2/U1WSUESiSnqg7uir8o1Yfz1sUDDX+rddU3W3obTy84Hllx/06nncDPVmYPmFzv5KFp9Xm3rZrC1+Tlp6P8s3YP31sEHBfDfX5/0XDw8sm+mslSgq+zp++eKHgWWTE9UjFLGr7ixXkV+ony6GWjseaXrWUhKhqHc0mhfKJu+URihKqU4n2SOvP37gP9V62qJgMk17DSVR1dH5pc4Pyj8M7Opjc3FHV95omC2uHx5WFp/tfdBVdqnBq+eKCNU7A52kJUUkavSmd4b5SOvnq97X3yyYbHKqtBSqd4aaF/M7A8t10U+Xj4OOxsuBjY+Xj4WdrmZ5ofzqk9rl28dJ0nqvWfZ0669+b3+bYDJN3/2piET1vaaazYZ2vg++sqvWm48aD37lDs807iyHGGUdfL5+4vXX35YFEw+r/6Mv49szRO8nZ4hs2tVe8v/fO9Zo/nTrr35vtyqYTJP+ofbbbTWWbylRbandfq23g9m9c8bdM0SRXywOpBEq1Vpqt+oqRSiSpvqzTEU20eny3NLsnetseZ6pvf1P10+x/sr3d+uCub2z77r/evvAwIrF9yC9g1SVUiiipMrua3WHX5UXmcYnO4tzS6OnaVYovxwsX4+rOjq/fuT1V723WxkM1gHBwEIwsBAMLAQDC8HAQjCwEAwsBAMLwcBCMLAQDCwEAwvBwEIwsBAMLAQDC8HAQjCwEAwsBAMLwcBCMLAQDCwEAwvBwEIwsBAMLAQDC8HAQjCwEAwsBAMLwcBCMLAQDCwEAwvBwEIwsBAMLAQDC8HAQjCwEAwsBAMLwcBCMLAQDCwEAwvBwEIwsBAMLAQDC8HAQjCwEAwsBAMLwcBCMLAQDCwEAwvBwEIwsBAMLAQDC8HAQjCwfAPq1BsmxkosAgAAAABJRU5ErkJggg==">  
+ </h1>           
+              <p><strong>Description</strong> : <%= $product->description %></p>
+              <p><strong>Price</strong> : <%= $product->master->price %><br /></p>
+              <p><strong>Safety_stock</strong> : <%= $product->safety_stock %></p>
+              <p><strong>Available_on</strong> :<%= $product->available_on %></p>
+              <p><strong>Count_on_hand</strong> :<%= $product->count_on_hand %></p>
+              <p><a class="btn btn-primary btn-large" style="margin-left: 100px;"><i class="icon-plus"></i> Ajouter en panier</a><a class="btn btn-large" style="margin-left: 100px;"><i class="icon-reply"></i> Back</a></p>
+              
+ </div>
