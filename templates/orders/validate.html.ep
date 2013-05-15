@@ -1,0 +1,71 @@
+<table style="margin-left:100px;margin-top:100px;"border="0px">
+<thead>
+	<th>Nouveau client ? </th><th>Vous êtes déja clients ?</th>
+</thead>
+<tbody>
+<tr>
+	<td>
+	    <form class="form-horizontal">
+	    <div class="control-group">
+	    <label class="control-label" for="inputEmail">Email</label>
+	    <div class="controls">
+	    <input type="text" id="inputEmail" placeholder="Email">
+	    </div>
+	    </div>
+	    <div class="control-group">
+	    <label class="control-label" for="inputEmail">Email- Confirmation</label>
+	    <div class="controls">
+	    <input type="text" id="inputEmailConfirm" placeholder="Email">
+	    </div>
+	    </div>
+	    <div class="control-group">
+	    <label class="control-label" for="inputEmail">User</label>
+	    <div class="controls">
+	    <input type="text" id="inputUser" placeholder="User">
+	    </div>
+	    </div>	    	    
+	    <div class="control-group">
+	    <label class="control-label" for="inputPassword">Password</label>
+	    <div class="controls">
+	    <input type="password" id="inputPassword" placeholder="Password">
+	    </div>
+	    </div>
+	    <div class="control-group">
+	    <div class="controls">
+
+	    <button type="submit" class="btn btn-success">Continue</button>
+	    </div>
+	    </div>
+	    </form>	
+	</td>
+	<td>
+    <form class="form-horizontal" action="<%= url_for('user_login') %>" method="POST">
+    <div class="control-group">
+    <label class="control-label" for="inputEmail">Email</label>
+    <div class="controls">
+    <input type="text" id="inputEmail" placeholder="Email">
+    </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="inputPassword">Password</label>
+    <div class="controls">
+    <input type="password" id="inputPassword" placeholder="Password">
+    </div>
+    </div>
+    <div class="control-group">
+    <div class="controls">
+    <label class="checkbox">
+    <input type="checkbox"> Remember me
+    </label>
+    <button type="submit" class="btn">Sign in</button>
+    </div>
+    </div>
+    </form>	
+	</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
