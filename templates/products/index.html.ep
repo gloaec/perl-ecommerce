@@ -1,3 +1,4 @@
+% layout 'store', title => 'Liste des produits';
 <h2>Liste des produits :</h2>
 <ul class="thumbnails">
 <% for my $product (@$products){ %>
@@ -10,7 +11,7 @@
                             <p><%= $product->description %></p>
                             <p>
                               <a class="btn btn-primary" href="/products/<%= $product->id %>"><i class="icon-zoom-in"></i> Voir produit</a>
-                             <a class="btn" href="/products/add/<%= $product->id %>"><i class="icon-plus"></i> Ajouter en panier</a>
+                             <a class="btn" href="/orders/populate/<%= $product->id %>"><i class="icon-plus"></i> Ajouter en panier</a>
                            </p>
                           </div>
                         </div>

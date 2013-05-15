@@ -1,8 +1,9 @@
 package PerlEcommerce::Controller::Main;
 use Mojo::Base 'PerlEcommerce::Controller';
-use Mojo::Base 'PerlEcommerce::Controller::Products';
+use Mojo::Base 'PerlEcommerce::Controller::Orders';
 use PerlEcommerce::I18N;
-#package PerlEcommerce::Controller::Products;
+
+
 
 sub index {
  my $self = shift;

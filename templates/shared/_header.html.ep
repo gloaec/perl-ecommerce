@@ -26,20 +26,27 @@
       <ul class="nav pull-right">
         <li class="dropdown">
           <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-            <i class="icon-shopping-cart"></i> <%= l 'cart' %> (<%= 0 %>)<b class="caret"></b>
+            <i class="icon-shopping-cart"></i> <%= l 'cart' %> (<%= @$sessio %>)<b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
             <li class="nav-header"><%= l 'products' %></li>
             <% if($sessio){ # cart is empty %>
-            <% for my $session (@$sessio){ %>
-              <%= $session %> 
-            <% } %>
+                <% my $i=0;
+                my @tb = @$sessio;
+ 
+                  for my $i ( 0 .. $#tb) {
+                      
+                          %> <li><a href="/products/<%= $tb[$i][0] %>" ><%= "$tb[$i][1] \n" %></a></li>
+                          <%
+                      
+                  }
+                %>
             <% } else { %>
               <li><a href="#" class="disabled"><%= l 'cart_is_empty' %></a></li>
             <% } %>
             <li>
             <li class="divider"></li>
-            <li><a href="#"><i class="icon-checkout"></i> <%= l 'checkout' %></a></li>            
+            <li><a href="/orders"><i class="icon-checkout"></i> <%= l 'checkout' %></a></li>            
             <li><a href="#"><i class="icon-trash"></i> <%= l 'empty_cart' %></a></li>
           </ul>
         </li>

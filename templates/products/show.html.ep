@@ -15,6 +15,6 @@
               <p><strong>Safety_stock</strong> : <%= $product->safety_stock %></p>
               <p><strong>Available_on</strong> :<%= $product->available_on %></p>
               <p><strong>Count_on_hand</strong> :<%= $product->count_on_hand %></p>
-              <p><a class="btn btn-primary btn-large" style="margin-left: 100px;"><i class="icon-plus"></i> Ajouter en panier</a><a class="btn btn-large" style="margin-left: 100px;"><i class="icon-reply"></i> Back</a></p>
+              <p><a class="btn btn-primary btn-large"  href="/orders/populate/<%= $product->id %>" style="margin-left: 100px;"><i class="icon-plus"></i> Ajouter en panier</a><a class="btn btn-large" href="/products"style="margin-left: 100px;"><i class="icon-reply"></i> Back</a></p>
               
  </div>

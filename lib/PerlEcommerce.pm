@@ -46,8 +46,9 @@ sub setup_routing {
 
   $rr = $r->route('/products') ->to('products#');
   $rr->route('/') ->via('GET') ->to('#index') ->name('products');
-  $rr->route('/:id') ->via('GET') ->to('#show') ->name('product');
+  $rr->route('/:id') ->via('GET') ->to('#show') ->name('show_product');
   $rr->route('/add/:id') ->via('GET') ->to('#add') ->name('product');
+
 
 
 
@@ -81,8 +82,16 @@ sub setup_routing {
 
   $rr = $r->route('/taxons') ->to('taxons#');
   $rr->route('/:id') ->via('GET') ->to('#show_products') ->name('show_products');
+  
 
+  $rr= $r->route('/orders') -> to('orders#');
+  $rr->route('/') ->via('GET') ->to('#index') ->name('orders');  
 
+  $rr->route('/populate/:id') ->via('GET') ->to('#populate') ->name('order');  
+  $rr->route('/validate') ->via('POST') ->to('#validate') ->name('new_order');  
+
+  $rr= $r->route('/users') -> to('users#');
+  $rr->route('/login') ->via('POST') ->to('#login') ->name('user_login');
   #$self->subresources($res, 'products');
   #$self->resources('products');
 #

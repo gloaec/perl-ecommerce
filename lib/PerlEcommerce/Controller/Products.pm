@@ -1,11 +1,9 @@
 package PerlEcommerce::Controller::Products;
 use Mojo::Base 'PerlEcommerce::Controller';
-use CGI::Session;
+
+use Mojo::Base 'PerlEcommerce::Controller::Orders';
 use PerlEcommerce::I18N;
 
-
-my $session = new CGI::Session("driver:File", undef, {Directory=>'/tmp'});
-my @tabs;
 
 sub index {
   my $self = shift;
@@ -31,24 +29,7 @@ sub show {
   $self->render({ product => $product, taxons =>\@taxons, sessio => $f_name });
   
 }
-sub return_session{
-  return $session->param('fruits');
-}
 
-sub add {
-  my $self = shift;
-  my $id = $self->param('id');
-  my $product = $self->schema('product')->find($id);
-  my @taxons = $self->schema('taxon')->all;
-  # storing data in the session
-
-   push(@tabs, $product->id,$product->name,$product->master->price);
-  #my @t = ($product->id,$product->name,$product->master->price);
-    $session->param("fruits", \@tabs);
-  $self->render(taxons => \@taxons, sessio => $session->param('fruits'));
-  $self->flash(message => 'Product added Success!');
-  $self->redirect_to('/products');
-}
 
 sub create {
     my $self = shift;
