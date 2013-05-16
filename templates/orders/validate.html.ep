@@ -1,33 +1,33 @@
 % layout 'store', title => 'Order Process';   
     <h2>Order process :</h2><br />
-        <form id="SignupForm" action="/orders/passed" style="margin-left:100px;" method="POST" >
+        <form id="SignupForm" action="/orders/passed" style="margin-left:100px;" method="POST" onsubmit="return formsubmit();">
         <fieldset>
             <legend>Account information</legend>
-            <label for="Name">Login</label>
-            <input id="Name" type="text" name="login"/>
-            <label for="Email">Email</label>
-            <input id="Email" type="text" name="email" />
-            <label for="Password">Password</label>
-            <input id="Password" type="password" name="password"/>
+            <label for="Name">Login (*)</label>
+            <input id="Name" type="text" name="login" required /> 
+            <label for="Email">Email (*)</label>
+            <input id="Email" type="text" name="email" required/> 
+            <label for="Password">Password (*)</label>
+            <input id="Password" type="password" name="password" required/> 
         </fieldset>
         <fieldset>
             <legend>Your information</legend>
-            <label for="CompanyName">Civility</label>
-            <input id="CompanyName" type="text" name="civility" />
-            <label for="Website">First name</label>
-            <input id="Website" type="text" name="firstname" />
-            <label for="Website">Last name</label>
-            <input id="Website" type="text" name="lastname" />            
-            <label for="Address1">Address 1</label>
-            <input id="Address1" type="text" name="adress1"/>
-            <label for="Address2">Address 2</label>
-            <input id="Address2" type="text" name="adress2" />
-            <label for="City">City</label>
-            <input id="City" type="text" name="city" />
-            <label for="City">Phone</label>
-            <input id="City" type="text" name="phone" />            
-            <label for="country">Country</label>
-            <select id="Country" name="country">
+            <label for="CompanyName">Civility (*)</label>
+            <input id="CompanyName" type="text" name="civility" required /> 
+            <label for="Website">First name (*)</label>
+            <input id="Website" type="text" name="firstname" required /> 
+            <label for="Website">Last name (*)</label>
+            <input id="Website" type="text" name="lastname" required />             
+            <label for="Address1">Address 1 (*)</label>
+            <input id="Address1" type="text" name="adress1" required /> 
+            <label for="Address2">Address 2 (*)</label>
+            <input id="Address2" type="text" name="adress2" required /> 
+            <label for="City">City (*)</label>
+            <input id="City" type="text" name="city" required /> 
+            <label for="City">Phone (*)</label>
+            <input id="City" type="text" name="phone" required />            
+            <label for="country">Country (*)</label>
+            <select id="Country" name="country" required >
 			    <option value="CA">Canada</option>
                 <option value="US">United States of America</option>
                 <option value="GB">United Kingdom (Great Britain)</option>
@@ -266,16 +266,16 @@
                 <option value="YE">Yemen</option>
                 <option value="ZR">Zaire</option>
                 <option value="ZM">Zambia</option>
-                <option value="ZW">Zimbabwe</option>
+                <option value="ZW">Zimbabwe</option> 
             </select>            
         </fieldset>
         <fieldset>
             <legend>Billing information</legend>
-            <label for="NameOnCard">Name on Card</label>
+            <label for="NameOnCard">Name on Card (*)</label>
             <input id="NameOnCard" type="text" name="namecard" />
-            <label for="CardNumber">Card Number</label>
-            <input id="CardNumber" type="text" name="cardnumber" />
-            <label for="CreditcardMonth">Expiration</label>
+            <label for="CardNumber">Card Number (*)</label>
+            <input id="CardNumber" type="text" name="cardnumber" onblur=""/>
+            <label for="CreditcardMonth">Expiration (*)</label>
             <select id="CreditcardMonth" name="monthcard">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -299,7 +299,7 @@
                 <option value="2018">2018</option>
                 <option value="2019">2019</option>
             </select>        
-            <label for="NameOnCard">Code on the back of the card </label>
+            <label for="NameOnCard">Code on the back of the card (*) </label>
             <input id="NameOnCard" type="text" name="threenumbers" />
         </fieldset>
     
@@ -307,13 +307,7 @@
             <input id="SaveAccount" type="submit" value="Submit" class="btn btn-success" style="margin-left:100px;"/>
         </p>
         </form>
-<%
 
-for my $arg (@$args){
-	%><%= $arg %>hhhkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
-<%
-}
-%>
 
 
 <!--

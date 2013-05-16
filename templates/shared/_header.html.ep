@@ -18,7 +18,7 @@
           <a data-toggle="dropdown" class="dropdown-toggle" href="<%= url_for('taxons') %>"><i class="icon-tags"></i> <%= l 'categories' %> <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <% for my $taxon (@$taxons){ %>
-              <li><a href="<%= url_for 'taxon', id => $taxon->id %>"><i class="icon-tag"></i> <%= $taxon->name %></a></li>
+              <li><a href="/taxons/<%= $taxon->id %>"><i class="icon-tag"></i> <%= $taxon->name %></a></li>
             <% } %>
           </ul>
         </li>

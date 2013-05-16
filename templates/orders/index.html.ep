@@ -2,6 +2,7 @@
 <h1>Your Cart : </h1>
 <%
 my @tb= @$products;
+if(@$sessio!=0){
 %>
 
 <form class="bs-docs-example" action="<%= url_for('new_order') %>" method="POST">
@@ -21,13 +22,17 @@ my @tb= @$products;
 					  </thead>
 					  <tbody>
 
-					        <%  for my $i ( 0 .. $#tb) { %>
+					        <% 
+					        my $total=0;
+					         for my $i ( 0 .. $#tb) { 
+					         $total+=$tb[$i][2];
+					        %>
 					      <tr>
 					          <td><%= $tb[$i][0] %></td>
 					          <td><a href="<%= url_for('show_product', id_product => $tb[$i][0]) %>"><%= $tb[$i][1] %></a></td>
 
 					          <td>
-									<input type="text" placeholder="1" value="1" name="quantity()">
+									<input type="text" placeholder="1" value="1" name="quantity()" required />
 					          </td>
 					          <td><%= $tb[$i][3] %></td>          
 
@@ -35,12 +40,23 @@ my @tb= @$products;
 					          <td><a href="">Delete</a></td>
 					      </tr>
 					      <% } %>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><strong>Total :</strong></td>
+						<td><%= $total %> DIRHAM</td>
+					</tr>					      
 					  </tbody>
 					</table>
             <button class="btn" type="submit"><i class="icon-reply"></i> Back to store</button> <button class="btn btn-success" type="submit">Passer la commande</button> 
             </fieldset>
-          </form>
+</form>
+
+
+<% }else{%> <div class="alert alert-failed">You didn't picked any product yet !</div>
+<%}%> 
 
 
 
-  

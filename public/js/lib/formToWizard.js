@@ -71,3 +71,52 @@
 
     }
 })(jQuery); 
+
+
+function isValidCCNumber( ccNum ) {
+    var cardNum = new String( ccNum );
+    var digitsOnly = "";
+    // Filter out non-digit characters
+    for( var i = 0; i < cardNum.length; i++ ) {
+        if( "0123456789".indexOf( cardNum.charAt( i ) ) > -1 ) {
+            digitsOnly += cardNum.charAt( i );
+        }
+    }
+    // Perform Luhn check
+    var sum = 0;
+    var digit = 0;
+    var addend = 0;
+    var timesTwo = false;
+    for( var i = digitsOnly.length - 1; i >= 0; i-- ) {
+        digit = parseInt( digitsOnly.charAt( i ) );
+        if( timesTwo ) {
+            addend = digit * 2;
+            if( addend > 9 ) {
+                addend -= 9;
+            }
+        } else {
+            addend = digit;
+        }
+        sum += addend;
+        timesTwo = !timesTwo;
+    }
+    return sum % 10 == 0;
+}
+function checkLuhn(input) { 
+    var sum = 0;
+     var numdigits = input.length;
+      var parity = numdigits % 2;
+       for(var i=0; i < numdigits; i++) {
+        var digit = parseInt(input.charAt(i)); 
+        if(i % 2 == parity) 
+            digit *= 2; 
+            if(digit > 9) 
+                digit -= 9;
+                 sum += digit;
+     } return (sum % 10) == 0; 
+}
+function formsubmit(){
+ // save input string and strip out non-numbers
+    if(!checkLuhn($("#CardNumber").val())) { alert('Sorry, that is not a valid number - please try again!');return fale; }    
+    else return true;
+}

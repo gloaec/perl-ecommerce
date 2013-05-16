@@ -185,7 +185,7 @@ sub populate {
   );  
   
   $self->render(%params, @_);    
-
+  $self->redirect_to("/products");  
 }
 
 sub return_session{

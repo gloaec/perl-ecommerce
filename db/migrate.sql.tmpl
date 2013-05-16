@@ -27,6 +27,7 @@ CREATE TABLE products (
   deleted_at       datetime               DEFAULT '0000-00-00 00:00:00',
   created_at       datetime      NOT NULL DEFAULT '0000-00-00 00:00:00',
   updated_at       timestamp     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  taxon_id         integer(11)   REFERENCES taxons, 
 
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='PerlEcommerce Products';

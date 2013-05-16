@@ -96,6 +96,11 @@ __PACKAGE__->table("products");
   default_value: current_timestamp
   is_nullable: 0
 
+=head2 taxon_id
+
+  data_type: 'integer'
+  is_nullable: 1
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -143,6 +148,8 @@ __PACKAGE__->add_columns(
     default_value => \"current_timestamp",
     is_nullable => 0,
   },
+  "taxon_id",
+  { data_type => "integer", is_nullable => 1 },
 );
 
 =head1 PRIMARY KEY
@@ -158,8 +165,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-10 16:50:50
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:HMCyYJdpVg/BCPN/ojZp3g
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-16 15:21:40
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:5Xmq67lMeVGSpL1wFEEdWg
 
 __PACKAGE__->has_many(variants => 'PerlEcommerce::Schema::Result::Variant', 'product_id');
 __PACKAGE__->has_many(images => 'PerlEcommerce::Schema::Result::Image', 'product_id');

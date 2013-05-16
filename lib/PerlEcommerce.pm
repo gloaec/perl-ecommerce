@@ -81,7 +81,8 @@ sub setup_routing {
   # == frond-office == #
 
   $rr = $r->route('/taxons') ->to('taxons#');
-  $rr->route('/:id') ->via('GET') ->to('#show_products') ->name('show_products');
+  $rr->route('/:id') ->via('GET') ->to('#listing') ->name('list_products');
+
   
 
   $rr= $r->route('/orders') -> to('orders#');

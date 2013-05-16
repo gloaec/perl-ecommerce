@@ -8,12 +8,12 @@ DELETE FROM images;
 INSERT INTO products(
     id, name, 
     description, 
-    permalink, meta_description, meta_keywords, count_on_hand, available_on, safety_stock
+    permalink, meta_description, meta_keywords, count_on_hand, available_on, safety_stock,taxon_id
 ) VALUES ( 
    1,'Perl Mug',
    "A very nice mug to drink your favorite developper beverage ! Be geek from early morning.",
    'perl-mug',
-   "Mug for perl fans", 'mug cup coffee perl goodies', 10, NOW(), 5
+   "Mug for perl fans", 'mug cup coffee perl goodies', 10, NOW(), 5,1
 );
 INSERT INTO variants(id,       sku, price, cost_price, weight, height, width, depth, is_master, count_on_hand, product_id)  
              VALUES (1,   'PRL-M1', 13.99,       8.34,     700,    92,    60,    60,         1,             5,          1);

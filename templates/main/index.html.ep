@@ -1,6 +1,6 @@
+% layout 'store', title => 'Home page';   
 <div class="hero-unit">
   <h1>Welcome to Perl-ECommerce</h1>
    <p>
   </p>
 </div>
-dd
