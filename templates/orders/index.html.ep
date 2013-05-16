@@ -1,3 +1,4 @@
+% layout 'store', title => 'Your cart';
 <h1>Your Cart : </h1>
 <%
 my @tb= @$products;
@@ -26,7 +27,7 @@ my @tb= @$products;
 					          <td><a href="<%= url_for('show_product', id_product => $tb[$i][0]) %>"><%= $tb[$i][1] %></a></td>
 
 					          <td>
-									<input type="text" placeholder="1" value="1" >
+									<input type="text" placeholder="1" value="1" name="quantity()">
 					          </td>
 					          <td><%= $tb[$i][3] %></td>          
 

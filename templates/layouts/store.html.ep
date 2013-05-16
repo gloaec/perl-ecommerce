@@ -34,6 +34,13 @@
       $('input[type="date"]').datepicker();
     });
   </script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/lib/formToWizard.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#SignupForm").formToWizard({ submitButton: 'SaveAccount' })
+        });
+    </script>  
 </head>
 <body data-offset="80" data-target=".subnav" data-spy="scroll" style="margin-top: 0px;">
       

@@ -89,6 +89,7 @@ sub setup_routing {
 
   $rr->route('/populate/:id') ->via('GET') ->to('#populate') ->name('order');  
   $rr->route('/validate') ->via('POST') ->to('#validate') ->name('new_order');  
+  $rr->route('/passed') ->via('POST') ->to('#passed') ->name('passsed_order');  
 
   $rr= $r->route('/users') -> to('users#');
   $rr->route('/login') ->via('POST') ->to('#login') ->name('user_login');
