@@ -1,5 +1,17 @@
 % layout 'store', title => 'Liste des produits';
 <h2>Liste des produits :</h2>
+<h4>Tri par :
+<div class="btn-group">
+                <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Choisir : <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                <li><a href="#">prix croissant</a></li>
+                <li><a href="#">prix décroissant</a></li>
+                  <li><a href="#">Date</a></li>
+                  <li><a href="#">les plus demandés</a></li>
+                  <li><a href="#"> articles soldés </a></li>
+                </ul>
+              </div>
+              </h4>
 <ul class="thumbnails">
 <% for my $product (@$products){ %>
 
