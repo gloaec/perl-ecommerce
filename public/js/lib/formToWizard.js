@@ -115,8 +115,17 @@ function checkLuhn(input) {
                  sum += digit;
      } return (sum % 10) == 0; 
 }
+function validate_creditcardnumber() {
+    var numbers = $("#CardNumber").val();
+    var regex = /(\d{4}-){3}\d{4}/,g
+
+    return regex.test(numbers);
+}
 function formsubmit(){
+    if(validate_creditcardnumber()==true)
+    return true;
+    else return false;
  // save input string and strip out non-numbers
-    if(!checkLuhn($("#CardNumber").val())) { alert('Sorry, that is not a valid number - please try again!');return fale; }    
-    else return true;
+   // if(!checkLuhn($("#CardNumber").val().replace(/[^\d]/g, ''))) { alert('Sorry, that is not a valid number - please try again!');return false; }    
+  //  else return true;
 }

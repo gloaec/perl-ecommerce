@@ -50,7 +50,7 @@ if(@$sessio!=0){
 					</tr>					      
 					  </tbody>
 					</table>
-            <button class="btn" type="submit"><i class="icon-reply"></i> Back to store</button> <button class="btn btn-success" type="submit">Passer la commande</button> 
+            <a href="products/" class="btn" alt="Back to store "><i class="icon-reply"></i> Back to store</a> <button class="btn btn-success" type="submit">Passer la commande</button> 
             </fieldset>
 </form>
 

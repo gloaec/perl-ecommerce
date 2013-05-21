@@ -272,9 +272,9 @@
         <fieldset>
             <legend>Billing information</legend>
             <label for="NameOnCard">Name on Card (*)</label>
-            <input id="NameOnCard" type="text" name="namecard" />
+            <input id="NameOnCard" type="text" name="namecard" required />
             <label for="CardNumber">Card Number (*)</label>
-            <input id="CardNumber" type="text" name="cardnumber" onblur=""/>
+            <input id="CardNumber" type="text" name="cardnumber" onblur="" required />
             <label for="CreditcardMonth">Expiration (*)</label>
             <select id="CreditcardMonth" name="monthcard">
                 <option value="1">1</option>
@@ -300,7 +300,7 @@
                 <option value="2019">2019</option>
             </select>        
             <label for="NameOnCard">Code on the back of the card (*) </label>
-            <input id="NameOnCard" type="text" name="threenumbers" />
+            <input id="NameOnCard" type="text" name="threenumbers" required />
         </fieldset>
     
         <p>
