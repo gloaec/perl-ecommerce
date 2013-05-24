@@ -8,7 +8,7 @@ use Getopt::Long qw(GetOptionsFromArray :config no_ignore_case no_auto_abbrev); 
 use Text::Template;
 use File::Basename 'dirname';
 use Data::Dumper;
-#use PerlEcommerce::Schema;
+use PerlEcommerce::Schema;
 use DBI;
 use DBIx::Class::Schema::Loader qw/ make_schema_at /;
 use Term::ANSIColor;

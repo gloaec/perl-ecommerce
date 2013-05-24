@@ -54,6 +54,7 @@ if which cpanm &> /dev/null;
   sudo cpanm Try::Tiny
 #  sudo cpanm DBIx::Simple
   sudo cpanm DBIx::Class
+  sudo cpanm DBIx::Class::Schema
   sudo cpanm DBIx::Class::Schema::Loader
   sudo cpanm Mojolicious::Plugin::TtRenderer::Engine
   sudo cpanm Mojolicious::Plugin::FormFields
