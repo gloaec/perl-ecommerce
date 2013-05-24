@@ -1,0 +1,136 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>lib/PerlEcommerce.pm</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body style="background-color: white">
+
+
+<!-- INDEX BEGIN -->
+<div name="index">
+<p><a name="__index__"></a></p>
+
+<ul>
+
+	<li><a href="#nom">NOM</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#fonctions">Fonctions</a></li>
+	</ul>
+
+	<li><a href="#auteur">AUTEUR</a></li>
+	<li><a href="#voir_aussi">VOIR AUSSI</a></li>
+</ul>
+
+<hr name="index" />
+</div>
+<!-- INDEX END -->
+
+<p>
+</p>
+<h1><a name="nom">NOM</a></h1>
+<p>package <em>PerlEcommerce</em> - module d'exemple commenté avec Pod</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>Afin de lancer le serveur, vous devrez utiliser un script executable comme celui ci-dessous :</p>
+<pre>
+        #!/usr/bin/env perl
+        use Mojo::Base -strict;
+        use File::Basename 'dirname';
+        use File::Spec;
+        use lib join '/', File::Spec-&gt;splitdir(dirname(__FILE__)), 'lib';
+        use lib join '/', File::Spec-&gt;splitdir(dirname(__FILE__)), '..', 'lib';
+        
+        # Application
+        $ENV{MOJO_APP} ||= 'PerlEcommerce';
+        
+        # Start commands
+        my $commands = Mojolicious::Commands-&gt;new;
+        push @{$commands-&gt;namespaces}, 'PerlECommerce::Command';
+        
+        Mojolicious::Commands-&gt;start_app($ENV{MOJO_APP}, 'daemon', '-l', '<a href="http://">http://</a>*:8080');</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>Ce module permet la mise en place d'un serveur proposant une application de ecommerce clés en main.</p>
+<p>La documentation est réalisée avec <strong>Pod</strong></p>
+<p>
+</p>
+<h2><a name="fonctions">Fonctions</a></h2>
+<dl>
+<dt><strong><a name="startup" class="item"><code>startup()</code></a></strong></dt>
+
+<dd>
+<p>Permet de démarrer le serveur. Example: <a href="#startup"><code>print PerlEcommerce::startup();</code></a></p>
+</dd>
+<dt><strong><a name="setup_plugins" class="item"><code>setup_plugins()</code></a></strong></dt>
+
+<dd>
+<p>Configure tous les plugins dont dépend l'application. Example: <a href="#setup_plugins"><code>print PerlEcommerce::setup_plugins();</code></a>
+Pour ajouter un plugin, référez vous à la documentation du gestionnaire de plugins 
+<em>Mojolicious::Plugins </em></p>
+</dd>
+<dt><strong><a name="setup_routings" class="item"><code>setup_routings()</code></a></strong></dt>
+
+<dd>
+<p>Définit toutes les routes de l'application. Example: <a href="#setup_plugins"><code>print PerlEcommerce::setup_plugins();</code></a>
+Pour la définition des routes, référez vous à la documentation du gestionnaire de routes
+<em>Mojolicious::Routes </em></p>
+</dd>
+<dt><strong><a name="setup_hooks" class="item"><code>setup_hooks()</code></a></strong></dt>
+
+<dd>
+<p>Définit les hooks de l'application.
+Pour la définition d'un hook, référez vous à la documentation:
+<em>Mojolicious#hook </em></p>
+</dd>
+<dt><strong><a name="setup_model" class="item"><code>setup_model()</code></a></strong></dt>
+
+<dd>
+<p>Instancie le modèle de données. Toutes les entités tu schema sont alors accessible via le 
+<em>DBIx::Class::Schema::Loader </em></p>
+</dd>
+<dt><strong><a name="resources" class="item"><code>resources($controller_name)</code></a></strong></dt>
+
+<dd>
+<p>Facilite la définition de routes en générant automatiquement les urls RESTful pour chacune 
+des méthodes CRUD et chacune des vues: index, show, edit. Example :</p>
+<pre>
+        $self-&gt;resources('products');
+        
+        $self-&gt;resources(foo =&gt; {
+            'bar' =&gt; '*',
+            'bor' =&gt; {
+            except =&gt; ['show']
+          },
+          only =&gt; ['new','create']
+        });</pre>
+</dd>
+</dl>
+<p>
+</p>
+<hr />
+<h1><a name="auteur">AUTEUR</a></h1>
+<p>Ghislain Loaec</p>
+<p>
+</p>
+<hr />
+<h1><a name="voir_aussi">VOIR AUSSI</a></h1>
+<p><a href="/PerlEcommerce/Model.html">PerlEcommerce::Model </a></p>
+<p><a href="/PerlEcommerce/Controller.html">PerlEcommerce::Controller </a></p>
+<p><a href="/PerlEcommerce/Schema.html">PerlEcommerce::Schema </a></p>
+<p><a href="/PerlEcommerce/Command.html">PerlEcommerce::Command </a></p>
+<p><a href="/PerlEcommerce/I18N.html">PerlEcommerce::I18N </a></p>
+
+</body>
+
+</html>
