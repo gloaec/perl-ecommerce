@@ -6,7 +6,7 @@
   <li class="<% if(current_route =~ /admin_product_image/){ %> active <% } %>">
     <a href="<%= url_for('admin_product_images', id_product => $product->id) %>">Images</a>
   </li>  
-  <li class="<% if(current_route =~ /admin_product_variants/){ %> active <% } %>">
+  <li class="<% if(current_route =~ /admin_product_variant/){ %> active <% } %>">
     <a href="<%= url_for('admin_product_variants', id_product => $product->id) %>">Variants</a>
   </li>
   <li class="<% if(current_route =~ /admin_product_propreties/){ %> active <% } %>">
