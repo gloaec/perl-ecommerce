@@ -46,11 +46,7 @@ sub setup_routing {
 
   $rr = $r->route('/products') ->to('products#');
   $rr->route('/') ->via('GET') ->to('#index') ->name('products');
-  $rr->route('/:id') ->via('GET') ->to('#show') ->name('show_product');
-  $rr->route('/add/:id') ->via('GET') ->to('#add') ->name('product');
-
-
-
+  $rr->route('/:id') ->via('GET') ->to('#show') ->name('product');
 
   # === BackOffice === #
 
@@ -77,23 +73,16 @@ sub setup_routing {
   $rrrr->route('/:id_image/delete') ->via('GET') ->to('#delete') ->name('delete_admin_product_image');
   $rrrr->route('/:id_image/edit') ->via('GET') ->to('#edit') ->name('edit_admin_product_image');
 
+  $rrrr = $rrr->route('/:id_product/variants') ->to('admin-products-variants#');
+  $rrrr->route('/') ->via('GET') ->to('#index') ->name('admin_product_variants');
+  $rrrr->route('/') ->via('POST') ->to('#create') ->name('create_admin_product_variant');
+  $rrrr->route('/new') ->via('GET') ->to('#new') ->name('new_admin_product_variant');
+  $rrrr->route('/:id_variant') ->via('GET') ->to('#show') ->name('admin_product_variant');
+  $rrrr->route('/:id_variant') ->via('POST') ->to('#update') ->name('update_admin_product_variant');
+  $rrrr->route('/:id_variant/delete') ->via('GET') ->to('#delete') ->name('delete_admin_product_variant');
+  $rrrr->route('/:id_variant/edit') ->via('GET') ->to('#edit') ->name('edit_admin_product_variant');
 
-  # == frond-office == #
 
-  $rr = $r->route('/taxons') ->to('taxons#');
-  $rr->route('/:id') ->via('GET') ->to('#listing') ->name('list_products');
-
-  
-
-  $rr= $r->route('/orders') -> to('orders#');
-  $rr->route('/') ->via('GET') ->to('#index') ->name('orders');  
-
-  $rr->route('/populate/:id') ->via('GET') ->to('#populate') ->name('order');  
-  $rr->route('/validate') ->via('POST') ->to('#validate') ->name('new_order');  
-  $rr->route('/passed') ->via('POST') ->to('#passed') ->name('passsed_order');  
-
-  $rr= $r->route('/users') -> to('users#');
-  $rr->route('/login') ->via('POST') ->to('#login') ->name('user_login');
   #$self->subresources($res, 'products');
   #$self->resources('products');
 #

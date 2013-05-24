@@ -39,6 +39,12 @@ __PACKAGE__->table("images");
   data_type: 'integer'
   is_nullable: 0
 
+=head2 type
+
+  data_type: 'varchar'
+  is_nullable: 0
+  size: 20
+
 =head2 product_id
 
   data_type: 'integer'
@@ -53,6 +59,8 @@ __PACKAGE__->add_columns(
   { data_type => "text", is_nullable => 0 },
   "position",
   { data_type => "integer", is_nullable => 0 },
+  "type",
+  { data_type => "varchar", is_nullable => 0, size => 20 },
   "product_id",
   { data_type => "integer", is_nullable => 0 },
 );
@@ -70,8 +78,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-13 22:12:58
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:VcSrMUG5JF54YK6fvTmewQ
+# Created by DBIx::Class::Schema::Loader v0.07035 @ 2013-05-16 18:48:42
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:EAVcU9UulrrwqYfRQIrPEA
 use Image::Magick;
 use Image::Magick::Thumbnail;
 use Image::Magick::Thumbnail::Fixed;

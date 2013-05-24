@@ -1,0 +1,62 @@
+  <div class="control-group">
+    <label class="control-label" for="inputOption"><%= l 'options/values' %></label>
+    <div class="controls">
+      <select name="option.value" id="inputAltText" type="text" placeholder="<%= l 'value' %>" class="" value="" >
+        <option value=""></option>
+      </select>
+    </div>
+  </div>
+<div class="row-fluid">
+  <div class="span8">
+    <div class="control-group">
+      <label class="control-label" for="inputSKU"><%= l 'sku' %></label>
+      <div class="controls">
+        <input name="variant.sku" id="inputSKU" type="text" placeholder="<%= l 'sku' %>" class="span12" value="<%= $variant->sku %>" />
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="inputPrice"><%= l 'price' %></label>
+      <div class="controls">
+        <input name="variant.price" id="inputPrice" type="text" placeholder="<%= l 'price' %>" class="span12" value="<%= $variant->price %>" />
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="inputCostPrice"><%= l 'cost_price' %></label>
+      <div class="controls">
+        <input name="variant.cost_price" id="inputCostPrice" type="text" placeholder="<%= l 'cost_price' %>" class="span12" value="<%= $variant->cost_price %>" />
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="inputCountOnHand"><%= l 'price' %></label>
+      <div class="controls">
+        <input name="variant.count_on_hand" id="inputCountOnHand" type="text" placeholder="<%= l 'count_on_hand' %>" class="span12" value="<%= $variant->count_on_hand %>" />
+      </div>
+    </div>
+  </div>   
+  <div class="span4">
+    <div class="control-group">
+      <label class="control-label" for="inputWeight"><%= l 'weight' %></label>
+      <div class="controls">
+        <input name="variant.weight" id="inputWeight" type="text" placeholder="<%= l 'height' %>" class="span12" value="<%= $variant->weight %>" />
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="inputHeight"><%= l 'height' %></label>
+      <div class="controls">
+        <input name="variant.height" id="inputHeight" type="text" placeholder="<%= l 'height' %>" class="span12" value="<%= $variant->height %>" />
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="inputWidth"><%= l 'width' %></label>
+      <div class="controls">
+        <input name="variant.width" id="inputWidth" type="text" placeholder="<%= l 'width' %>" class="span12" value="<%= $variant->width %>" />
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="inputDepth"><%= l 'depth' %></label>
+      <div class="controls">
+        <input name="variant.depth" id="inputDepth" type="text" placeholder="<%= l 'depth' %>" class="span12" value="<%= $variant->depth %>" />
+      </div>
+    </div>
+  </div>
+</div>

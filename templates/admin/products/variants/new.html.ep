@@ -1,0 +1,18 @@
+% layout 'admin', title => l 'edit_product_variant';
+
+% content_for sidebar => begin
+  %= include 'admin/products/_sidebar';
+% end
+
+<h1><%= l 'new_product_variant' %></h1>
+
+%= form_for create_admin_product_variant => (enctype => 'multipart/form-data') => begin
+  %= include 'admin/products/variants/_form';
+
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary" data-loading-text="<%= l 'saving' %>..." data-complete-text="<%= l 'saved' %> !"><i class="icon-ok"></i> <%= l 'save' %></button>
+    <a href="<%= url_for 'admin_product_variants', id_product => $product->id %>" class="btn"><i class="icon-reply"></i> <%= l 'cancel' %></a>
+  </div>
+% end
+
+<!--</form>-->

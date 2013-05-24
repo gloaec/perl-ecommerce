@@ -4,17 +4,13 @@
   %= include 'admin/products/_sidebar';
 % end
 
-<h1><%= l 'edit_product_image' %></h1>
-
-<!--<form action="<%= url_for('create_admin_product_image') %>" method="POST">-->
+<h1><%= l 'new_product_image' %></h1>
 
 %= form_for create_admin_product_image => (enctype => 'multipart/form-data') => begin
   %= include 'admin/products/images/_form';
 
   <div class="form-actions">
-    <button type="submit" class="btn btn-primary" data-loading-text="<%= l 'saving' %>..." data-complete-text="<%= l 'saved' %> !"><%= l 'save_changes' %></button>
-    <button type="button" class="btn"><%= l 'cancel' %></button>
+    <button type="submit" class="btn btn-primary" data-loading-text="<%= l 'saving' %>..." data-complete-text="<%= l 'saved' %> !"><i class="icon-ok"></i> <%= l 'save' %></button>
+    <a href="<%= url_for 'admin_product_images', id_product => $product->id %>" class="btn"><i class="icon-reply"></i> <%= l 'cancel' %></a>
   </div>
 % end
-
-<!--</form>-->

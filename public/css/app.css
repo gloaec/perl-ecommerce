@@ -61,7 +61,7 @@ input[type="color"],
     padding-left: 20px !important;
   }
 }
-
+/*
         fieldset { border:none; width:320px;}
         legend { font-size:18px; margin:0px; padding:10px 0px; color:#b0232a; font-weight:bold;}
         label { display:block; margin:15px 0 5px;}
@@ -76,3 +76,4 @@ input[type="color"],
         #steps li.current { color:#000;}
         #makeWizard { background-color:#b0232a; color:#fff; padding:5px 10px; text-decoration:none; font-size:18px;}
         #makeWizard:hover { background-color:#000;}
+*/

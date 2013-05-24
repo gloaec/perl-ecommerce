@@ -11,7 +11,7 @@
   %= include 'admin/products/images/_form';
 
   <div class="form-actions">
-    <button type="submit" class="btn btn-primary" data-loading-text="<%= l 'saving' %>..." data-complete-text="<%= l 'saved' %> !"><%= l 'save_changes' %></button>
-    <button type="button" class="btn"><%= l 'cancel' %></button>
+    <button type="submit" class="btn btn-primary" data-loading-text="<%= l 'saving' %>..." data-complete-text="<%= l 'saved' %> !"><i class="icon-ok"></i> <%= l 'save_changes' %></button>
+    <a href="<%= url_for 'admin_product_images', id_product => $product->id %>" class="btn"><i class="icon-reply"></i> <%= l 'cancel' %></a>
   </div>
 % end
