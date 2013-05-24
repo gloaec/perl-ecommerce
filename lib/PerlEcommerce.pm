@@ -136,6 +136,8 @@ sub subresources {
 
 1;
 
+=encoding utf8
+
 =head1 NOM
 
 package I<PerlEcommerce> - module d'exemple commenté avec Pod
@@ -172,30 +174,30 @@ La documentation est réalisée avec B<Pod>
 
 =item startup()
 
-Permet de démarrer le serveur. Example: C<print PerlEcommerce::startup();>
+Permet de démarrer le serveur. Example: C<PerlEcommerce::startup();>
 
 =item setup_plugins()
 
-Configure tous les plugins dont dépend l'application. Example: C<print PerlEcommerce::setup_plugins();>
+Configure tous les plugins dont dépend l'application. Example: C<PerlEcommerce::setup_plugins();>
 Pour ajouter un plugin, référez vous à la documentation du gestionnaire de plugins 
-L<Mojolicious::Plugins |http://mojolicio.us/perldoc/Mojolicious/Plugins>
+L<Mojolicious::Plugins|http://mojolicio.us/perldoc/Mojolicious/Plugins>
 
 =item setup_routings()
 
-Définit toutes les routes de l'application. Example: C<print PerlEcommerce::setup_plugins();>
+Définit toutes les routes de l'application. Example: C<PerlEcommerce::setup_plugins();>
 Pour la définition des routes, référez vous à la documentation du gestionnaire de routes
-L<Mojolicious::Routes |http://mojolicio.us/perldoc/Mojolicious/Routes>
+L<Mojolicious::Routes|http://mojolicio.us/perldoc/Mojolicious/Routes>
 
 =item setup_hooks()
 
 Définit les hooks de l'application.
 Pour la définition d'un hook, référez vous à la documentation:
-L<Mojolicious#hook |http://mojolicio.us/perldoc/Mojolicious#hook>
+L<Mojolicious#hook|http://mojolicio.us/perldoc/Mojolicious#hook>
 
 =item setup_model()
 
 Instancie le modèle de données. Toutes les entités tu schema sont alors accessible via le 
-L<DBIx::Class::Schema::Loader |http://search.cpan.org/~genehack/DBIx-Class-Schema-Loader-0.07035/lib/DBIx/Class/Schema/Loader.pm>
+L<DBIx::Class::Schema::Loader|http://search.cpan.org/~genehack/DBIx-Class-Schema-Loader-0.07035/lib/DBIx/Class/Schema/Loader.pm>
 
 =item resources($controller_name) 
 
@@ -220,14 +222,14 @@ Ghislain Loaec
 
 =head1 VOIR AUSSI
 
-L<PerlEcommerce::Model |PerlEcommerce::Model>
+L<PerlEcommerce::Model>
 
-L<PerlEcommerce::Controller |PerlEcommerce::Controller>
+L<PerlEcommerce::Controller>
 
-L<PerlEcommerce::Schema |PerlEcommerce::Schema>
+L<PerlEcommerce::Schema>
 
-L<PerlEcommerce::Command |PerlEcommerce::Command>
+L<PerlEcommerce::Command>
 
-L<PerlEcommerce::I18N |PerlEcommerce::I18N>
+L<PerlEcommerce::I18N>
 
 =cut
