@@ -15,8 +15,8 @@
         <form id="SignupForm" action="/orders/passed" style="margin-left:100px;" method="POST" onsubmit="return formsubmit();">
         <fieldset>
             <legend>Account information</legend>
-            <label for="Name">Login (*)</label>
-            <input id="Name" type="text" name="login" required /> 
+            <label for="Login">Login (*)</label>
+            <input id="login" type="text" name="login" required /> 
             <label for="Email">Email (*)</label>
             <input id="Email" type="text" name="email" required/> 
             <label for="Password">Password (*)</label>
@@ -27,17 +27,17 @@
             <label for="CompanyName">Civility (*)</label>
             <input id="CompanyName" type="text" name="civility" required /> 
             <label for="Website">First name (*)</label>
-            <input id="Website" type="text" name="firstname" required /> 
+            <input id="fname" type="text" name="firstname" required /> 
             <label for="Website">Last name (*)</label>
-            <input id="Website" type="text" name="lastname" required />             
+            <input id="lname" type="text" name="lastname" required />             
             <label for="Address1">Address 1 (*)</label>
-            <input id="Address1" type="text" name="adress1" required /> 
-            <label for="Address2">Address 2 (*)</label>
-            <input id="Address2" type="text" name="adress2" required /> 
+            <input id="ad1" type="text" name="adress1" required /> 
+            <label for="Address2">Address 2 </label>
+            <input id="ad2" type="text" name="adress2" required /> 
             <label for="City">City (*)</label>
             <input id="City" type="text" name="city" required /> 
             <label for="City">Phone (*)</label>
-            <input id="City" type="text" name="phone" required />            
+            <input id="phone" type="text" name="phone" required />            
             <label for="country">Country (*)</label>
             <select id="Country" name="country" required >
 			    <option value="CA">Canada</option>
@@ -312,7 +312,7 @@
                 <option value="2019">2019</option>
             </select>        
             <label for="NameOnCard">Code on the back of the card (*) </label>
-            <input id="NameOnCard" type="text" name="threenumbers" required />
+            <input id="threenumbers" type="text" name="threenumbers" required />
         </fieldset>
     
         <p>
