@@ -22,6 +22,11 @@ sub index {
   $self->render(%params, @_);
 
 }
+sub empty{
+  my $self = shift;
+  @orders = ();
+  $self->redirect_to("/products"); 
+}
 
 sub validate {
 

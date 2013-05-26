@@ -47,7 +47,7 @@
             <li>
             <li class="divider"></li>
             <li><a href="/orders"><i class="icon-checkout"></i> <%= l 'checkout' %></a></li>            
-            <li><a href="#"><i class="icon-trash"></i> <%= l 'empty_cart' %></a></li>
+            <li><a href="/orders/empty"><i class="icon-trash"></i> <%= l 'empty_cart' %></a></li>
           </ul>
         </li>
         <li><a href="<%= url_for('admin_root') %>"><i class="icon-cog"></i></a></li>

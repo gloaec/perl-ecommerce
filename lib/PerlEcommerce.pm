@@ -57,6 +57,7 @@ sub setup_routing {
   $rr->route('/populate/:id') ->via('GET') ->to('#populate') ->name('order_populate');
   $rr->route('/new_order') ->via('POST') ->to('#validate') ->name('new_order');
   $rr->route('/passed') ->via('POST') ->to('#passed') ->name('passed_order');
+  $rr->route('/empty') ->via('GET') ->to('#empty') ->name('empty_order');
   # === BackOffice === #
 
   $rr = $r->route('/admin') ->to('admin#');
