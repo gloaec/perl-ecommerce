@@ -1,7 +1,7 @@
 package PerlEcommerce::Controller::Products;
 use Mojo::Base 'PerlEcommerce::Controller';
 
-# use Mojo::Base 'PerlEcommerce::Controller::Orders';
+ use Mojo::Base 'PerlEcommerce::Controller::Orders';
 use PerlEcommerce::I18N;
 
 

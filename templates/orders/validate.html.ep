@@ -274,7 +274,7 @@
             <label for="NameOnCard">Name on Card (*)</label>
             <input id="NameOnCard" type="text" name="namecard" required />
             <label for="CardNumber">Card Number (*)</label>
-            <input id="CardNumber" type="text" name="cardnumber" onblur="" required />
+            <input id="CardNumber" type="text" name="cardnumber" onblur="" required /> Ex: 1245-2365-1459-1236
             <label for="CreditcardMonth">Expiration (*)</label>
             <select id="CreditcardMonth" name="monthcard">
                 <option value="1">1</option>

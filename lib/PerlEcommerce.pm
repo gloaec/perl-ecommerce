@@ -48,6 +48,15 @@ sub setup_routing {
   $rr->route('/') ->via('GET') ->to('#index') ->name('products');
   $rr->route('/:id') ->via('GET') ->to('#show') ->name('product');
 
+
+  $rr = $r->route('/taxons') ->to('taxons#');
+  $rr->route('/:id') ->via('GET') ->to('#listing') ->name('taxon');
+
+  $rr = $r->route('/orders') ->to('orders#');
+  $rr->route('/') ->via('GET') ->to('#index') ->name('order');
+  $rr->route('/populate/:id') ->via('GET') ->to('#populate') ->name('order_populate');
+  $rr->route('/new_order') ->via('POST') ->to('#validate') ->name('new_order');
+  $rr->route('/passed') ->via('POST') ->to('#passed') ->name('passed_order');
   # === BackOffice === #
 
   $rr = $r->route('/admin') ->to('admin#');
