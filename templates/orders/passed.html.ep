@@ -7,3 +7,17 @@
               <strong>Well done!</strong> You successfully passed your order.
             </div>
            
+
+<% 
+my @tb= @$orderss;
+for my $i ( 0 .. $#tb) { %>
+
+<%= $tb[$i][2]."hhh" %>
+<% } %>
+<!--<pre>
+--<%
+for my $product (@$ordersall){ %>
+<%= dumper($product) %>
+<% } %>
+</pre>
+

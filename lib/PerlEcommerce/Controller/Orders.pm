@@ -167,12 +167,13 @@ $self->schema('paymentsMethod')->create( $payments_method );
 
   my @orderss=$self->schema('Order')->all;
   
-  
+  @orders = ();
   my @taxons = $self->schema('taxon')->all;
   my %params = (
     taxons => \@taxons,
     sessio => \@orders,
-    orderss => \@orderss
+    orderss => \@orders,
+    ordersall => \@orderss
   );
   $self->render(%params, @_); 
 }
