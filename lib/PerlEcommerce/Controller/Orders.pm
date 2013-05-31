@@ -165,17 +165,18 @@ $self->schema('paymentsMethod')->create( $payments_method );
   }
 # FIN ajouuuuuuuuuuuuuuuuuuuuut dans la BDD #
 
-  my @orderss=$self->schema('Order')->all;
+  my @orderss=$self->schema('Order')->first;
   
-  @orders = ();
+  
   my @taxons = $self->schema('taxon')->all;
   my %params = (
     taxons => \@taxons,
     sessio => \@orders,
     orderss => \@orders,
-    ordersall => \@orderss
+    products => \@orders
   );
   $self->render(%params, @_); 
+  @orders = ();
 }
 
 
